@@ -2,8 +2,6 @@ from __future__ import division
 import glob
 import time
 from pandas import *
-from multiprocessing import Pool
-import multiprocessing
 import os
 
 SIZE_INT = 180 #size threshold for the interruptions
@@ -260,7 +258,6 @@ def pipe_trans_events(file_path,files):
     
 if __name__ == "__main__":
 
-
     print "starting transformation"
 
     start = time.time()
@@ -278,7 +275,6 @@ if __name__ == "__main__":
     store_grouped_data(events, GROUPED_DATA_PATH)
     
     files = os.listdir(GROUPED_DATA_PATH)
-    cores = multiprocessing.cpu_count()
     
     #Transform the data to sessions
     res = pipe_trans_events(GROUPED_DATA_PATH,files)

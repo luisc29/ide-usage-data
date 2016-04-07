@@ -1,5 +1,4 @@
 import os
-from os import listdir
 from pandas import * 
 from multiprocessing import Pool
 import multiprocessing
@@ -47,17 +46,20 @@ def infer_type(cmds):
     return res
                             
 def infer_detailed_type(cmds):
+    """
+    Infers the type of every event with more detail based on the description
+    """
     desc = np.asarray(cmds["description"])#[s.split('.') for s in cmds["description"]]
     res = []
     for i in range(0,len(desc)):
         d = desc[i]
         value = ""
             
-        if("Edit" in d or "Editor" in d):
+        if "Edit" in d or "Editor" in d:
             value = "edit-text"
             
-        if(value == "edit-text"):
-            if("Scroll" in d or "Navigate" in d or "Next" in d or "Page" in d
+        if value == "edit-text":
+            if ("Scroll" in d or "Navigate" in d or "Next" in d or "Page" in d
             or "Previous" in d or "End" in d or "Start" in d or "Up" in d
             or "Down" in d or "Last" in d or "Left" in d or "Right" in d):
                 value = "text-nav"
@@ -65,22 +67,21 @@ def infer_detailed_type(cmds):
             if("Find" in d or "Found" in d):
                 value = "search"
         
-        if("NavigateTo" in d or "GoTo" in d or "PreviousTab" in d 
+        if ("NavigateTo" in d or "GoTo" in d or "PreviousTab" in d
         or "NextTab" in d or "PreviousWindow" in d or "NextWindow" in d
-        or "NextDocument" in d or "PreviousDocument" in d or "ClassView" in d
-        ):
+        or "NextDocument" in d or "PreviousDocument" in d or "ClassView" in d):
             value = "high-nav"
             
-        if("File" in d or "Project" in d):
+        if "File" in d or "Project" in d:
             value = "file"
         
-        if("Refactor" in d or "ReSharper" in d):
+        if "Refactor" in d or "ReSharper" in d:
             value = "refactoring"
         
-        if("Build" in d):
+        if "Build" in d:
             value = "clean-build"
 
-        if("Debug" in d or "Debugger" in d):
+        if "Debug" in d or "Debugger" in d:
             value = "debug"
     
         if("Analyze" in d or "Other" in d or "Image" in d or "Help" in d 
@@ -90,10 +91,10 @@ def infer_detailed_type(cmds):
         or "Graph" in d):
             value = "tools"
         
-        if("Team" in d):
+        if "Team" in d:
             value = "control"
             
-        if("Test" in d):
+        if "Test" in d:
             value = "testing"
             
         
@@ -137,7 +138,7 @@ def set_description(events):
     for i in range(0,len(events)):
         e = events.iloc[i]
         res = cmds[(cmds["category"] == e["category"]) & (cmds["event"] == e["event"])]
-        if(len(res)>0):
+        if len(res)>0:
             desc.append(res["description"].iloc[0])
             types.append(res["type"].iloc[0])
             d_types.append(res["detailed_type"].iloc[0])
