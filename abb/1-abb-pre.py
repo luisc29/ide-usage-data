@@ -4,6 +4,8 @@ from multiprocessing import Pool
 import multiprocessing
 import time
 import numpy as np
+import time
+
 
 PATH_TO_DATA = "//home//luis//ITAM//abb//export-2015-10-23//"
 PATH_TO_RESULT = "//home//luis//abb//preproc//"
@@ -20,7 +22,7 @@ def infer_type(cmds):
         d = desc[i]
         value = ""
         #All the context menus labeled as selection
-        if("ContextMenus" in d[0]):
+        if "ContextMenus" in d[0]:
             value = "selection"
             
         if("Analyze" in  d[0] or "Data" in d[0]
@@ -35,10 +37,10 @@ def infer_type(cmds):
         or "Refactor" in d[0]):
             value = "edition"
             
-        if("Team" in d[0]):
+        if "Team" in d[0]:
             value = "control"
         
-        if("Build" in d[0] or "Action" in d[0]):
+        if "Build" in d[0] or "Action" in d[0]:
             value = "system"
 
 

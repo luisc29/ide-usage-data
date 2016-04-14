@@ -14,10 +14,10 @@ bp <- function(df = sessions, col.num, t = c(0,3,6,9), x.labels , y.lim, y.lab, 
 thresholds <- quantile(sessions$num_inte)
 
 #edits per minute
-bp(sessions,5,t=thresholds[1:4], c("none", "[1-12]", "[13-20]", "[21-41]",">41"), 20, "Edits / minute", "Interruptions","red")
+bp(sessions,23,t=thresholds[1:4], c("none", "[1-12]", "[13-20]", "[21-41]",">41"), 10, "Edits / minute", "Interruptions","red")
 
 #selections per minute
-bp(sessions,6,t=thresholds[1:4], c("none", "[1-12]", "[13-20]", "[21-41]",">41"), 20, "Selections / minute", "Interruptions","blue")
+bp(sessions,24,t=thresholds[1:4], c("none", "[1-12]", "[13-20]", "[21-41]",">41"), 20, "Selections / minute", "Interruptions","blue")
 
 #edit ratio
-bp(sessions,7,t=thresholds[1:4], c("none", "[1-12]", "[13-20]", "[21-41]",">41"), 1, "Edit ratio", "Interruptions","black")
+bp(sessions,25,t=thresholds[1:4], c("none", "[1-12]", "[13-20]", "[21-41]",">41"), 1, "Edit ratio", "Interruptions","black")
