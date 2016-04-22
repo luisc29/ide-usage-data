@@ -5,7 +5,6 @@ install.packages("dplyr")
 library(plyr)
 library(dplyr)
 
-
 sessions <- read.csv("~/abb/ts_abb.csv", stringsAsFactors = FALSE)
 
 #duration of the sessions
@@ -34,3 +33,21 @@ sessions$edit.v <- edit.v
 nav.v <- lapply(strsplit(sessions$navigation," "),as.integer)
 sessions$nav.v <- nav.v
 
+#when does the big interruptions occur?
+sessions.old <- read.csv("~/abb/ts_abb (copy).csv", stringsAsFactors=FALSE)
+inte.v <- lapply(strsplit(sessions.old$interruption," "),as.integer)
+when <- unlist(lapply(inte.v, function(x){
+  inte.big.threshold <- 45
+  res <- c()
+  l <- length(x)
+  for(i in c(1:l)){
+    if(x[i] >= inte.big.threshold){
+      res <- c(res,(i/l))
+    }
+  }
+  res
+}))
+
+mean(when)
+quantile(when)
+hist(when)

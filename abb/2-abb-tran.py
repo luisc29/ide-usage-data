@@ -6,7 +6,7 @@ import os
 import numpy as np
 
 SIZE_INT = 180 #size threshold for the interruptions
-SPACE_BETWEEN_INT= 28800 #threshold for the sessions
+SPACE_BETWEEN_INT = 28800 #threshold for the sessions
 PATH_PREPROC = "//home//luis//abb//preproc" #path to the processed data
 PATH_GROUPED_DATA = "//home//luis//abb//users" #where to store the grouped data
 PATH_TS_RESULT = "/home/luis/abb/ts_abb.csv" #where to store the time series file
@@ -250,8 +250,10 @@ def process_sessions(events, uid):
                 split_session.append(sub_session)
                 index = bp[k]+1
 
+        count += 1
+
         for session in split_session:
-            count += 1
+
             minutes = np.unique(np.array(session["minute"]))
             l_edits = []
             l_selec = []
@@ -261,7 +263,7 @@ def process_sessions(events, uid):
 
             for m in minutes:
                 #for every minute of the session, count the number of edition and
-                #selection events and the duration of the interruptions
+                #selection events and the duration of the interruptions (among other types of events)
                 subset = session[session["minute"] == m]
                 l_edits.append(len(subset[subset["type"] == "edition"]))
                 l_selec.append(len(subset[subset["type"] == "selection"]))
@@ -373,7 +375,7 @@ if __name__ == "__main__":
 
     #Keep sessions with at least 30 minutes of productive time
     res = res[res["size_ts"] >= 30]
-#    
+
     res.to_csv(PATH_TS_RESULT, index = False)
     end = time.time()
     print end-start

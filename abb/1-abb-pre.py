@@ -102,7 +102,8 @@ def infer_detailed_type(cmds):
         
         res.append(value)
     return res
-                
+
+
 def clean_commands(cmds):
     """
     Cleans the commands file, removing the curly braces from the
@@ -253,8 +254,7 @@ if __name__ == "__main__":
     for i in range(0,cores):
         desc2.append(r[i].get())
     
-    
-    r = []
+
     pool.close()
     pool.terminate()
     end = time.time() 
