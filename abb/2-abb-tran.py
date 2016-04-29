@@ -5,14 +5,13 @@ from pandas import *
 import os
 import numpy as np
 
-SIZE_INT = 180 #size threshold for the interruptions
-SPACE_BETWEEN_INT = 28800 #threshold for the sessions
-PATH_PREPROC = "//home//luis//abb//preproc" #path to the processed data
-PATH_GROUPED_DATA = "//home//luis//abb//users" #where to store the grouped data
-PATH_TS_RESULT = "/home/luis/abb/ts_abb.csv" #where to store the time series file
-PATH_SESSIONS = "/home/luis/abb/sessions" #where to store a file per session
-BREAK_POINT = 2700 #size of the interval to split the session in two
-
+SIZE_INT = 180  # size threshold for the interruptions
+SPACE_BETWEEN_INT = 28800  # threshold for the sessions
+PATH_PREPROC = "//home//luis//abb//preproc"  # path to the processed data
+PATH_GROUPED_DATA = "//home//luis//abb//users"  # where to store the grouped data
+PATH_TS_RESULT = "/home/luis/abb/ts_abb.csv"  # where to store the time series file
+PATH_SESSIONS = "/home/luis/abb/sessions"  # where to store a file per session
+BREAK_POINT = 2700  # size of the interval to split the session in two
 
 
 def load_data(path):
@@ -42,7 +41,7 @@ def store_grouped_data(data,path):
         print name, ", ", l
         if l > 999:
             group.to_csv(path + "//clean.events"+ str(i), index=False)
-        i=i+1
+        i += 1
 
 
 def get_minute(time):
@@ -54,7 +53,7 @@ def get_minute(time):
     return m
     
     
-def transform_events(events):
+def preprocess_events(events):
     """
     Adds lacking information before transforming the data to sessions, like 
     an identifier for the minute, a label for the interruptions and the sessions
@@ -67,12 +66,12 @@ def transform_events(events):
     t = t_plus_1 - t
     events["interval"] = t
     
-    #Create an identifier for the minute of the event, usefull when creating
-    #the sessions
+    # Create an identifier for the minute of the event, usefull when creating
+    # the sessions
     dt = [time.strptime(d,'%Y-%m-%d %H:%M:%S') for d in events["datetime"]]
     events["minute"] = [get_minute(d) for d in dt]
     
-    #label interruptions and sessions
+    # label interruptions and sessions
     interruptions = []
     sessions = []
     intervals = t
@@ -80,7 +79,7 @@ def transform_events(events):
     for i in range(0,len(events)):
         sessions.append(s_id)
         if intervals[i] >= SPACE_BETWEEN_INT:
-            s_id = s_id + 1
+            s_id += 1
             interruptions.append(False)
             continue
             
@@ -105,7 +104,7 @@ def break_points(inte, minutes):
     breaks = []
     last_observed_min = 0
 
-    #we consider sessions of 30 productive minutes, so we cannot split a session lesser than 60 minutes
+    # we consider sessions of 30 productive minutes, so we cannot split a session lesser than 60 minutes
     if n > 60:
         c = 0
         for i in range(0,(n)):
@@ -120,126 +119,44 @@ def break_points(inte, minutes):
     return breaks
 
 
-def process_sessions(events, uid):
+def transform_to_sessions(events, uid):
     """
-    Transforms the data of every user to sessions, obtaining the metrics aswell 
+    Transforms the data of every user to sessions
     """
     
     class Sessions:
         values = {
-            'id': [],
-            'size': [],
-            'inte': [],
-            'edits': [],
-            'selec': [],
-            'l_inte': [],
-            'l_edits': [],
-            'l_select': [],
-            'emin': [],  # editions per minute
-            'smin': [],  # selections per minute
-            'eratio': [],  # edit ratio
-            'emin_detailed': [],
-            'smin_detailed': [],
-            'eratio_detailed': [],
-            'n_inte': [],
-            'n_events': [],
-            'st_time': [],  # start time
-            'end_time': [],  # end time
-            'user': [],  # user id
-            'et': [],  # edit-text
-            'tn': [],  # text navigation
-            'hn': [],  # high navigation
-            'fi': [],  # files
-            'ref': [],  # refactoring
-            'cb': [],  # clean and build
-            'de': [],  # debug
-            'too': [],  # tools
-            'con': [],  # control
-            'te': [],  # test
-            'se': [], # search
-            'total_sessions': 0
+            'id': [], 'size_ts': [],
+            'interruptions': [], 'n_inte': [], 'n_events': [], 'start_time': [], 'end_time': [],
+            'user': [], 'edition': [],  'text_nav': [],  'high_nav': [], 'file': [], 'refactoring': [],
+            'clean_build': [],  'debug': [],  'tools': [], 'control': [], 'testing': [], 'search': []
         }
     
         def __init__(self):
             pass
 
-        def calc_metrics(self):
-            """
-            Calculates the metrics editions per minute, selections per minute and edit ratio
-            """
-            sum_edits = sum(self.values["l_edits"][-1])
-            sum_sel = sum(self.values["l_select"][-1])
-            dur = self.values["size"][-1]
-            self.values["emin"].append(sum_edits / dur)
-            self.values["smin"].append(sum_sel / dur)
-    
-            # edit ratio
-            if (sum_edits + sum_sel) == 0:
-                self.values["eratio"].append(0)
-            else:
-                self.values["eratio"].append(sum_edits / (sum_edits + sum_sel))
-    
-        def calc_metrics_detailed(self):
-            """
-            Calculates the metrics using the detailed classification
-            """
-            sum_ed = self.values["et"][-1] + self.values["ref"][-1]
-            sum_sd = self.values["tn"][-1] + self.values["hn"][-1] + self.values["de"][-1] + self.values["se"][-1]
-            dur = self.values["size"][-1]
-            self.values["emin_detailed"].append(sum_ed / dur)
-            self.values["smin_detailed"].append(sum_sd / dur)
-            if (sum_ed + sum_sd) == 0:
-                self.values["eratio_detailed"].append(0)
-            else:
-                self.values["eratio_detailed"].append(sum_ed / (sum_ed + sum_sd))
-    
+
         def create_dataframe(self):
-            # creates a data frame with the sessions of the user
-            sessions = pandas.DataFrame()
-            sessions["size_ts"] = self.values["size"]
-            sessions["interruption"] = self.values["inte"]
-            sessions["edits"] = self.values["edits"]
-            sessions["navigation"] = self.values["selec"]
-            sessions["edit_min"] = self.values["emin"]
-            sessions["sel_min"] = self.values["smin"]
-            sessions["edit_ratio"] = self.values["eratio"]
-            sessions["num_inte"] = self.values["n_inte"]
-            sessions["start"] = self.values["st_time"]
-            sessions["end"] = self.values["end_time"]
-            sessions["user"] = self.values["user"]
-            sessions["edit_text"] = self.values["et"]
-            sessions["text_nav"] = self.values["tn"]
-            sessions["high_nav"] = self.values["hn"]
-            sessions["file"] = self.values["fi"]
-            sessions["refactoring"] = self.values["ref"]
-            sessions["clean_build"] = self.values["cb"]
-            sessions["debug"] = self.values["de"]
-            sessions["tools"] = self.values["too"]
-            sessions["control"] = self.values["con"]
-            sessions["testing"] = self.values["te"]
-            sessions["event_count"] = self.values["n_events"]
-            sessions["edit_min_detailed"] = self.values["emin_detailed"]
-            sessions["sel_min_detailed"] = self.values["smin_detailed"]
-            sessions["edit_ratio_detailed"] = self.values["eratio_detailed"]
-            sessions["id"] = self.values["id"]
+            """
+            Creates a dataframe with the sessions of the user
+            """
+            sessions = pandas.DataFrame().from_dict(self.values)
             return sessions
             
     so = Sessions()
 
-    result = []
-
     s = set(events["session_id"])
 
-    count = 0
+    count = 0  # count of sessions
 
-    #process every session of the user
+    # process all the sessions of the user
     for i in s:
         user_sessions = events[events["session_id"] == i]
         user_sessions.to_csv(PATH_SESSIONS + "/" + str(uid) + "-" + str(count) + ".csv", index=False)
 
         split_session = [user_sessions]
 
-        #if breaking points are found, the session splits into subsessions
+        # if breaking points are found, the session splits into subsessions
         bp = break_points(user_sessions["interval"], user_sessions["minute"])
         if len(bp) > 0:
             bp.append(len(user_sessions))
@@ -256,18 +173,37 @@ def process_sessions(events, uid):
 
             minutes = np.unique(np.array(session["minute"]))
             l_edits = []
-            l_selec = []
+            l_text_nav = []
+            l_high_nav = []
+            l_refactoring = []
+            l_debug = []
+            l_file = []
+            l_build = []
+            l_tools = []
+            l_control = []
+            l_testing = []
+            l_search = []
             l_inte = []
             dur = len(minutes)
             ni = 0
 
             for m in minutes:
-                #for every minute of the session, count the number of edition and
-                #selection events and the duration of the interruptions (among other types of events)
+                # for every minute of the session, count the number of edition and
+                # selection events and the duration of the interruptions (among other types of events)
                 subset = session[session["minute"] == m]
-                l_edits.append(len(subset[subset["type"] == "edition"]))
-                l_selec.append(len(subset[subset["type"] == "selection"]))
-                if subset.iloc[len(subset)-1]["is_interruption"] == True:
+                l_edits.append(len(subset[subset["detailed_type"] == "edit-text"]))
+                l_high_nav.append(len(subset[subset["detailed_type"] == "high-nav"]))
+                l_text_nav.append(len(subset[subset["detailed_type"] == "text-nav"]))
+                l_refactoring.append(len(subset[subset["detailed_type"] == "refactoring"]))
+                l_debug.append(len(subset[subset["detailed_type"] == "debug"]))
+                l_file.append(len(subset[subset["detailed_type"] == "file"]))
+                l_build.append(len(subset[subset["detailed_type"] == "clean-build"]))
+                l_tools.append(len(subset[subset["detailed_type"] == "tools"]))
+                l_control.append(len(subset[subset["detailed_type"] == "control"]))
+                l_testing.append(len(subset[subset["detailed_type"] == "testing"]))
+                l_search.append(len(subset[subset["detailed_type"] == "search"]))
+
+                if subset.iloc[len(subset)-1]["is_interruption"]:
                     l_inte.append(subset.iloc[len(subset)-1]["interval"]//60)
                     ni += 1
                 else:
@@ -275,74 +211,93 @@ def process_sessions(events, uid):
 
             so.values["id"].append(str(uid) + '-' + str(count))
             print (str(uid) + '-' + str(count))
-            so.values["total_sessions"] += 1
-            so.values["size"].append(dur)
+            so.values["size_ts"].append(dur)
 
             #convert the lists created before to string
             str_edits = ' '.join(str(e) for e in l_edits)
-            str_selec = ' '.join(str(e) for e in l_selec)
+            str_high_nav = ' '.join(str(e) for e in l_high_nav)
+            str_text_nav = ' '.join(str(e) for e in l_text_nav)
+            str_refactoring = ' '.join(str(e) for e in l_refactoring)
+            str_debug = ' '.join(str(e) for e in l_debug)
+            str_file = ' '.join(str(e) for e in l_file)
+            str_build = ' '.join(str(e) for e in l_build)
+            str_tools = ' '.join(str(e) for e in l_tools)
+            str_control = ' '.join(str(e) for e in l_control)
+            str_testing = ' '.join(str(e) for e in l_testing)
+            str_search = ' '.join(str(e) for e in l_search)
             str_inte = ' '.join(str(e) for e in l_inte)
-            so.values["edits"].append(str_edits)
-            so.values["selec"].append(str_selec)
-            so.values["inte"].append(str_inte)
-            so.values["l_inte"].append(l_inte)
-            so.values["l_edits"].append(l_edits)
-            so.values["l_select"].append(l_selec)
 
-            #calculate the metrics
-            so.calc_metrics()
+            so.values["edition"].append(str_edits)
+            so.values["high_nav"].append(str_high_nav)
+            so.values["text_nav"].append(str_text_nav)
+            so.values["refactoring"].append(str_refactoring)
+            so.values["debug"].append(str_debug)
+            so.values["file"].append(str_file)
+            so.values["clean_build"].append(str_build)
+            so.values["tools"].append(str_tools)
+            so.values["control"].append(str_control)
+            so.values["testing"].append(str_testing)
+            so.values["search"].append(str_search)
+            so.values["interruptions"].append(str_inte)
 
-            #proportions per detailed type
-            p_edit_text = len(session[session["detailed_type"] == "edit-text"])
-            p_text_nav = len(session[session["detailed_type"] == "text-nav"])
-            p_high_nav = len(session[session["detailed_type"] == "high-nav"])
-            p_file = len(session[session["detailed_type"] == "file"])
-            p_refactoring = len(session[session["detailed_type"] == "refactoring"])
-            p_clean_build = len(session[session["detailed_type"] == "clean-build"])
-            p_debug = len(session[session["detailed_type"] == "debug"])
-            p_tools = len(session[session["detailed_type"] == "tools"])
-            p_control = len(session[session["detailed_type"] == "control"])
-            p_testing = len(session[session["detailed_type"] == "testing"])
-            p_search = len(session[session["detailed_type"] == "search"])
-
-            #set more attributes to each session
             so.values["n_inte"].append(ni)
-            so.values["st_time"].append(session.iloc[0]["datetime"])
-            so.values["end_time"].append(session.iloc[len(session)-1]["datetime"])
+            so.values["start_time"].append(session.iloc[0]["datetime"])
+            so.values["end_time"].append(session.iloc[len(session) - 1]["datetime"])
             so.values["user"].append(session.iloc[0][0])
-            so.values["et"].append(p_edit_text)
-            so.values["tn"].append(p_text_nav)
-            so.values["hn"].append(p_high_nav)
-            so.values["fi"].append(p_file)
-            so.values["ref"].append(p_refactoring)
-            so.values["cb"].append(p_clean_build)
-            so.values["de"].append(p_debug)
-            so.values["too"].append(p_tools)
-            so.values["con"].append(p_control)
-            so.values["te"].append(p_testing)
-            so.values["se"].append(p_search)
             so.values["n_events"].append(len(session[session["detailed_type"] != " "]))
 
-            # editions and selections per minute according to the detailed type
-            so.calc_metrics_detailed()
-
-           
-    
     result = so.create_dataframe()
     return result
 
 
-    
-def pipe_trans_events(file_path,files):
+def calc_metrics(data):
+    nrows = len(data)
+    types_edit = ["edition", "refactoring", "text_nav"]
+    types_selection = ["high_nav", "search", "debug"]
+    emin = []
+    smin = []
+    eratio = []
+    for i in range(0,nrows):
+        sum_edits = 0
+        sum_selections = 0
+        for j in range(0, len(types_edit)):
+            chain = data.iloc[i][types_edit[j]]
+            vector = chain.split(' ')
+            vector = [int(x) for x in vector]
+            sum_edits += sum(vector)
+
+        for k in range(0, len(types_selection)):
+            chain = data.iloc[i][types_selection[k]]
+            vector = chain.split(' ')
+            vector = [int(x) for x in vector]
+            sum_selections += sum(vector)
+
+        size = data.iloc[i]["size_ts"]
+        e = sum_edits/size
+        s = sum_selections/size
+        emin.append(e)
+        smin.append(s)
+
+        er = e/(e+s)
+        eratio.append(er)
+
+    data["emin"] = emin
+    data["smin"] = smin
+    data["eratio"] = eratio
+    return data
+
+
+def pipe_trans_events(file_path, files):
     """
     Applies transformation to the data on the files. Returns an object with the sessions
     """
     res = DataFrame()
     for i in range(0,len(files)):
-        events = DataFrame.from_csv(file_path + "//" + files[i],index_col=False)
+        events = DataFrame.from_csv(file_path + "//" + files[i], index_col=False)
         print "processing file: " + files[i]
-        events = transform_events(events)
-        sessions = process_sessions(events, i)
+        events = preprocess_events(events)
+        sessions = transform_to_sessions(events, i)
+        #sessions = calc_metrics(sessions)
         if len(res) == 0:
             res = sessions
         else:
@@ -356,24 +311,24 @@ if __name__ == "__main__":
 
     start = time.time()
     
-    #load all the data
+    # load all the data
     events = load_data(PATH_PREPROC)
     
-    #sort it by user and datetime
-    events = events.sort(["user","datetime"],ascending = [1,1])
+    # sort it by user and datetime
+    events = events.sort(["user","datetime"], ascending=[1, 1])
     
-    #group by user
+    # group by user
     events = events.groupby(["user"])
     
-    #Create a file per user
+    # Create a file per user
     store_grouped_data(events, PATH_GROUPED_DATA)
     
     files = os.listdir(PATH_GROUPED_DATA)
     
-    #Transform the data to sessions
+    # Transform the data to sessions
     res = pipe_trans_events(PATH_GROUPED_DATA, files)
 
-    #Keep sessions with at least 30 minutes of productive time
+    # Keep sessions with at least 30 minutes of productive time
     res = res[res["size_ts"] >= 30]
 
     res.to_csv(PATH_TS_RESULT, index = False)

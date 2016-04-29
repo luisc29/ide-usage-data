@@ -18,8 +18,8 @@ mean(sessions$duration)/60 #9.16 hours
 quantile(sessions$size_ts)
 
 #number of interruptions per session
-quantile(sessions$num_inte)
-mean(sessions$num_inte)
+quantile(sessions$n_inte)
+mean(sessions$n_inte)
 
 #duration of interruptions
 inte.v <- lapply(strsplit(sessions$interruption," "),as.integer)
@@ -28,9 +28,9 @@ inte.all <- unlist(inte.v)
 quantile(inte.all[inte.all>0])
 #median length of interruptions = 5
 
-edit.v <- lapply(strsplit(sessions$edits," "),as.integer)
+edit.v <- lapply(strsplit(sessions$edition," "),as.integer)
 sessions$edit.v <- edit.v
-nav.v <- lapply(strsplit(sessions$navigation," "),as.integer)
+nav.v <- lapply(strsplit(sessions$text_nav," "),as.integer)
 sessions$nav.v <- nav.v
 
 #when does the big interruptions occur?
@@ -51,3 +51,46 @@ when <- unlist(lapply(inte.v, function(x){
 mean(when)
 quantile(when)
 hist(when)
+
+#how many productive segments are there among all the sessions? (at least 30 minutes without interruptions)
+productive.segments <- unlist(lapply(sessions$inte.v, function(x){
+  res <- 0
+  nx <- length(x)
+  count <- 0
+  flag <- FALSE
+  for(i in c(1:nx)){
+    if(x[[i]] > 0){
+      count <- 0      
+      if(flag){
+        res <- res+1
+        flag <- FALSE
+      }
+    }else{
+      count <- count+1
+      if(count >= 30 && !flag)
+        flag <- TRUE
+    }
+  }
+  res
+}))
+sum(productive.segments)
+
+#count the number of events per type
+sessions$n_edition <- unlist(lapply(sessions$edition, function(x) { 
+  v <- as.numeric(unlist(strsplit(x," ")))
+  sum(v)
+}))
+
+sessions$n_high_nav <- unlist(lapply(sessions$high_nav, function(x) { 
+  v <- as.numeric(unlist(strsplit(x," ")))
+  sum(v)
+}))
+
+sessions$n_text_nav <- unlist(lapply(sessions$text_nav, function(x) { 
+  v <- as.numeric(unlist(strsplit(x," ")))
+  sum(v)
+}))
+
+
+
+

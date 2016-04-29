@@ -2,7 +2,6 @@ import os
 from pandas import * 
 from multiprocessing import Pool
 import multiprocessing
-import time
 import numpy as np
 import time
 
@@ -10,6 +9,7 @@ import time
 PATH_TO_DATA = "//home//luis//ITAM//abb//export-2015-10-23//"
 PATH_TO_RESULT = "//home//luis//abb//preproc//"
 PATH_TO_RESULT_MAIN = "//home//luis//abb//"
+
 
 def infer_type(cmds):
     """
@@ -21,12 +21,11 @@ def infer_type(cmds):
     for i in range(0,len(desc)):
         d = desc[i]
         value = ""
-        #All the context menus labeled as selection
+        # All the context menus labeled as selection
         if "ContextMenus" in d[0]:
             value = "selection"
             
-        if("Analyze" in  d[0] or "Data" in d[0]
-        or "Help" in d[0] or "Image" in d[0] or "Debug" in d[0] or "Design" in d[0]
+        if("Analyze" in  d[0] or "Data" in d[0] or "Help" in d[0] or "Image" in d[0] or "Debug" in d[0] or "Design" in d[0]
         or "Report" in d[0] or "View" in d[0] or "File" in d[0] or "Macros" in d[0]
         or "Project" in d[0] or "Resources" in d[0] or "Explorer" in d[0]
         or "SQL" in d[0] or "Sql" in d[0] or "Table" in d[0] or "Test" in d[0]
@@ -46,12 +45,13 @@ def infer_type(cmds):
 
         res.append(value)
     return res
-                            
+
+
 def infer_detailed_type(cmds):
     """
     Infers the type of every event with more detail based on the description
     """
-    desc = np.asarray(cmds["description"])#[s.split('.') for s in cmds["description"]]
+    desc = np.asarray(cmds["description"])
     res = []
     for i in range(0,len(desc)):
         d = desc[i]
@@ -110,17 +110,17 @@ def clean_commands(cmds):
     unique identifier and the duplicated rows
     """
 
-    cmds.columns = ["category","event","description"]
+    cmds.columns = ["category", "event", "description"]
     cmds = cmds.drop_duplicates()
     cmds.is_copy = False
 
-    #clean the description of the events
-    res = [s.strip('{') for s in cmds.ix[:,0]]
+    # clean the description of the events
+    res = [s.strip('{') for s in cmds.ix[:, 0]]
     res = [s.strip('}') for s in res]
     res = [s.lower() for s in res]
     cmds["category"] = res
     
-    #infer the type and the detailed type of the events
+    # infer the type and the detailed type of the events
     cmds["type"] = infer_type(cmds)
     cmds["detailed_type"] = infer_detailed_type(cmds)
 
@@ -159,38 +159,37 @@ def clean_events(file_path, file_name):
     from the 'allcmds.csv' file
     """
     
-    #Load a file and rename the columns
+    # Load a file and rename the columns
     events = DataFrame.from_csv(file_path + "//" + file_name,index_col=False)
     events.columns = ["user","datetime","category","event"]
     
-    #Format the datetime value
+    # Format the datetime value
     events["datetime"] = [s.split('.')[0] for s in events["datetime"]]
     events["seconds"] = [time.mktime(time.strptime(s,'%Y-%m-%d %H:%M:%S')) for s in events["datetime"]]
     
-    #Remove events based on the event description:
-    #Build.SolutionConfigurations
-    #Build.SolutionPlatforms
+    # Remove events based on the event description:
+    # Build.SolutionConfigurations
+    # Build.SolutionPlatforms
     events = events[events["event"] != 684]
     events = events[events["event"] != 1990]
     
-    #Remove duplicated rows (all the values are the same)
+    # Remove duplicated rows (all the values are the same)
     events = events.drop_duplicates()
     
-    #Get the description and type from the commands dataset
+    # Get the description and type from the commands dataset
     desc, types, d_types = set_description(events)
     events["description"] = desc
     events["type"] = types
     events["detailed_type"] = d_types
     
-    #Remove events without description
+    # Remove events without description
     events = events[events["description"] != " "]
     
-    #Store the cleaned data
+    # Store the cleaned data
     events.to_csv(PATH_TO_RESULT + "clean."+ file_name, index=False)
     
-    #return events
-    return events
 
+    return events
 
 
 def pipe_clean_events(file_path, files):
@@ -206,7 +205,7 @@ def pipe_clean_events(file_path, files):
     
 def exec_parallel(fun,args):
     """
-    
+    Executes the preprocessing in parallel
     """
     res = []
     tasks = []
@@ -225,19 +224,19 @@ def exec_parallel(fun,args):
 if __name__ == "__main__":
     print "Preprocessing started"
     
-    #Load the commands. All the files must be previously appended
+    # Load the commands. All the files must be previously appended
     cmds = DataFrame.from_csv(PATH_TO_DATA + "allcmds.csv", index_col=False)
     
-    #Clean the commands
+    # Clean the commands
     cmds = clean_commands(cmds)
 
-    #The tinyevents.csv was previously split into files of 200,000 lines each
+    # The tinyevents.csv was previously split into files of 200,000 lines each
     path = PATH_TO_DATA + "events"
     files = os.listdir(path)
     
     cores = multiprocessing.cpu_count()
     
-    #Split the files into n groups
+    # Split the files into n groups
     files = np.array_split(files,cores)
     
     start = time.time()
@@ -253,7 +252,6 @@ if __name__ == "__main__":
     desc2 = []
     for i in range(0,cores):
         desc2.append(r[i].get())
-    
 
     pool.close()
     pool.terminate()
