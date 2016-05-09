@@ -109,7 +109,6 @@ def clean_commands(cmds):
     Cleans the commands file, removing the curly braces from the
     unique identifier and the duplicated rows
     """
-
     cmds.columns = ["category", "event", "description"]
     cmds = cmds.drop_duplicates()
     cmds.is_copy = False
@@ -134,7 +133,6 @@ def set_description(events):
     Looks for the description and type of an event on in the data frame 
     corresponding to the 'allcmds.csv' file
     """
-    
     desc = []
     types = []
     d_types = []
@@ -161,7 +159,7 @@ def clean_events(file_path, file_name):
     
     # Load a file and rename the columns
     events = DataFrame.from_csv(file_path + "//" + file_name,index_col=False)
-    events.columns = ["user","datetime","category","event"]
+    events.columns = ["user", "datetime", "category", "event"]
     
     # Format the datetime value
     events["datetime"] = [s.split('.')[0] for s in events["datetime"]]
@@ -192,11 +190,17 @@ def clean_events(file_path, file_name):
     return events
 
 
+def clean_focus_data(file_path, file_name):
+    focus = DataFrame.from_csv(file_path + file_name, index_col=False)
+    focus.columns = ["user", "datetime", "focus"]
+    focus = focus.sort(["user", "datetime"], ascending=[1, 1])
+    return focus
+
+
 def pipe_clean_events(file_path, files):
     """
     Processes a number of files on a single thread
     """
-    
     res = DataFrame()
     for i in range(0,len(files)):
         res = res.append(clean_events(file_path,files[i]))
@@ -241,25 +245,24 @@ if __name__ == "__main__":
     
     start = time.time()
     print "Parallel execution started"
-    
     pool = Pool()
-    
     r = []
     for i in range(0,cores):
         r1 = pool.apply_async(pipe_clean_events,[path,files[i]])
         r.append(r1)
-    
+
     desc2 = []
     for i in range(0,cores):
         desc2.append(r[i].get())
-
     pool.close()
     pool.terminate()
-    end = time.time() 
+    end = time.time()
     print "Parallel execution finished, total time: "
     print end - start
-    
-    
+
+    # Clean focus dataset
+    focus = clean_focus_data(PATH_TO_DATA, "tinyfocus.csv")
+    focus.to_csv(PATH_TO_RESULT_MAIN + "focus.clean.csv", index=False)
 
 
 

@@ -91,6 +91,18 @@ sessions$n_text_nav <- unlist(lapply(sessions$text_nav, function(x) {
   sum(v)
 }))
 
+focus.v <- lapply(strsplit(sessions$focus," "),as.double)
+sessions$focus.v <- focus.v
+focus.v.len <- unlist(lapply(sessions$focus.v, function(x){
+  length(x)
+}))
+inte.v.len <- unlist(lapply(sessions$inte.v, function(x){
+  length(x)
+}))
 
+sessions$focus.size = focus.v.len
+sessions$inte.size = inte.v.len
+diff.focus.inte <- focus.v.len == inte.v.len
+length(diff.focus.inte[diff.focus.inte == TRUE])
 
-
+diff.focus.inte <- (sessions$focus.size/sessions$inte.size)*100

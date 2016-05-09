@@ -8,10 +8,12 @@ import numpy as np
 SIZE_INT = 180  # size threshold for the interruptions
 SPACE_BETWEEN_INT = 28800  # threshold for the sessions
 PATH_PREPROC = "//home//luis//abb//preproc"  # path to the processed data
+PATH_PREPROC_MAIN = "//home//luis//abb//"
 PATH_GROUPED_DATA = "//home//luis//abb//users"  # where to store the grouped data
 PATH_TS_RESULT = "/home/luis/abb/ts_abb.csv"  # where to store the time series file
 PATH_SESSIONS = "/home/luis/abb/sessions"  # where to store a file per session
 BREAK_POINT = 2700  # size of the interval to split the session in two
+PATH_FOCUS_DATA = "//home//luis//ITAM//abb//export-2015-10-23//tinyfocus.csv"
 
 
 def load_data(path):
@@ -60,7 +62,7 @@ def preprocess_events(events):
     """
     events = events[events["type"] != "system"]
     
-    #set the time interval between events
+    # set the time interval between events
     t = np.array(events["seconds"])    
     t_plus_1 = np.append(t[1:(len(t))],t[len(t)-1])
     t = t_plus_1 - t
@@ -250,40 +252,38 @@ def transform_to_sessions(events, uid):
     return result
 
 
-def calc_metrics(data):
-    nrows = len(data)
-    types_edit = ["edition", "refactoring", "text_nav"]
-    types_selection = ["high_nav", "search", "debug"]
-    emin = []
-    smin = []
-    eratio = []
-    for i in range(0,nrows):
-        sum_edits = 0
-        sum_selections = 0
-        for j in range(0, len(types_edit)):
-            chain = data.iloc[i][types_edit[j]]
-            vector = chain.split(' ')
-            vector = [int(x) for x in vector]
-            sum_edits += sum(vector)
-
-        for k in range(0, len(types_selection)):
-            chain = data.iloc[i][types_selection[k]]
-            vector = chain.split(' ')
-            vector = [int(x) for x in vector]
-            sum_selections += sum(vector)
-
-        size = data.iloc[i]["size_ts"]
-        e = sum_edits/size
-        s = sum_selections/size
-        emin.append(e)
-        smin.append(s)
-
-        er = e/(e+s)
-        eratio.append(er)
-
-    data["emin"] = emin
-    data["smin"] = smin
-    data["eratio"] = eratio
+def add_focus_data(data):
+    focus = DataFrame.from_csv(PATH_PREPROC_MAIN + "focus.clean.csv", index_col=False)
+    focus["datetime2"] = [time.strptime(d, '%Y-%m-%d %H:%M:%S') for d in focus["datetime"]]
+    focus_series = []
+    for i in range(0, len(data)):
+        session = data.iloc[i]
+        user = session["user"]
+        start = time.strptime(session["start_time"], '%Y-%m-%d %H:%M:%S')
+        end = time.strptime(session["end_time"], '%Y-%m-%d %H:%M:%S')
+        focus_user = focus[(focus["user"] == user) & (focus["datetime2"] >= start) & (focus["datetime2"] <= end)]
+        focus_session = np.asarray(focus_user["focus"])
+        print len(focus_session)
+        inte = session["interruptions"].split(' ')
+        inte = [float(x) for x in inte]
+        if len(inte) < len(focus_session):
+            res = []
+            j = 0
+            k = 0
+            while (j < len(inte) and k < len(focus_session)):
+                len_inte = inte[j]
+                if len_inte == 0:
+                    res.append(focus_session[k])
+                    k = k+1
+    
+                else:
+                    res.append(np.mean(focus_session[k:(k+len_inte)]))
+                    k = k+len_inte
+                j = j+1
+            focus_series.append( ' '.join(str(e) for e in res))
+        else:
+            focus_series.append(' ')
+    data["focus"] = focus_series
     return data
 
 
@@ -297,7 +297,7 @@ def pipe_trans_events(file_path, files):
         print "processing file: " + files[i]
         events = preprocess_events(events)
         sessions = transform_to_sessions(events, i)
-        #sessions = calc_metrics(sessions)
+        sessions = add_focus_data(sessions)
         if len(res) == 0:
             res = sessions
         else:
@@ -330,8 +330,8 @@ if __name__ == "__main__":
 
     # Keep sessions with at least 30 minutes of productive time
     res = res[res["size_ts"] >= 30]
-
     res.to_csv(PATH_TS_RESULT, index = False)
+
     end = time.time()
     print end-start
 
