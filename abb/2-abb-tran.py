@@ -1,7 +1,8 @@
 from __future__ import division
+from pandas import *
 import glob
 import time
-from pandas import *
+import math
 import os
 import numpy as np
 
@@ -252,38 +253,80 @@ def transform_to_sessions(events, uid):
     return result
 
 
-def add_focus_data(data):
-    focus = DataFrame.from_csv(PATH_PREPROC_MAIN + "focus.clean.csv", index_col=False)
-    focus["datetime2"] = [time.strptime(d, '%Y-%m-%d %H:%M:%S') for d in focus["datetime"]]
+def add_focus_data(data, focus):
+    """
+    Looks in the focus data the segment that correspond to a working session
+    """
     focus_series = []
+    focus_offset = []
+    focus_start = []
+    focus_end = []
     for i in range(0, len(data)):
         session = data.iloc[i]
-        user = session["user"]
+        user = session["user"] 
+        
         start = time.strptime(session["start_time"], '%Y-%m-%d %H:%M:%S')
         end = time.strptime(session["end_time"], '%Y-%m-%d %H:%M:%S')
-        focus_user = focus[(focus["user"] == user) & (focus["datetime2"] >= start) & (focus["datetime2"] <= end)]
+        
+        # Get a focus segment beetween the starting and ending datetime of the session
+        focus_user = focus[(focus["user"] == user) & (focus["datetime2"] >= start) 
+                            & (focus["datetime2"] <= end)]
         focus_session = np.asarray(focus_user["focus"])
-        print len(focus_session)
         inte = session["interruptions"].split(' ')
         inte = [float(x) for x in inte]
-        if len(inte) < len(focus_session):
-            res = []
+        
+        # If the focus segment is not empty
+        if len(focus_session) > 0:
+            # Get the difference between the starting time of the sessiona and
+            # the focus to ignore those minutes 
+            time_diff = int(math.ceil((time.mktime(focus_user["datetime2"].iloc[0]) - time.mktime(start)) / 60))
+            time_diff_end = int(math.ceil((time.mktime(focus_user["datetime2"].iloc[-1]) - time.mktime(end)) / 60))
             j = 0
             k = 0
+            time_offset = 0
+            res = []
+            
+            #focus_session = ([0]*k) + focus_session
+            
+            # While
             while (j < len(inte) and k < len(focus_session)):
                 len_inte = inte[j]
-                if len_inte == 0:
-                    res.append(focus_session[k])
-                    k = k+1
-    
+                
+                # Si hay una diferencia de tiempo entre el tiempo de inicio, consume
+                # primero tal diferencia
+                if(time_diff <= 0):
+                    if len_inte == 0:
+                        time_diff -= 1
+                    else:
+                        time_diff -= len_inte
                 else:
-                    res.append(np.mean(focus_session[k:(k+len_inte)]))
-                    k = k+len_inte
+                    if len_inte == 0:
+                        # If there is not an interruption, get the next minute from focus
+                        res.append(focus_session[k])
+                        k = k+1
+                        time_offset += 1
+                    else:
+                        # If there is an interruption, get the same amount of minutes
+                        # from focus
+                        res.append(np.mean(focus_session[k:(k+len_inte)]))
+                        k = k+len_inte
+                        time_offset += len_inte
+
                 j = j+1
-            focus_series.append( ' '.join(str(e) for e in res))
+            #res += [0]*time_diff_end
+            focus_series.append(' '.join(str(e) for e in res))
+            focus_offset.append(time_diff)
+            focus_start.append(focus_user["datetime"].iloc[0])
+            focus_end.append(focus_user["datetime"].iloc[-1])
         else:
             focus_series.append(' ')
+            focus_offset.append(0)
+            focus_start.append(' ')
+            focus_end.append(' ')
     data["focus"] = focus_series
+    data["focus_offset"] = focus_offset
+    data["focus_start"] = focus_start
+    data["focus_end"] = focus_end
     return data
 
 
@@ -292,12 +335,16 @@ def pipe_trans_events(file_path, files):
     Applies transformation to the data on the files. Returns an object with the sessions
     """
     res = DataFrame()
+    
+    focus = DataFrame.from_csv(PATH_PREPROC_MAIN + "focus.clean.csv", index_col=False)
+    focus["datetime2"] = [time.strptime(d, '%Y-%m-%d %H:%M:%S') for d in focus["datetime"]]
+    
     for i in range(0,len(files)):
         events = DataFrame.from_csv(file_path + "//" + files[i], index_col=False)
         print "processing file: " + files[i]
         events = preprocess_events(events)
         sessions = transform_to_sessions(events, i)
-        sessions = add_focus_data(sessions)
+        sessions = add_focus_data(sessions, focus)
         if len(res) == 0:
             res = sessions
         else:
