@@ -6,7 +6,7 @@ import numpy as np
 import time
 
 
-PATH_TO_DATA = "//home//luis//ITAM//abb//export-2015-10-23//"
+PATH_TO_DATA = "//home//luis//abb//export-2015-10-23//"
 PATH_TO_RESULT = "//home//luis//abb//preproc//"
 PATH_TO_RESULT_MAIN = "//home//luis//abb//"
 
@@ -235,7 +235,7 @@ if __name__ == "__main__":
     cmds = clean_commands(cmds)
 
     # The tinyevents.csv was previously split into files of 200,000 lines each
-    path = PATH_TO_DATA + "events"
+    path = PATH_TO_RESULT_MAIN + "events"
     files = os.listdir(path)
     
     cores = multiprocessing.cpu_count()

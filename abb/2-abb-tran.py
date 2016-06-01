@@ -14,7 +14,7 @@ PATH_GROUPED_DATA = "//home//luis//abb//users"  # where to store the grouped dat
 PATH_TS_RESULT = "/home/luis/abb/ts_abb.csv"  # where to store the time series file
 PATH_SESSIONS = "/home/luis/abb/sessions"  # where to store a file per session
 BREAK_POINT = 2700  # size of the interval to split the session in two
-PATH_FOCUS_DATA = "//home//luis//ITAM//abb//export-2015-10-23//tinyfocus.csv"
+PATH_FOCUS_DATA = "//home//luis//abb//export-2015-10-23//tinyfocus.csv"
 
 
 def load_data(path):
