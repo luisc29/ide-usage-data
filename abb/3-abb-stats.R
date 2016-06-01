@@ -22,16 +22,16 @@ quantile(sessions$n_inte)
 mean(sessions$n_inte)
 
 #duration of interruptions
-inte.v <- lapply(strsplit(sessions$interruption," "),as.integer)
+inte.v <- lapply(strsplit(sessions$interruptions," "),as.integer)
 sessions$inte.v <- inte.v
 inte.all <- unlist(inte.v)
 quantile(inte.all[inte.all>0])
 #median length of interruptions = 5
 
-edit.v <- lapply(strsplit(sessions$edition," "),as.integer)
-sessions$edit.v <- edit.v
-nav.v <- lapply(strsplit(sessions$text_nav," "),as.integer)
-sessions$nav.v <- nav.v
+# edit.v <- lapply(strsplit(sessions$edition," "),as.integer)
+# sessions$edit.v <- edit.v
+# nav.v <- lapply(strsplit(sessions$text_nav," "),as.integer)
+# sessions$nav.v <- nav.v
 
 #when does the big interruptions occur?
 sessions.old <- read.csv("~/abb/ts_abb (copy).csv", stringsAsFactors=FALSE)
@@ -92,8 +92,13 @@ sessions$n_text_nav <- unlist(lapply(sessions$text_nav, function(x) {
 }))
 
 focus.v <- lapply(strsplit(sessions$focus," "),as.double)
+inte.exp.v <- lapply(strsplit(sessions$interruptions_expanded," "),as.double)
 sessions$focus.v <- focus.v
+sessions$inte.exp.v <- inte.exp.v
 focus.v.len <- unlist(lapply(sessions$focus.v, function(x){
+  length(x)
+}))
+inte.exp.v.len <- unlist(lapply(sessions$inte.exp.v, function(x){
   length(x)
 }))
 inte.v.len <- unlist(lapply(sessions$inte.v, function(x){
@@ -102,6 +107,8 @@ inte.v.len <- unlist(lapply(sessions$inte.v, function(x){
 
 sessions$focus.size = focus.v.len
 sessions$inte.size = inte.v.len
+sessions$inte.exp.size = inte.exp.v.len
+
 diff.focus.inte <- focus.v.len == inte.v.len
 length(diff.focus.inte[diff.focus.inte == TRUE])
 
