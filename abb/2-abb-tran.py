@@ -274,7 +274,6 @@ def add_focus_data(data, focus):
         
         if len(focus_user) > 0:
             inte_start = ":".join(session["start_time"].split(':')[:-1])
-            inte_end = ":".join(session["end_time"].split(':')[:-1])
             interruptions = [float(x) for x in session["interruptions"].split(' ')]
             is_interruption = []
             for i in interruptions:
@@ -288,15 +287,12 @@ def add_focus_data(data, focus):
             
             delta_start = datetime.strptime(focus_user['datetime'].iloc[0], 
                                 '%Y-%m-%d %H:%M:%S') - datetime.strptime(inte_start, '%Y-%m-%d %H:%M')
-            delta_end = datetime.strptime(inte_end, '%Y-%m-%d %H:%M') - datetime.strptime(focus_user['datetime'].iloc[-1], 
-                                '%Y-%m-%d %H:%M:%S')
                                         
             time_diff_start = 0 if delta_start == 0 else int(delta_start.seconds/60)
-            time_diff_end = 0 if delta_end == 0 else int(delta_end.seconds/60)
             
             offset = [0]*time_diff_start
             
-            focus_data = focus_user['focus']
+            focus_data = focus_user['focus'].tolist()
             if time_diff_start >= 1:
                 offset.extend(focus_user['focus'])
                 focus_data = offset
@@ -354,7 +350,7 @@ if __name__ == "__main__":
     # Create a file per user
     store_grouped_data(events, PATH_GROUPED_DATA)
     
-    files = os.listdir(PATH_GROUPED_DATA)[0:5]
+    files = os.listdir(PATH_GROUPED_DATA)[0:20]
     
     # Transform the data to sessions
     res = pipe_trans_events(PATH_GROUPED_DATA, files)
