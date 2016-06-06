@@ -2,8 +2,9 @@ from __future__ import division
 
 import matplotlib as mp
 import matplotlib.pyplot as plt
-import numpy
-
+import numpy as np
+import random
+import scipy
 from pandas import *
 from sklearn.cluster import KMeans
 from collections import Counter
@@ -14,7 +15,7 @@ from sklearn.ensemble import ExtraTreesClassifier
 PATH_TO_RESULT_MAIN = "/home/luis/abb/"
 PATH_TS_FILE = "/home/luis/abb/ts_abb.csv"  
 TIME_SERIES_NAMES = ['edition', 'text_nav', 'high_nav', 'file', 'refactoring',
-                     'clean_build', 'debug', 'tools', 'control', 'testing', 'search']
+                     'debug']
 #TIME_SERIES_NAMES = ['clean_build', 'debug', 'tools', 'control', 'testing', 'search']
 
 
@@ -39,31 +40,39 @@ def calc_proportions(data):
         data['prop_' + i] = dic[i]
         
     return data
-            
 
-def clustering_by_proportions(data):
-    """
-    Finds clusters by the proportion of events
-    """
+            
+def initialize_kmeanspp(X, K):
+    '''
+    Initializes the centroids for the given vector of values
+    '''
+    random.seed(29)
+    C = [X[0]]
+    for k in range(1, K):
+        D2 = scipy.array([min([scipy.inner(c-x,c-x) for c in C]) for x in X])
+        probs = D2/D2.sum()
+        cumprobs = probs.cumsum()
+        r = random.random()
+        for j,p in enumerate(cumprobs):
+            if r < p:
+                i = j
+                break
+        C.append(X[i])
+    return C
+
+
+def clustering_by_metrics(data):
+    '''
+    Finds clusters according to the metrics per session
+    '''
     data_res = DataFrame()
 
     users = data['user'].unique()
     n_k = len(users)
 
-    # prepare the dataset
-    for ts in TIME_SERIES_NAMES:
-        data_res['prop_' + ts] = data['prop_' + ts]
-
-
-    # feature selection
-    print('Feature selection')
-    model = ExtraTreesClassifier()
-    model.fit(data_res, data['user'])
-    print('Feature importances')
-    feature_importances = DataFrame()
-    feature_importances['feature'] = TIME_SERIES_NAMES
-    feature_importances['importance'] = model.feature_importances_
-    print feature_importances
+    data_res['emin'] = data['emin']
+    data_res['smin'] = data['smin']
+    data_res['eratio'] = data['eratio']
 
     # fitting the model
     print('Fitting a k-means model')
@@ -81,11 +90,11 @@ def clustering_by_proportions(data):
     common_prediction = []
     n_sessions = []
     for u in users:
-        data_user = data[data['user']==u]
+        data_user = data[data['user'] == u]
         user_predictions = np.asarray(data_user['prediction'])
         most_common_value = Counter(user_predictions).most_common(1)
         user_pred = most_common_value[0][0]
-        error = most_common_value[0][1]/len(data_user)
+        error = most_common_value[0][1] / len(data_user)
         errors.append(error)
         common_prediction.append(user_pred)
         n_sessions.append(len(data_user))
@@ -96,22 +105,130 @@ def clustering_by_proportions(data):
     error_prediction['error'] = errors
     error_prediction['n_sessions'] = n_sessions
     print error_prediction
-    print('average error: '+ str(np.mean(errors)))
+    print('average error: ' + str(np.mean(errors)))
+    return data
+
+
+def clustering_by_proportions(data):
+    """
+    Finds clusters by the proportion of events
+    """
+    data_res = DataFrame()
+
+    users = data['user'].unique()
+    n_k = len(users)
+
+    # prepare the dataset
+    for ts in TIME_SERIES_NAMES:
+        data_res['prop_' + ts] = data['prop_' + ts]
+
+    # feature selection
+    model = ExtraTreesClassifier()
+    model.fit(data_res, data['user'])
+    print('Feature importances')
+    feature_importances = DataFrame()
+    feature_importances['feature'] = TIME_SERIES_NAMES
+    feature_importances['importance'] = model.feature_importances_
+    print feature_importances
+
+    # fitting the model
+    print('Fitting a k-means model')
+    print(' Number of clusters: ' + str(n_k))
+
+    # initialize the centroids with kmeans++
+    initial = []
+    for i in TIME_SERIES_NAMES:
+        x = np.array(data_res['prop_' + i])
+        initialized_centroids = np.array(initialize_kmeanspp(x, n_k))
+        if len(initial) == 0:
+            initial = initialized_centroids
+        else:
+            initial = np.vstack((initial,initialized_centroids))
+    initial = np.rot90(initial)
+
+    km = KMeans(n_clusters=n_k, init=initial, n_init=1)
+    km.fit(data_res)
+    print('Inertia:', km.inertia_)
+    # get the cluster centers
+    centers = DataFrame(km.cluster_centers_, columns=TIME_SERIES_NAMES)
+
+    # predict the cluster for every session
+    predictions = km.predict(data_res)
+    data['prediction'] = predictions
+
+    common_prediction1 = []
+    common_prediction2 = []
+    common_prediction3 = []
+    errors =[]
+    n_sessions = []
+    users_by_cluster = [0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    n_predictions_by_cluster = [0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    user_list_by_cluster = ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
+    c = 65
+    for u in users:
+        data_user = data[data['user']==u]
+        user_predictions = np.asarray(data_user['prediction'])
+
+        # counts the number of times a session was predicted in some cluster
+        for i in user_predictions:
+            n_predictions_by_cluster[i] += 1
+
+        unique_predictions = set(user_predictions)
+        for i in unique_predictions:
+            users_by_cluster[i] += 1
+            user_list_by_cluster[i] += chr(c)
+
+        # get the top 3 most common prediction per user
+        most_common_value = Counter(user_predictions).most_common(3)
+        l_common = len(most_common_value)
+        user_pred1 = most_common_value[0][0]
+        user_pred2 = -1 if l_common < 2 else most_common_value[1][0]
+        user_pred3 = -1 if l_common < 3 else most_common_value[2][0]
+
+        # calculate the error using the top 1 prediction
+        error = most_common_value[0][1]/len(data_user)
+        errors.append(error)
+        common_prediction1.append(user_pred1)
+        common_prediction2.append(user_pred2)
+        common_prediction3.append(user_pred3)
+        n_sessions.append(len(data_user))
+
+        c += 1
+
+    centers['n_predictions'] = n_predictions_by_cluster
+    centers['n_users'] = users_by_cluster
+    centers['users'] = user_list_by_cluster
+
+    # calculating prediction accuracy
+    prediction_accuracy = DataFrame()
+    prediction_accuracy['user'] = users
+    prediction_accuracy['prediction_1'] = common_prediction1
+    prediction_accuracy['prediction_2'] = common_prediction2
+    prediction_accuracy['prediction_3'] = common_prediction3
+    prediction_accuracy['error'] = errors
+    prediction_accuracy['n_sessions'] = n_sessions
+
+    centers.to_csv(PATH_TO_RESULT_MAIN + 'clustering_prop_centers.csv')
+    prediction_accuracy.to_csv(PATH_TO_RESULT_MAIN + 'clustering_prop_accuracy.csv')
+
     return data
 
 
 def clustering(data):
     """
-    Performea clustering of sessions
+    Perform clustering of sessions
     """
 
     # remove data from users with little information
     data_aggregated = DataFrame({'count':data.groupby(["user"]).size()}).reset_index()
-    list_users = np.asarray(data_aggregated[data_aggregated['count'] >= 5]['user'])
+    list_users = np.asarray(data_aggregated[data_aggregated['count'] >= 3]['user'])
     data = data[data['user'].isin(list_users)]
 
     # implement clustering
+    print('\n\n     Clustering by proportions of events')
     clustering_by_proportions(data)
+    print('\n\n     Clustering by metrics')
+    #clustering_by_metrics(data)
 
 
 def calc_metrics(data):
@@ -151,16 +268,11 @@ def calc_metrics(data):
     return data
 
 
-
-
-
 if __name__ == "__main__":
     sessions = pandas.read_csv(PATH_TS_FILE, index_col=None, header=0)
     sessions = calc_proportions(sessions)
+    sessions = calc_metrics(sessions)
+    #sessions = sessions.dropna()
 
     sessions = clustering(sessions)
     #sessions.to_csv(PATH_TO_RESULT_MAIN + 'after_prop.csv', index=False)
-    
-    #sessions = calc_metrics(sessions)
-
-    #plot_productivity(sessions)
