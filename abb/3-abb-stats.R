@@ -113,3 +113,11 @@ diff.focus.inte <- focus.v.len == inte.v.len
 length(diff.focus.inte[diff.focus.inte == TRUE])
 
 diff.focus.inte <- (sessions$focus.size/sessions$inte.size)*100
+
+
+
+decomposed_ts <- read.csv("~/abb/decomposed_ts.csv", stringsAsFactors = FALSE)
+decomposed.edition <- lapply(strsplit(decomposed_ts$edition," "),as.integer)
+decomposed.edition.avg <- unlist(lapply(decomposed.edition, length))
+max(decomposed.edition.avg)
+decomposed_ts$n_edition <- decomposed.edition.avg

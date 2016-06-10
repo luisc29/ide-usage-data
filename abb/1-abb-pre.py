@@ -261,7 +261,7 @@ if __name__ == "__main__":
     print end - start
 
     # Clean focus dataset
-    focus = clean_focus_data(PATH_TO_DATA, "tinyfocus.cºsv")
+    focus = clean_focus_data(PATH_TO_DATA, "tinyfocus.csv")
     focus.to_csv(PATH_TO_RESULT_MAIN + "focus.clean.csv", index=False)
 
 
