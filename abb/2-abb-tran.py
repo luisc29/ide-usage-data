@@ -225,7 +225,7 @@ def transform_to_sessions(events, uid):
 
             so.values['id'].append(str(uid) + '-' + str(count))
             so.lists['id'].append(str(uid) + '-' + str(count))
-            print (str(uid) + '-' + str(count))
+            # print (str(uid) + '-' + str(count))
             so.values['size_ts'].append(dur)
             so.lists['size_ts'].append(dur)
 
@@ -383,15 +383,19 @@ def decompose_sessions(sessions, lists,  time_frame_min):
         # for every segment, get the indexes and decompose all the time series and create a new dataframe with them
         for s in segments:
             row = DataFrame()
-            
+
+            n_events = 0
+
             for col in col_names:
                 sub_list = np.asarray(session_lists[col])
                 sub_list = sub_list[s[0]:s[1]]
                 new_name = '_'.join(col.split('_')[1:])
                 row[new_name] = [' '.join(str(s) for s in sub_list)]
+                n_events += sum(sub_list)
                 
             row['user'] = [session['user']]
             row['id'] = [session['id']]
+            row['n_events'] = [n_events]
 
             if len(decomposed_sessions) == 0:
                 decomposed_sessions = row
@@ -481,7 +485,7 @@ if __name__ == '__main__':
     lists = lists[lists['size_ts'] >= 30]
     res.to_csv(PATH_TS_RESULT, index=False)
 
-    # decompose the sessions into chunks of productive time of at least 10 minutes
+    # decompose the sessions into chunks of productive time of at least n minutes
     decomposed_sessions = decompose_sessions(res, lists, 5)
     decomposed_sessions.to_csv(PATH_PREPROC_MAIN + 'decomposed_ts.csv', index=False)
 
