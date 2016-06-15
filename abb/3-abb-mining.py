@@ -4,11 +4,9 @@ import numpy as np
 import random
 import scipy
 from pandas import *
-from sklearn.cluster import KMeans
-from sklearn.cluster import AffinityPropagation
+from sklearn.cluster import KMeans, AffinityPropagation, DBSCAN, MeanShift
 
-
-PATH_TO_RESULT_MAIN = "/home/luis/abb/"
+PATH_TO_RESULT_MAIN = '/home/luis/abb/'
 PATH_TS_FILE = "/home/luis/abb/ts_abb.csv"  
 TIME_SERIES_NAMES = ['edition', 'text_nav', 'high_nav', 'file', 'refactoring',
                      'debug', 'tools', 'control', 'testing', 'search']
@@ -19,8 +17,8 @@ def calc_metrics(data):
     Calculates the metrics for every session in the data
     """
     nrows = len(data)
-    types_edit = ["edition", "refactoring", "text_nav"]
-    types_selection = ["high_nav", "search", "debug"]
+    types_edit = ['edition', 'refactoring', 'text_nav']
+    types_selection = ['high_nav', 'search', 'debug']
     emin = []
     smin = []
     eratio = []
@@ -39,7 +37,7 @@ def calc_metrics(data):
             vector = [int(x) for x in vector]
             sum_selections += sum(vector)
 
-        size = data.iloc[i]["size_ts"]
+        size = data.iloc[i]['size_ts']
         e = sum_edits/size
         s = sum_selections/size
         emin.append(e)
@@ -48,9 +46,9 @@ def calc_metrics(data):
         er = e/(e+s)
         eratio.append(er)
 
-    data["emin"] = emin
-    data["smin"] = smin
-    data["eratio"] = eratio
+    data['emin'] = emin
+    data['smin'] = smin
+    data['eratio'] = eratio
     return data
 
 
@@ -141,6 +139,21 @@ def clustering_affinity_propagation(data_res):
     return predictions, cluster_centers, 0
 
 
+def clustering_mean_shift(data_res):
+    """
+    Executes the mean shift model from sklearn
+    """
+    print('\nFitting a mean shift model')
+    ms = MeanShift()
+    ms.fit(data_res)
+
+    predictions = ms.predict(data_res)
+    cluster_centers = ms.cluster_centers_
+
+    print('Estimated number of clusters: ', len(cluster_centers))
+    return predictions, cluster_centers, 0
+
+
 def clustering_sessions_by_proportions(data, attributes, n_clusters, users, file_name, method='kmeans'):
     """
     Perform clustering of sessions by the proportion using different methods. Creates a file with the resulting
@@ -155,7 +168,7 @@ def clustering_sessions_by_proportions(data, attributes, n_clusters, users, file
         g.append('prop_' + ts)
 
     pred, centers, error = clustering_kmeans(data_res, n_clusters, g) if method == 'kmeans'\
-        else clustering_affinity_propagation(data_res)
+        else clustering_affinity_propagation(data_res) if method == 'affinity' else clustering_mean_shift(data_res)
 
     n_clusters = len(centers)
 
@@ -219,17 +232,20 @@ if __name__ == "__main__":
     sessions = calc_metrics(sessions)
 
     # remove data from users with little information
-    data_aggregated = DataFrame({'count': sessions.groupby(["user"]).size()}).reset_index()
+    data_aggregated = DataFrame({'count': sessions.groupby(['user']).size()}).reset_index()
     list_users = np.asarray(data_aggregated[data_aggregated['count'] >= 3]['user'])
     data_res = sessions[sessions['user'].isin(list_users)]
     users = data_res['user']
     users = users.unique()
 
+    print('\nClustering sessions')
     # clustering sessions by proportions
     # kmeans
     clustering_sessions_by_proportions(data_res, TIME_SERIES_NAMES, 18, users, 'sessions_kmeans_centers.csv', 'kmeans')
     # affinity propagation
     clustering_sessions_by_proportions(data_res, TIME_SERIES_NAMES, 0, users, 'sessions_affinity_centers.csv', 'affinity')
+    # meanshift
+    clustering_sessions_by_proportions(data_res, TIME_SERIES_NAMES, 0, users, 'sessions_meanshift_centers.csv', 'meanshift')
 
     # load chunks data
     chunks = pandas.read_csv(PATH_TO_RESULT_MAIN + 'decomposed_ts.csv', index_col=None, header=0)
@@ -238,11 +254,11 @@ if __name__ == "__main__":
     users = chunks['user']
     users = users.unique()
 
+    print('\nClustering proportions')
     # clustering chunks by proportions
     # kmeans
-    #49 - 23.20
-    #73 - 17.65
-    #for i in range(50,150):
-    clustering_sessions_by_proportions(chunks, TIME_SERIES_NAMES, 150, users, 'chunks_kmeans_centers.csv', 'kmeans' )
+    clustering_sessions_by_proportions(chunks, TIME_SERIES_NAMES, 18, users, 'chunks_kmeans_centers.csv', 'kmeans' )
     # affinity propagation
     clustering_sessions_by_proportions(chunks, TIME_SERIES_NAMES, 0, users, 'chunks_affinity_centers.csv', 'affinity')
+    # meanshift
+    clustering_sessions_by_proportions(chunks, TIME_SERIES_NAMES, 0, users, 'chunks_meanshift_centers.csv', 'meanshift')
