@@ -4,7 +4,7 @@ import numpy as np
 import random
 import scipy
 from pandas import *
-from sklearn.cluster import KMeans, AffinityPropagation, DBSCAN, MeanShift
+from sklearn.cluster import KMeans, AffinityPropagation, MeanShift
 
 PATH_TO_RESULT_MAIN = '/home/luis/abb/'
 PATH_TS_FILE = "/home/luis/abb/ts_abb.csv"  

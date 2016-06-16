@@ -56,7 +56,17 @@ def infer_detailed_type(cmds):
     for i in range(0,len(desc)):
         d = desc[i]
         value = ""
-            
+
+        if "File" in d or "Project" in d:
+            value = "file"
+
+        if ("Analyze" in d or "Other" in d or "Image" in d or "Help" in d
+            or "Designer" in d or "Report" in d or "SQL" in d or "Table" in d
+            or "Data." in d or "Database" in d or "SSDT" in d or "Tools" in d
+            or "Architecture" in d or "Diagram" in d or "Design" in d
+            or "Graph" in d):
+            value = "tools"
+
         if "Edit" in d or "Editor" in d:
             value = "edit-text"
             
@@ -66,16 +76,13 @@ def infer_detailed_type(cmds):
             or "Down" in d or "Last" in d or "Left" in d or "Right" in d):
                 value = "text-nav"
             
-            if("Find" in d or "Found" in d):
+            if "Find" in d or "Found" in d or 'ObjectBrowser' in d:
                 value = "search"
         
         if ("NavigateTo" in d or "GoTo" in d or "PreviousTab" in d
         or "NextTab" in d or "PreviousWindow" in d or "NextWindow" in d
-        or "NextDocument" in d or "PreviousDocument" in d or "ClassView" in d):
+        or "NextDocument" in d or "PreviousDocument" in d or "ClassView" in d or 'Nav' in d):
             value = "high-nav"
-            
-        if "File" in d or "Project" in d:
-            value = "file"
         
         if "Refactor" in d or "ReSharper" in d:
             value = "refactoring"
@@ -85,18 +92,11 @@ def infer_detailed_type(cmds):
 
         if "Debug" in d or "Debugger" in d:
             value = "debug"
-    
-        if("Analyze" in d or "Other" in d or "Image" in d or "Help" in d 
-        or "Designer" in d or "Report" in d or "SQL" in d or "Table" in d 
-        or "Data." in d or "Database" in d or "SSDT" in d or "Tools" in d 
-        or "Architecture" in d or "Diagram" in d or "Design" in d 
-        or "Graph" in d):
-            value = "tools"
-        
-        if "Team" in d:
+
+        if "Team" in d or 'Diff' in d or 'Tfs' in d:
             value = "control"
             
-        if "Test" in d:
+        if "Test" in d or 'SourceControl' in d:
             value = "testing"
             
         
