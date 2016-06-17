@@ -167,10 +167,10 @@ def clustering_sessions_by_proportions(data, attributes, n_clusters, users, file
         data_res['prop_' + ts] = data['prop_' + ts]
         g.append('prop_' + ts)
 
-    pred, centers, error = clustering_kmeans(data_res, n_clusters, g) if method == 'kmeans'\
+    pred, cluster_centers, error = clustering_kmeans(data_res, n_clusters, g) if method == 'kmeans'\
         else clustering_affinity_propagation(data_res) if method == 'affinity' else clustering_mean_shift(data_res)
 
-    n_clusters = len(centers)
+    n_clusters = len(cluster_centers)
 
     data['prediction'] = pred
 
@@ -195,7 +195,7 @@ def clustering_sessions_by_proportions(data, attributes, n_clusters, users, file
 
         n_sessions.append(len(data_user))
 
-        c += 1
+        c = (c + 1) if c != 90 else 97
 
     # compress the users list per cluster
     for i in range(0, len(user_list_by_cluster)):
@@ -216,12 +216,14 @@ def clustering_sessions_by_proportions(data, attributes, n_clusters, users, file
             result += (previous + str(count))
         user_list_by_cluster[i] = result
 
-    centers = DataFrame(centers, columns=attributes)
+    centers = DataFrame(cluster_centers, columns=attributes)
     centers['n_predictions'] = n_predictions_by_cluster
     centers['n_users'] = users_by_cluster
     centers['users'] = user_list_by_cluster
 
     centers.to_csv(PATH_TO_RESULT_MAIN + file_name)
+
+    return cluster_centers, n_predictions_by_cluster, centers
 
 
 if __name__ == "__main__":
@@ -231,36 +233,75 @@ if __name__ == "__main__":
     print "Calculating proportions and metrics"
     sessions = calc_proportions(sessions)
     sessions = calc_metrics(sessions)
-
-    # remove data from users with little information
     data_aggregated = DataFrame({'count': sessions.groupby(['user']).size()}).reset_index()
-    list_users = np.asarray(data_aggregated[data_aggregated['count'] >= 10]['user'])[0:10]
-    data_res = sessions[sessions['user'].isin(list_users)]
-    users = data_res['user']
-    users = users.unique()
+    list_users = np.asarray(data_aggregated[data_aggregated['count'] >= 10]['user'])
 
-    print('\nClustering sessions')
+    # selects a subset of the data
+    #list_users_subset = np.random.choice(list_users, i)
+    #data_res = sessions[sessions['user'].isin(list_users_subset)]
+    #users = data_res['user']
+    #users = users.unique()
+
+    #print('\nClustering sessions')
     # clustering sessions by proportions
-    # kmeans
-    #clustering_sessions_by_proportions(data_res, TIME_SERIES_NAMES, 18, users, 'sessions_kmeans_centers.csv', 'kmeans')
-    # affinity propagation
-    #clustering_sessions_by_proportions(data_res, TIME_SERIES_NAMES, 0, users, 'sessions_affinity_centers.csv', 'affinity')
-    # meanshift
-    clustering_sessions_by_proportions(data_res, TIME_SERIES_NAMES, 0, users, 'sessions_meanshift_centers.csv', 'meanshift')
+    #clustering_sessions_by_proportions(data_res, TIME_SERIES_NAMES, 0, users, 'sessions_meanshift_centers.csv', 'meanshift')
 
     # load chunks data
     chunks = pandas.read_csv(PATH_TO_RESULT_MAIN + 'decomposed_ts.csv', index_col=None, header=0)
-    chunks = chunks[chunks['user'].isin(list_users)]
     chunks = calc_proportions(chunks)
+    all_centers = []
+    k = 0
+    samples = 2000
+    repetitions = 100
+    for i in range(0, repetitions):
+        # selects chunks data
+        rows = random.sample(chunks.index, samples)
+        #chunks2 = chunks[chunks['user'].isin(list_users_subset)]
+        chunks2 = chunks.ix[rows]
+        users = chunks2['user']
+        users = users.unique()
 
-    users = chunks['user']
-    users = users.unique()
-
-    print('\nClustering chunks')
-    # clustering chunks by proportions
-    # kmeans
-    #clustering_sessions_by_proportions(chunks, TIME_SERIES_NAMES, 18, users, 'chunks_kmeans_centers.csv', 'kmeans' )
-    # affinity propagation
-    #clustering_sessions_by_proportions(chunks, TIME_SERIES_NAMES, 0, users, 'chunks_affinity_centers.csv', 'affinity')
-    # meanshift
-    clustering_sessions_by_proportions(chunks, TIME_SERIES_NAMES, 0, users, 'chunks_meanshift_centers.csv', 'meanshift')
+        #print('\nClustering chunks')
+        # clustering chunks by proportions
+        centers, n_predictions, df = clustering_sessions_by_proportions(chunks2, TIME_SERIES_NAMES, 0, users, '5min_chunks_centers.csv', 'meanshift')
+        if len(all_centers) == 0:
+            all_centers = np.array(df)
+        else:
+            all_centers = np.concatenate([all_centers, np.array(df)])
+        k += 1
+        
+    # remove redundant centers
+    indexes = range(0, len(all_centers))
+    summarized_centers = []
+    checked = []
+    proximity = 0.3
+    
+    for i in indexes: # for every center found
+        if i not in checked: # first check if it was already analyzed
+            center = all_centers[i][0:10]
+            checked = checked + [i]
+            related = [i]
+            l = list(set(indexes) - set(checked)) # get the set difference
+            
+            for j in l: # find the all centers close to the current one
+                diff = np.linalg.norm(center-all_centers[j][0:10])
+                if diff <= proximity:
+                    related = related + [j]
+                    checked = checked + [j]
+            
+            new_center = []
+            
+            for k in range(0,12): # get the median of all the close centers
+                values = [all_centers[r][k] for r in related]
+                new_center = new_center + [np.median(values)]
+            
+            new_center = new_center + [len(related)]
+            
+            # add the summarized center to to the 2d array
+            if len(summarized_centers) == 0:
+                summarized_centers = new_center
+            else:
+                summarized_centers = np.vstack([summarized_centers, new_center])
+    
+    summarized_centers = DataFrame(summarized_centers, columns= TIME_SERIES_NAMES + ['n_predictions', 'n_users', 'repetitions'])
+    summarized_centers.to_csv(PATH_TO_RESULT_MAIN + 'summarized_centers_meanshift.csv')

@@ -1,18 +1,17 @@
 install.packages("plyr")
 install.packages("dplyr")
 
-
 library(plyr)
 library(dplyr)
 
 sessions <- read.csv("~/abb/ts_abb.csv", stringsAsFactors = FALSE)
 
-#duration of the sessions
+# what's the duration of sessions?
 sessions$start <- as.POSIXct(sessions$start)
 sessions$end <- as.POSIXct(sessions$end)
 sessions$duration <- difftime(sessions$end, sessions$start, units = "min")
-quantile(sessions$duration) #median 7.5 hours
-mean(sessions$duration)/60 #9.16 hours
+quantile(sessions$duration/60) #median 7.5 hours
+mean(sessions$duration/60) #9.16 hours
 
 #productive time
 quantile(sessions$size_ts)
