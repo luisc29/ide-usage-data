@@ -370,6 +370,7 @@ def decompose_sessions(sessions, lists,  time_frame_min):
         segments = []
 
         # identify segments with at least 10 minutes of productive time and store the indexes
+        # also store the segments with interruptions
         for j in range(0, len(inte)):
             if inte[j] == 0:
                 count += 1
@@ -417,7 +418,7 @@ def pipe_trans_events(file_path, files, focus):
         print 'processing file: ' + files[i]
         events = preprocess_events(events)
         sessions, lists = transform_to_sessions(events, i)
-        sessions = add_focus_data(sessions, focus)
+        #sessions = add_focus_data(sessions, focus)
         if len(res) == 0:
             res = sessions
             res_lists = lists
@@ -472,8 +473,8 @@ if __name__ == '__main__':
             res = r1
             lists = r2
         else:
-            res.append(r1)
-            lists.append(r2)
+            res = res.append(r1)
+            lists = lists.append(r2)
     
     pool.close()
     pool.terminate()
@@ -481,7 +482,10 @@ if __name__ == '__main__':
     print 'Parallel execution finished'
 
     # Keep sessions with at least 30 minutes of productive time
+    print 'Size dataframe ' + str(len(res))
+    print 'Number of users ' + str(len(unique(res['user'])))
     res = res[res['size_ts'] >= 30]
+    print 'Size dataframe afterwards ' + str(len(res))
     lists = lists[lists['size_ts'] >= 30]
     res.to_csv(PATH_TS_RESULT, index=False)
 

@@ -228,12 +228,13 @@ if __name__ == "__main__":
 
     # load sessions data
     sessions = pandas.read_csv(PATH_TS_FILE, index_col=None, header=0)
+    print "Calculating proportions and metrics"
     sessions = calc_proportions(sessions)
     sessions = calc_metrics(sessions)
 
     # remove data from users with little information
     data_aggregated = DataFrame({'count': sessions.groupby(['user']).size()}).reset_index()
-    list_users = np.asarray(data_aggregated[data_aggregated['count'] >= 3]['user'])
+    list_users = np.asarray(data_aggregated[data_aggregated['count'] >= 10]['user'])[0:10]
     data_res = sessions[sessions['user'].isin(list_users)]
     users = data_res['user']
     users = users.unique()
@@ -241,24 +242,25 @@ if __name__ == "__main__":
     print('\nClustering sessions')
     # clustering sessions by proportions
     # kmeans
-    clustering_sessions_by_proportions(data_res, TIME_SERIES_NAMES, 18, users, 'sessions_kmeans_centers.csv', 'kmeans')
+    #clustering_sessions_by_proportions(data_res, TIME_SERIES_NAMES, 18, users, 'sessions_kmeans_centers.csv', 'kmeans')
     # affinity propagation
-    clustering_sessions_by_proportions(data_res, TIME_SERIES_NAMES, 0, users, 'sessions_affinity_centers.csv', 'affinity')
+    #clustering_sessions_by_proportions(data_res, TIME_SERIES_NAMES, 0, users, 'sessions_affinity_centers.csv', 'affinity')
     # meanshift
     clustering_sessions_by_proportions(data_res, TIME_SERIES_NAMES, 0, users, 'sessions_meanshift_centers.csv', 'meanshift')
 
     # load chunks data
     chunks = pandas.read_csv(PATH_TO_RESULT_MAIN + 'decomposed_ts.csv', index_col=None, header=0)
+    chunks = chunks[chunks['user'].isin(list_users)]
     chunks = calc_proportions(chunks)
 
     users = chunks['user']
     users = users.unique()
 
-    print('\nClustering proportions')
+    print('\nClustering chunks')
     # clustering chunks by proportions
     # kmeans
-    clustering_sessions_by_proportions(chunks, TIME_SERIES_NAMES, 18, users, 'chunks_kmeans_centers.csv', 'kmeans' )
+    #clustering_sessions_by_proportions(chunks, TIME_SERIES_NAMES, 18, users, 'chunks_kmeans_centers.csv', 'kmeans' )
     # affinity propagation
-    clustering_sessions_by_proportions(chunks, TIME_SERIES_NAMES, 0, users, 'chunks_affinity_centers.csv', 'affinity')
+    #clustering_sessions_by_proportions(chunks, TIME_SERIES_NAMES, 0, users, 'chunks_affinity_centers.csv', 'affinity')
     # meanshift
     clustering_sessions_by_proportions(chunks, TIME_SERIES_NAMES, 0, users, 'chunks_meanshift_centers.csv', 'meanshift')
