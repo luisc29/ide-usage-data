@@ -1,31 +1,58 @@
 install.packages("plyr")
 install.packages("dplyr")
+install.packages("ggplot2")
+install.packages("gridExtra")
+install.packages("ggthemes")
 
 library(plyr)
 library(dplyr)
+library(ggplot2)
+library(ggthemes)
+library(grid)
+library(gridExtra)
 
 sessions <- read.csv("~/abb/ts_abb.csv", stringsAsFactors = FALSE)
+users <- read.csv("~/abb/export-2015-10-23/tinyusers.csv", stringsAsFactors=FALSE)
+focus <- read.csv("~/abb/focus.clean.csv", stringsAsFactors=FALSE)
+
+
+# number of sessions
+nrow(sessions)
+
+# number of users
+length(unique(sessions$user))
+
+# number of events per session
+mean(sessions$n_events)
+quantile(sessions$n_events)
+
+# amount of sessions per user
+res <- summary(as.factor(sessions$user))
+mean(res)
+quantile(res)
 
 # what's the duration of sessions?
 sessions$start <- as.POSIXct(sessions$start)
 sessions$end <- as.POSIXct(sessions$end)
-sessions$duration <- difftime(sessions$end, sessions$start, units = "min")
-quantile(sessions$duration/60) #median 7.5 hours
-mean(sessions$duration/60) #9.16 hours
+sessions$duration <- difftime(sessions$end, sessions$start, units = "hours")
+quantile(sessions$duration) #median 7.5 hours
+mean(sessions$duration) #9.16 hours
+sd(sessions$duration)
+ggplot(sessions[sessions$size_ts < (100),], aes(x=duration)) + geom_histogram() + 
+  labs(x="Sessions' duration (hours)", y="Count")+ theme_hc() 
 
-#productive time
+# what's the distribution of productive time?
 quantile(sessions$size_ts)
 
-#number of interruptions per session
+# statistics of the number of interruptions per session
 quantile(sessions$n_inte)
 mean(sessions$n_inte)
 
-#duration of interruptions
+# duration of interruptions
 inte.v <- lapply(strsplit(sessions$interruptions," "),as.integer)
 sessions$inte.v <- inte.v
 inte.all <- unlist(inte.v)
-quantile(inte.all[inte.all>0])
-#median length of interruptions = 5
+quantile(inte.all[inte.all>0]) 
 
 # edit.v <- lapply(strsplit(sessions$edition," "),as.integer)
 # sessions$edit.v <- edit.v
@@ -74,6 +101,54 @@ productive.segments <- unlist(lapply(sessions$inte.v, function(x){
 }))
 sum(productive.segments)
 
+Sys.setlocale("LC_TIME", "C")
+
+# productive hours according to focus
+focus$datetime <- as.POSIXlt(focus$datetime)
+focus$hour <- focus$datetime$hour
+focus.agg <- aggregate(focus$focus, list(focus$hour), sum)
+names(focus.agg) <- c("hour", "focus")
+focus.agg$focus <- focus.agg$focus/max(focus.agg$focus)
+ggplot(focus.agg, aes(x=hour, y=focus)) + geom_bar(stat="identity") + scale_x_continuous(breaks = 0:23) + 
+  labs(x = "Hour of the day", y = "Focus (normalized)") + theme_few() 
+
+# productive days according to focus
+focus$day <- weekdays(focus$datetime)
+focus.agg <- aggregate(focus$focus, list(focus$day), sum)
+names(focus.agg) <- c("day", "focus")
+focus.agg$day <- factor(focus.agg$day, levels= c("Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"))
+focus.agg$focus <- focus.agg$focus/max(focus.agg$focus)
+ggplot(focus.agg, aes(x=day, y=focus)) + geom_bar(stat="identity") + labs(x = "Day of the week", y = "Focus (normalized)") + theme_few() 
+
+# users and focus
+# focus.agg <- aggregate(focus$focus, list(focus$user), mean)
+# names(focus.agg) <- c("user","focus")
+# focus.agg$origin <- unlist(lapply(focus.agg$user, function(x){
+#   email <- users[users$Username == x, "PrimaryEmail"]
+#   if(length(email) > 0){
+#     strsplit(email, ".", fixed=TRUE)[[1]][1] 
+#   }else{
+#     ""
+#   }
+# }))
+# focus.agg <- focus.agg[focus.agg$origin != "",]
+# focus.agg$n_inte <- unlist(lapply(focus.agg$user, function(x){
+#   sum(sessions[sessions$user == x,]$n_inte)
+# }))
+# focus.agg <- focus.agg[focus.agg$n_inte > 0 & (focus.agg$origin == "us" | focus.agg$origin == "in"),]
+# ggplot(focus.agg, aes(x=n_inte, y=focus, color=origin)) + geom_point() + theme_few() 
+
+# focus.agg <- aggregate(focus.agg$focus, list(focus.agg$origin), sum)
+# names(focus.agg) <- c("origin", "focus")
+# users$origin <- unlist(lapply(users$PrimaryEmail, function(x){
+#   strsplit(x, ".", fixed=TRUE)[[1]][1]
+# }))
+# users <- users[!is.na(users$origin),]
+# users.agg <- aggregate(users$origin, list(users$origin), length)  
+# names(users.agg) <- c("origin", "count")
+
+
+
 #count the number of events per type
 sessions$n_edition <- unlist(lapply(sessions$edition, function(x) { 
   v <- as.numeric(unlist(strsplit(x," ")))
@@ -113,10 +188,3 @@ length(diff.focus.inte[diff.focus.inte == TRUE])
 
 diff.focus.inte <- (sessions$focus.size/sessions$inte.size)*100
 
-
-
-decomposed_ts <- read.csv("~/abb/decomposed_ts.csv", stringsAsFactors = FALSE)
-decomposed.edition <- lapply(strsplit(decomposed_ts$edition," "),as.integer)
-decomposed.edition.avg <- unlist(lapply(decomposed.edition, length))
-max(decomposed.edition.avg)
-decomposed_ts$n_edition <- decomposed.edition.avg

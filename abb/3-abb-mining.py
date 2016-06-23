@@ -4,7 +4,7 @@ import numpy as np
 import random
 import scipy
 from pandas import *
-from sklearn.cluster import KMeans, AffinityPropagation, MeanShift
+from sklearn.cluster import KMeans, AffinityPropagation, MeanShift, estimate_bandwidth
 
 PATH_TO_RESULT_MAIN = '/home/luis/abb/'
 PATH_TS_FILE = "/home/luis/abb/ts_abb.csv"  
@@ -144,6 +144,8 @@ def clustering_mean_shift(data_res):
     Executes the mean shift model from sklearn
     """
     print('\nFitting a mean shift model')
+    #bandwidth = estimate_bandwidth(data_res.as_matrix())
+    #print bandwidth
     ms = MeanShift()
     ms.fit(data_res)
 
@@ -174,7 +176,7 @@ def clustering_sessions_by_proportions(data, attributes, n_clusters, users, file
 
     data['prediction'] = pred
 
-    # creates a dataset with the summary of clusters and predictions per cluster
+    # create a dataset with the summary of clusters and predictions per cluster
     n_sessions = []
     users_by_cluster = [0] * n_clusters
     n_predictions_by_cluster = [0] * n_clusters
@@ -184,7 +186,7 @@ def clustering_sessions_by_proportions(data, attributes, n_clusters, users, file
         data_user = data[data['user'] == u]
         user_predictions = np.asarray(data_user['prediction'])
 
-        # counts the number of times a session was predicted in some cluster
+        # count the number of times a session was predicted in some cluster
         for i in user_predictions:
             n_predictions_by_cluster[i] += 1
             user_list_by_cluster[i] += chr(c)
@@ -198,32 +200,74 @@ def clustering_sessions_by_proportions(data, attributes, n_clusters, users, file
         c = (c + 1) if c != 90 else 97
 
     # compress the users list per cluster
-    for i in range(0, len(user_list_by_cluster)):
-        sub_list = user_list_by_cluster[i]
-        previous = ''
-        count = 0
-        result = ''
-        for j in range(0, len(sub_list)):
-            current = sub_list[j]
-            if previous != current:
-                if count > 0:
-                    result += (previous + str(count) + ',')
-                previous = current
-                count = 1
-            else:
-                count += 1
-        if count > 0:
-            result += (previous + str(count))
-        user_list_by_cluster[i] = result
+#    for i in range(0, len(user_list_by_cluster)):
+#        sub_list = user_list_by_cluster[i]
+#        previous = ''
+#        count = 0
+#        result = ''
+#        for j in range(0, len(sub_list)):
+#            current = sub_list[j]
+#            if previous != current:
+#                if count > 0:
+#                    result += (previous + str(count) + ',')
+#                previous = current
+#                count = 1
+#            else:
+#                count += 1
+#        if count > 0:
+#            result += (previous + str(count))
+#        user_list_by_cluster[i] = result
 
     centers = DataFrame(cluster_centers, columns=attributes)
     centers['n_predictions'] = n_predictions_by_cluster
     centers['n_users'] = users_by_cluster
     centers['users'] = user_list_by_cluster
 
-    centers.to_csv(PATH_TO_RESULT_MAIN + file_name)
+    #centers.to_csv(PATH_TO_RESULT_MAIN + file_name)
 
     return cluster_centers, n_predictions_by_cluster, centers
+
+
+def summarize_centers(all_centers, proximity_threshold, n_attributes, n_extended_attributes):
+    """
+    Summarizes all the detected centers taking all the close centers and getting 
+    the median of the values for each attribute
+    """
+    indexes = range(0, len(all_centers))
+    summarized_centers = []
+    checked = []
+    proximity = proximity_threshold
+    differences = []
+
+    for i in indexes:  # for every center found
+        if i not in checked:  # first check if it was already analyzed
+            center = all_centers[i][0:n_attributes]
+            checked = checked + [i]
+            related = [i]
+            l = list(set(indexes) - set(checked))  # get the set difference
+
+            for j in l:  # find all the centers close to the current one
+                diff = np.linalg.norm(center - all_centers[j][0:n_attributes])
+                differences = differences + [diff]
+                if diff <= proximity:
+                    related = related + [j]
+                    checked = checked + [j]
+
+            new_center = []
+
+            for k in range(0, n_extended_attributes):  # get the median of all the close centers
+                values = [all_centers[r][k] for r in related]
+                new_center = new_center + [max(values)]
+
+            new_center = new_center + [len(related)]
+
+            # add the summarized center to to the 2d array
+            if len(summarized_centers) == 0:
+                summarized_centers = new_center
+            else:
+                summarized_centers = np.vstack([summarized_centers, new_center])
+
+    return summarized_centers, differences
 
 
 if __name__ == "__main__":
@@ -244,25 +288,31 @@ if __name__ == "__main__":
 
     #print('\nClustering sessions')
     # clustering sessions by proportions
-    #clustering_sessions_by_proportions(data_res, TIME_SERIES_NAMES, 0, users, 'sessions_meanshift_centers.csv', 'meanshift')
+    #clustering_sessions_by_proportions(sessions, TIME_SERIES_NAMES, 0, users, 'sessions_meanshift_centers.csv', 'meanshift')
 
     # load chunks data
-    chunks = pandas.read_csv(PATH_TO_RESULT_MAIN + 'decomposed_ts.csv', index_col=None, header=0)
+    chunks = pandas.read_csv(PATH_TO_RESULT_MAIN + 'decomposed_ts.csv', 
+                             index_col=None, header=0)
     chunks = calc_proportions(chunks)
     all_centers = []
     k = 0
-    samples = 2000
-    repetitions = 100
+    samples = 5000
+    repetitions = 50
+    
+    #rows = random.sample(chunks.index, samples)
+    #chunks2 = chunks.ix[rows]
+    #centers, n_predictions, df = clustering_sessions_by_proportions(chunks, TIME_SERIES_NAMES, 0, users, '5min_chunks_centers.csv', 'meanshift')
+    #all_centers = df.as_matrix()
+    
+    # creates n models and store all the found clusters
     for i in range(0, repetitions):
         # selects chunks data
         rows = random.sample(chunks.index, samples)
-        #chunks2 = chunks[chunks['user'].isin(list_users_subset)]
+
         chunks2 = chunks.ix[rows]
         users = chunks2['user']
         users = users.unique()
 
-        #print('\nClustering chunks')
-        # clustering chunks by proportions
         centers, n_predictions, df = clustering_sessions_by_proportions(chunks2, TIME_SERIES_NAMES, 0, users, '5min_chunks_centers.csv', 'meanshift')
         if len(all_centers) == 0:
             all_centers = np.array(df)
@@ -271,37 +321,19 @@ if __name__ == "__main__":
         k += 1
         
     # remove redundant centers
-    indexes = range(0, len(all_centers))
-    summarized_centers = []
-    checked = []
-    proximity = 0.3
-    
-    for i in indexes: # for every center found
-        if i not in checked: # first check if it was already analyzed
-            center = all_centers[i][0:10]
-            checked = checked + [i]
-            related = [i]
-            l = list(set(indexes) - set(checked)) # get the set difference
-            
-            for j in l: # find the all centers close to the current one
-                diff = np.linalg.norm(center-all_centers[j][0:10])
-                if diff <= proximity:
-                    related = related + [j]
-                    checked = checked + [j]
-            
-            new_center = []
-            
-            for k in range(0,12): # get the median of all the close centers
-                values = [all_centers[r][k] for r in related]
-                new_center = new_center + [np.median(values)]
-            
-            new_center = new_center + [len(related)]
-            
-            # add the summarized center to to the 2d array
-            if len(summarized_centers) == 0:
-                summarized_centers = new_center
-            else:
-                summarized_centers = np.vstack([summarized_centers, new_center])
+    summarized_centers, diffs = summarize_centers(all_centers, 0.4, 10, 12)
+    q = scipy.stats.mstats.mquantiles(diffs, prob=[0, 0.25, 0.50, 0.75, 1])
+    print q
     
     summarized_centers = DataFrame(summarized_centers, columns= TIME_SERIES_NAMES + ['n_predictions', 'n_users', 'repetitions'])
-    summarized_centers.to_csv(PATH_TO_RESULT_MAIN + 'summarized_centers_meanshift.csv')
+
+
+    summarized_centers = summarized_centers[summarized_centers['repetitions'] > 1]
+    summarized_centers.to_csv(PATH_TO_RESULT_MAIN + 'summarized_centers_meanshift2.csv')
+    print "Final clusters: " + str(len(summarized_centers))
+
+    # get a prediction with the summarized centers
+    final_model = MeanShift()
+    final_model.cluster_centers_ = summarized_centers.ix[:,0:10].as_matrix()
+    chunks['label'] = final_model.predict(chunks.ix[:,14:24])
+    chunks.to_csv(PATH_TO_RESULT_MAIN + 'decomposed_ts2.csv', index=False)

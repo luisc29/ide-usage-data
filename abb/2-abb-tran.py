@@ -11,7 +11,7 @@ import multiprocessing
 import numpy as np
 
 SIZE_INT = 180  # size threshold for the interruptions
-SPACE_BETWEEN_INT = 28800  # threshold for the sessions
+SPACE_BETWEEN_INT = 14400  # threshold for the sessions
 PATH_PREPROC = '/home/luis/abb/preproc'  # path to the processed data
 PATH_PREPROC_MAIN = '/home/luis/abb/'
 PATH_GROUPED_DATA = '/home/luis/abb/users'  # where to store the grouped data
