@@ -66,6 +66,7 @@ def preprocess_events(events):
     an identifier for the minute, a label for the interruptions and the sessions
     """
     events = events[events['type'] != 'system']
+    events.is_copy = False
     
     # set the time interval between events
     t = np.array(events['seconds'])    
@@ -143,7 +144,7 @@ def transform_to_sessions(events, uid):
         lists = {
             'l_interruptions': [], 'l_edition': [], 'l_text_nav': [], 'l_high_nav': [], 'l_file': [],
             'l_refactoring': [], 'l_clean_build': [], 'l_debug': [], 'l_tools': [], 'l_control': [],
-            'l_testing': [], 'l_search': [], 'size_ts': [], 'id': []
+            'l_testing': [], 'l_search': [], 'size_ts': [], 'n_inte': [], 'id': []
         }
 
         def __init__(self):
@@ -268,7 +269,8 @@ def transform_to_sessions(events, uid):
             so.lists['l_control'].append(l_control)
             so.lists['l_testing'].append(l_testing)
             so.lists['l_search'].append(l_search)
-
+            so.lists['n_inte'].append(ni)
+            
             so.values['n_inte'].append(ni)
             so.values['start_time'].append(session.iloc[0]['datetime'])
             so.values['end_time'].append(session.iloc[len(session) - 1]['datetime'])
@@ -341,7 +343,7 @@ def chunks(l, n):
 
 def split_segment(start, end, size):
     length = end - start
-    if length > (size*2):
+    if length >= (size*2):
         s1 = split_segment(start, start+(length//2), size)
         s2 = split_segment(start+(length//2)+1, end, size)
         return s1 + s2
@@ -481,16 +483,18 @@ if __name__ == '__main__':
     end = time.time()
     print 'Parallel execution finished'
 
-    # Keep sessions with at least 30 minutes of productive time
-    print 'Size dataframe ' + str(len(res))
-    print 'Number of users ' + str(len(unique(res['user'])))
-    res = res[res['size_ts'] >= 30]
-    print 'Size dataframe afterwards ' + str(len(res))
+    # keep sessions with at least 30 minutes of productive time and remove
+    # sessions with high proportion of interruptions
+    res['prop_inte'] = res['n_inte']/res['size_ts']
+    lists['prop_inte'] = lists['n_inte']/lists['size_ts']
+    res = res[res['size_ts'] >= 30]    
+    res = res[res['prop_inte'] < 0.5]
     lists = lists[lists['size_ts'] >= 30]
+    lists = lists[lists['prop_inte'] < 0.5]
     res.to_csv(PATH_TS_RESULT, index=False)
 
     # decompose the sessions into chunks of productive time of at least n minutes
-    decomposed_sessions = decompose_sessions(res, lists, 5)
+    decomposed_sessions = decompose_sessions(res, lists, 3)
     decomposed_sessions.to_csv(PATH_PREPROC_MAIN + 'decomposed_ts.csv', index=False)
 
     end = time.time()

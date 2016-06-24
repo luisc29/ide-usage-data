@@ -81,7 +81,7 @@ def infer_detailed_type(cmds):
         
         if ("NavigateTo" in d or "GoTo" in d or "PreviousTab" in d
         or "NextTab" in d or "PreviousWindow" in d or "NextWindow" in d
-        or "NextDocument" in d or "PreviousDocument" in d or "ClassView" in d or 'Nav' in d):
+        or "NextDocument" in d or "PreviousDocument" in d or 'Nav' in d):
             value = "high-nav"
         
         if "Refactor" in d or "ReSharper" in d:
@@ -93,11 +93,11 @@ def infer_detailed_type(cmds):
         if "Debug" in d or "Debugger" in d:
             value = "debug"
 
+        if "Test" in d:
+            value = "testing"
+            
         if "Team" in d or 'Diff' in d or 'Tfs' in d:
             value = "control"
-            
-        if "Test" in d or 'SourceControl' in d:
-            value = "testing"
             
         
         res.append(value)

@@ -4,7 +4,7 @@ import numpy as np
 import random
 import scipy
 from pandas import *
-from sklearn.cluster import KMeans, AffinityPropagation, MeanShift, estimate_bandwidth
+from sklearn.cluster import KMeans, AffinityPropagation, MeanShift     
 
 PATH_TO_RESULT_MAIN = '/home/luis/abb/'
 PATH_TS_FILE = "/home/luis/abb/ts_abb.csv"  
@@ -200,23 +200,23 @@ def clustering_sessions_by_proportions(data, attributes, n_clusters, users, file
         c = (c + 1) if c != 90 else 97
 
     # compress the users list per cluster
-#    for i in range(0, len(user_list_by_cluster)):
-#        sub_list = user_list_by_cluster[i]
-#        previous = ''
-#        count = 0
-#        result = ''
-#        for j in range(0, len(sub_list)):
-#            current = sub_list[j]
-#            if previous != current:
-#                if count > 0:
-#                    result += (previous + str(count) + ',')
-#                previous = current
-#                count = 1
-#            else:
-#                count += 1
-#        if count > 0:
-#            result += (previous + str(count))
-#        user_list_by_cluster[i] = result
+    for i in range(0, len(user_list_by_cluster)):
+        sub_list = user_list_by_cluster[i]
+        previous = ''
+        count = 0
+        result = ''
+        for j in range(0, len(sub_list)):
+            current = sub_list[j]
+            if previous != current:
+                if count > 0:
+                    result += (previous + str(count) + ',')
+                previous = current
+                count = 1
+            else:
+                count += 1
+        if count > 0:
+            result += (previous + str(count))
+        user_list_by_cluster[i] = result
 
     centers = DataFrame(cluster_centers, columns=attributes)
     centers['n_predictions'] = n_predictions_by_cluster
@@ -271,38 +271,60 @@ def summarize_centers(all_centers, proximity_threshold, n_attributes, n_extended
 
 
 if __name__ == "__main__":
-
+    print '\nClustering sessions'
+    
     # load sessions data
     sessions = pandas.read_csv(PATH_TS_FILE, index_col=None, header=0)
-    print "Calculating proportions and metrics"
     sessions = calc_proportions(sessions)
-    sessions = calc_metrics(sessions)
+
+    # select users with enough information
     data_aggregated = DataFrame({'count': sessions.groupby(['user']).size()}).reset_index()
     list_users = np.asarray(data_aggregated[data_aggregated['count'] >= 10]['user'])
 
-    # selects a subset of the data
-    #list_users_subset = np.random.choice(list_users, i)
-    #data_res = sessions[sessions['user'].isin(list_users_subset)]
-    #users = data_res['user']
-    #users = users.unique()
-
-    #print('\nClustering sessions')
-    # clustering sessions by proportions
-    #clustering_sessions_by_proportions(sessions, TIME_SERIES_NAMES, 0, users, 'sessions_meanshift_centers.csv', 'meanshift')
-
+    all_centers = []
+    samples = 400
+    repetitions = 100
+   
+    for i in range(0, repetitions):
+        # selects a subset of the data
+        rows = random.sample(sessions.index, samples)
+        sessions2 = sessions.ix[rows]
+        users = sessions2['user']
+        users = users.unique()
+        
+        # clustering sessions by proportions
+        centers, n_predictions, df = clustering_sessions_by_proportions(sessions2, TIME_SERIES_NAMES, 
+                                                                        0, users, 'sessions_meanshift_centers.csv', 
+                                                                        'meanshift')
+        if len(all_centers) == 0:
+            all_centers = np.array(df)
+        else:
+            all_centers = np.concatenate([all_centers, np.array(df)])
+            
+    # remove redundant centers
+    summarized_centers, diffs = summarize_centers(all_centers, 0.4, 10, 12)
+    summarized_centers = DataFrame(summarized_centers, 
+                                   columns= TIME_SERIES_NAMES +
+                                   ['n_predictions', 'n_users', 'repetitions'])
+    summarized_centers = summarized_centers[summarized_centers['repetitions'] > 1]
+    summarized_centers.to_csv(PATH_TO_RESULT_MAIN + 'sessions_centers.csv')
+    
+    # get a prediction with the summarized centers
+    final_model = MeanShift()
+    final_model.cluster_centers_ = summarized_centers.ix[:,0:10].as_matrix()
+    sessions['label'] = final_model.predict(sessions.loc[:,[str('prop_' + i) for i in TIME_SERIES_NAMES]])
+    sessions.to_csv(PATH_TO_RESULT_MAIN + 'ts_abb2.csv', index=False)
+    
+    print '\nClustering chunks'
+    
     # load chunks data
     chunks = pandas.read_csv(PATH_TO_RESULT_MAIN + 'decomposed_ts.csv', 
                              index_col=None, header=0)
     chunks = calc_proportions(chunks)
-    all_centers = []
-    k = 0
-    samples = 5000
-    repetitions = 50
     
-    #rows = random.sample(chunks.index, samples)
-    #chunks2 = chunks.ix[rows]
-    #centers, n_predictions, df = clustering_sessions_by_proportions(chunks, TIME_SERIES_NAMES, 0, users, '5min_chunks_centers.csv', 'meanshift')
-    #all_centers = df.as_matrix()
+    all_centers = []
+    samples = 3000
+    repetitions = 150
     
     # creates n models and store all the found clusters
     for i in range(0, repetitions):
@@ -313,27 +335,30 @@ if __name__ == "__main__":
         users = chunks2['user']
         users = users.unique()
 
-        centers, n_predictions, df = clustering_sessions_by_proportions(chunks2, TIME_SERIES_NAMES, 0, users, '5min_chunks_centers.csv', 'meanshift')
+        centers, n_predictions, df = clustering_sessions_by_proportions(chunks2, TIME_SERIES_NAMES, 
+                                                                        0, users, '5min_chunks_centers.csv', 
+                                                                        'meanshift')
         if len(all_centers) == 0:
             all_centers = np.array(df)
         else:
             all_centers = np.concatenate([all_centers, np.array(df)])
-        k += 1
         
     # remove redundant centers
     summarized_centers, diffs = summarize_centers(all_centers, 0.4, 10, 12)
     q = scipy.stats.mstats.mquantiles(diffs, prob=[0, 0.25, 0.50, 0.75, 1])
     print q
     
-    summarized_centers = DataFrame(summarized_centers, columns= TIME_SERIES_NAMES + ['n_predictions', 'n_users', 'repetitions'])
-
+    summarized_centers = DataFrame(summarized_centers, 
+                                   columns= TIME_SERIES_NAMES +
+                                   ['n_predictions', 'n_users', 'repetitions'])
 
     summarized_centers = summarized_centers[summarized_centers['repetitions'] > 1]
-    summarized_centers.to_csv(PATH_TO_RESULT_MAIN + 'summarized_centers_meanshift2.csv')
-    print "Final clusters: " + str(len(summarized_centers))
+    summarized_centers.to_csv(PATH_TO_RESULT_MAIN + 'chunks_centers.csv')
+    
+    print "Final clusters of chunks: " + str(len(summarized_centers))
 
     # get a prediction with the summarized centers
     final_model = MeanShift()
     final_model.cluster_centers_ = summarized_centers.ix[:,0:10].as_matrix()
     chunks['label'] = final_model.predict(chunks.ix[:,14:24])
-    chunks.to_csv(PATH_TO_RESULT_MAIN + 'decomposed_ts2.csv', index=False)
+    chunks.to_csv(PATH_TO_RESULT_MAIN + 'decomposed_ts.csv', index=False)

@@ -11,19 +11,21 @@ library(ggthemes)
 library(grid)
 library(gridExtra)
 
-decomposed <- read.csv("~/abb/decomposed_ts2.csv", stringsAsFactors = FALSE)
-chunk.centers <- read.csv("~/abb/summarized_centers_meanshift2.csv", stringsAsFactors=FALSE)
+decomposed <- read.csv("~/abb/decomposed_ts.csv", stringsAsFactors = FALSE)
+chunk.centers <- read.csv("~/abb/chunks_centers.csv", stringsAsFactors=FALSE)
+sessions.centers <- read.csv("~/abb/sessions_centers.csv", stringsAsFactors=FALSE)
 
 # set the labels manually after observing the positions of the centers
-
-chosen.labels <- c("programming","debugging","comprehension","version-control","testing")
 
 decomposed.agg <- aggregate(decomposed, by = list(decomposed$id), FUN = length)
 valid.sessions <- decomposed.agg[decomposed.agg$n_events > 10,]$Group.1
 decomposed <- decomposed[decomposed$id %in% valid.sessions,]
-#decomposed <- decomposed[decomposed$label %in% chunk.centers[chunk.centers$label %in% chosen.labels]$X,]
 decomposed$label.c <- unlist(lapply(decomposed$label, function(x){
   chunk.centers[chunk.centers$X == x,]$label[1]
+}))
+
+sessions$label.c <- unlist(lapply(sessions$label, function(x){
+  sessions.centers[sessions.centers$X == x,]$label[1]  
 }))
 
 chunk2 <- function(x,n) split(x, cut(seq_along(x), n, labels = FALSE)) 
@@ -53,17 +55,21 @@ split.equal.chunks <- function(s, size, chosen.labels){
   res$count <- counts
   
   # normalize the counts
-  for (j in chosen.labels){
-    m <- max(res[res$label == j,]$count)
-    res[res$label == j,]$count <- res[res$label == j,]$count / m
-  }
+   for (j in chosen.labels){
+     m <- max(res[res$label == j,]$count)
+     res[res$label == j,]$count <- res[res$label == j,]$count / m
+   }
   res
 }
 
+
 # amount of chunks by type
 summary(as.factor(decomposed$label.c))
+chosen.labels <- c("programming","debugging","version-control","testing")
+decomposed.chunks <- split.equal.chunks(valid.sessions, 10, chosen.labels)
+decomposed.chunks$label <- factor(decomposed.chunks$label, levels = chosen.labels)
+ggplot(decomposed.chunks, aes(x=segment, y=count, color=label)) + geom_point(size=5) + scale_x_continuous(breaks = 1:10) + 
+  geom_line(size=2, alpha=0.6) + theme_hc() +  scale_colour_few() + labs(x="Chunk", y="Count (normalized)", color="Type")
 
-decomposed.chunks <- split.equal.chunks(valid.sessions, 5, chosen.labels)
-ggplot(decomposed.chunks, aes(x=segment, y=count, color=label)) + geom_point(size=5) + 
-  geom_line(size=1.5) + theme_hc() +  scale_colour_few() + labs(x="Chunk", y="Count (normalized)", color="Type")
+cor(decomposed.chunks[decomposed.chunks$label == "programming",]$count, decomposed.chunks[decomposed.chunks$label == "debugging",]$count)
 

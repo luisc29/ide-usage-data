@@ -11,7 +11,7 @@ library(ggthemes)
 library(grid)
 library(gridExtra)
 
-sessions <- read.csv("~/abb/ts_abb.csv", stringsAsFactors = FALSE)
+sessions <- read.csv("~/abb/ts_abb2.csv", stringsAsFactors = FALSE)
 users <- read.csv("~/abb/export-2015-10-23/tinyusers.csv", stringsAsFactors=FALSE)
 focus <- read.csv("~/abb/focus.clean.csv", stringsAsFactors=FALSE)
 
@@ -38,7 +38,7 @@ sessions$duration <- difftime(sessions$end, sessions$start, units = "hours")
 quantile(sessions$duration) #median 7.5 hours
 mean(sessions$duration) #9.16 hours
 sd(sessions$duration)
-ggplot(sessions[sessions$size_ts < (100),], aes(x=duration)) + geom_histogram() + 
+ggplot(sessions[sessions$size_ts < (200),], aes(x=duration)) + geom_histogram() + 
   labs(x="Sessions' duration (hours)", y="Count")+ theme_hc() 
 
 # what's the distribution of productive time?
