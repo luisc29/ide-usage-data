@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.1.13)  24 JUN 2016 12:38
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.1.13)  1 JUL 2016 15:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -327,10 +327,8 @@ LaTeX Info: Redefining \. on input line 14.
 LaTeX Info: Redefining \% on input line 14.
 LaTeX Info: Redefining \. on input line 22.
 LaTeX Info: Redefining \% on input line 22.
-LaTeX Info: Redefining \. on input line 26.
-LaTeX Info: Redefining \% on input line 26.
 
-(./Chapters/introduction.aux))
+(./Chapters/method.aux) (./Chapters/results.aux))
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 20.
@@ -445,10 +443,7 @@ LaTeX Info: Redefining \. on input line 34.
 LaTeX Info: Redefining \% on input line 34.
  [3
 
-]
-LaTeX Info: Redefining \. on input line 39.
-LaTeX Info: Redefining \% on input line 39.
- (./main.toc
+] (./main.toc
 LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
 LaTeX Info: Redefining \. on input line 2.
@@ -457,8 +452,6 @@ LaTeX Info: Redefining \. on input line 3.
 LaTeX Info: Redefining \% on input line 3.
 LaTeX Info: Redefining \. on input line 5.
 LaTeX Info: Redefining \% on input line 5.
-LaTeX Info: Redefining \. on input line 6.
-LaTeX Info: Redefining \% on input line 6.
 )
 \tf@toc=\write3
 \openout3 = `main.toc'.
@@ -475,8 +468,6 @@ LaTeX Info: Redefining \. on input line 3.
 LaTeX Info: Redefining \% on input line 3.
 LaTeX Info: Redefining \. on input line 5.
 LaTeX Info: Redefining \% on input line 5.
-LaTeX Info: Redefining \. on input line 6.
-LaTeX Info: Redefining \% on input line 6.
 )
 \tf@lof=\write4
 \openout4 = `main.lof'.
@@ -492,8 +483,6 @@ LaTeX Info: Redefining \. on input line 3.
 LaTeX Info: Redefining \% on input line 3.
 LaTeX Info: Redefining \. on input line 5.
 LaTeX Info: Redefining \% on input line 5.
-LaTeX Info: Redefining \. on input line 6.
-LaTeX Info: Redefining \% on input line 6.
 )
 \tf@lot=\write5
 \openout5 = `main.lot'.
@@ -501,31 +490,97 @@ LaTeX Info: Redefining \% on input line 6.
  [3
 
 ]
-\openout2 = `Chapters/introduction.aux'.
+\openout2 = `Chapters/method.aux'.
 
 
-(./Chapters/introduction.tex
-Cap\'{\i }tulo 1.
+No file Chapters/method.tex.
+\openout2 = `Chapters/results.aux'.
+
+(./Chapters/results.tex
+Chapter 1.
 [1
 
 
+
+
 ]
-LaTeX Info: Redefining \. on input line 35.
-LaTeX Info: Redefining \% on input line 35.
- [2]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 37.
- (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
-File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+Package epstopdf Info: Source file: <Figures/productive_hours_focus.eps>
+(epstopdf)                    date: 2016-06-28 13:08:50
+(epstopdf)                    size: 7470 bytes
+(epstopdf)             Output file: <Figures/productive_hours_focus-eps-convert
+ed-to.pdf>
+(epstopdf)                    date: 2016-06-28 13:13:11
+(epstopdf)                    size: 10477 bytes
+(epstopdf)             Command: <repstopdf --outfile=Figures/productive_hours_f
+ocus-eps-converted-to.pdf Figures/productive_hours_focus.eps>
+(epstopdf)             \includegraphics on input line 24.
+Package epstopdf Info: Output file is already uptodate.
+
+<Figures/productive_hours_focus-eps-converted-to.pdf, id=37, 451.6875pt x 225.8
+4375pt>
+File: Figures/productive_hours_focus-eps-converted-to.pdf Graphic file (type pd
+f)
+ <use Figures/productive_hours_focus-eps-converted-to.pdf>
+Package pdftex.def Info: Figures/productive_hours_focus-eps-converted-to.pdf us
+ed on input line 24.
+(pdftex.def)             Requested size: 345.0pt x 172.51143pt.
+
+Overfull \hbox (12.0pt too wide) in paragraph at lines 23--26
+ [][] 
+ []
+
+Package epstopdf Info: Source file: <Figures/productive_days_focus.eps>
+(epstopdf)                    date: 2016-06-28 13:28:22
+(epstopdf)                    size: 6236 bytes
+(epstopdf)             Output file: <Figures/productive_days_focus-eps-converte
+d-to.pdf>
+(epstopdf)                    date: 2016-06-28 13:31:32
+(epstopdf)                    size: 10076 bytes
+(epstopdf)             Command: <repstopdf --outfile=Figures/productive_days_fo
+cus-eps-converted-to.pdf Figures/productive_days_focus.eps>
+(epstopdf)             \includegraphics on input line 35.
+Package epstopdf Info: Output file is already uptodate.
+
+<Figures/productive_days_focus-eps-converted-to.pdf, id=39, 451.6875pt x 225.84
+375pt>
+File: Figures/productive_days_focus-eps-converted-to.pdf Graphic file (type pdf
 )
-LaTeX Font Info:    Font shape `OMS/cmr/bx/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/b/n' tried instead on input line 37.
-LaTeX Info: Redefining \. on input line 51.
-LaTeX Info: Redefining \% on input line 51.
- [3])
-LaTeX Info: Redefining \. on input line 55.
-LaTeX Info: Redefining \% on input line 55.
- [4]
-(./main.aux
+ <use Figures/productive_days_focus-eps-converted-to.pdf>
+Package pdftex.def Info: Figures/productive_days_focus-eps-converted-to.pdf use
+d on input line 35.
+(pdftex.def)             Requested size: 345.0pt x 172.51143pt.
+
+Overfull \hbox (12.0pt too wide) in paragraph at lines 34--37
+ [][] 
+ []
+
+[2] [3 <./Figures/productive_hours_focus-eps-converted-to.pdf> <./Figures/produ
+ctive_days_focus-eps-converted-to.pdf>] [4] [5]
+Package epstopdf Info: Source file: <Figures/activities_phases.eps>
+(epstopdf)                    date: 2016-07-01 15:17:39
+(epstopdf)                    size: 11123 bytes
+(epstopdf)             Output file: <Figures/activities_phases-eps-converted-to
+.pdf>
+(epstopdf)                    date: 2016-07-01 15:17:52
+(epstopdf)                    size: 13813 bytes
+(epstopdf)             Command: <repstopdf --outfile=Figures/activities_phases-
+eps-converted-to.pdf Figures/activities_phases.eps>
+(epstopdf)             \includegraphics on input line 120.
+Package epstopdf Info: Output file is already uptodate.
+
+<Figures/activities_phases-eps-converted-to.pdf, id=69, 677.53125pt x 301.125pt
+>
+File: Figures/activities_phases-eps-converted-to.pdf Graphic file (type pdf)
+ <use Figures/activities_phases-eps-converted-to.pdf>
+Package pdftex.def Info: Figures/activities_phases-eps-converted-to.pdf used on
+ input line 120.
+(pdftex.def)             Requested size: 345.0pt x 153.33737pt.
+
+Overfull \hbox (12.0pt too wide) in paragraph at lines 119--122
+ [][] 
+ []
+
+[6]) [7 <./Figures/activities_phases-eps-converted-to.pdf>] (./main.aux
 LaTeX Info: Redefining \. on input line 6.
 LaTeX Info: Redefining \% on input line 6.
 LaTeX Info: Redefining \. on input line 10.
@@ -534,30 +589,29 @@ LaTeX Info: Redefining \. on input line 14.
 LaTeX Info: Redefining \% on input line 14.
 LaTeX Info: Redefining \. on input line 22.
 LaTeX Info: Redefining \% on input line 22.
-LaTeX Info: Redefining \. on input line 26.
-LaTeX Info: Redefining \% on input line 26.
- (./Chapters/introduction.aux)) ) 
+
+(./Chapters/method.aux) (./Chapters/results.aux)) ) 
 Here is how much of TeX's memory you used:
- 2757 strings out of 493085
- 36502 string characters out of 6136917
- 104080 words of memory out of 5000000
- 6180 multiletter control sequences out of 15000+600000
- 7920 words of font info for 28 fonts, out of 8000000 for 9000
+ 2776 strings out of 493085
+ 37107 string characters out of 6136917
+ 106369 words of memory out of 5000000
+ 6181 multiletter control sequences out of 15000+600000
+ 7665 words of font info for 27 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 38i,11n,45p,744b,412s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmbsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
-mcsc10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.
-pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></u
-sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texliv
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on main.pdf (11 pages, 804507 bytes).
+ 38i,13n,45p,921b,384s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
+17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
+></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on main.pdf (14 pages, 840157 bytes).
 PDF statistics:
- 77 PDF objects out of 1000 (max. 8388607)
- 53 compressed objects within 1 object stream
+ 118 PDF objects out of 1000 (max. 8388607)
+ 79 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 39 words of extra memory for PDF output out of 10000 (max. 10000000)
 

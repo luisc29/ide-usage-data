@@ -398,6 +398,7 @@ def decompose_sessions(sessions, lists,  time_frame_min):
                 
             row['user'] = [session['user']]
             row['id'] = [session['id']]
+            row['session_id'] = [session['session_id']]
             row['n_events'] = [n_events]
 
             if len(decomposed_sessions) == 0:
@@ -487,14 +488,18 @@ if __name__ == '__main__':
     # sessions with high proportion of interruptions
     res['prop_inte'] = res['n_inte']/res['size_ts']
     lists['prop_inte'] = lists['n_inte']/lists['size_ts']
+
     res = res[res['size_ts'] >= 30]    
     res = res[res['prop_inte'] < 0.5]
     lists = lists[lists['size_ts'] >= 30]
     lists = lists[lists['prop_inte'] < 0.5]
+
+    res['session_id'] = range(0,len(res))
+
     res.to_csv(PATH_TS_RESULT, index=False)
 
     # decompose the sessions into chunks of productive time of at least n minutes
-    decomposed_sessions = decompose_sessions(res, lists, 3)
+    decomposed_sessions = decompose_sessions(res, lists, 4)
     decomposed_sessions.to_csv(PATH_PREPROC_MAIN + 'decomposed_ts.csv', index=False)
 
     end = time.time()

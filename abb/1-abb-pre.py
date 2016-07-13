@@ -156,7 +156,9 @@ def clean_events(file_path, file_name):
     repeated rows and setting the description of the event
     from the 'allcmds.csv' file
     """
-    
+
+    print 'File: ' + file_name
+
     # Load a file and rename the columns
     events = DataFrame.from_csv(file_path + "//" + file_name,index_col=False)
     events.columns = ["user", "datetime", "category", "event"]
