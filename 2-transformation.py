@@ -10,15 +10,12 @@ from multiprocessing import Pool
 import multiprocessing
 import numpy as np
 
+
 SIZE_INT = 180  # size threshold for the interruptions
 SPACE_BETWEEN_INT = 14400  # threshold for the sessions
-PATH_PREPROC = '/home/luis/abb/preproc'  # path to the processed data
-PATH_PREPROC_MAIN = '/home/luis/abb/'
-PATH_GROUPED_DATA = '/home/luis/abb/users'  # where to store the grouped data
-PATH_TS_RESULT = '/home/luis/abb/ts_abb.csv'  # where to store the time series file
-PATH_SESSIONS = '/home/luis/abb/sessions'  # where to store a file per session
 BREAK_POINT = 2700  # size of the interval to split the session in two
-PATH_FOCUS_DATA = '/home/luis/abb/export-2015-10-23/tinyfocus.csv'
+PATH_TO_UDC = '/home/luis/udc/'
+PATH_TO_ABB = '/home/luis/abb/'
 
 
 def load_data(path):
@@ -167,7 +164,7 @@ def transform_to_sessions(events, uid):
     # process all the sessions of the user
     for i in s:
         user_sessions = events[events['session_id'] == i]
-        user_sessions.to_csv(PATH_SESSIONS + '/' + str(uid) + '-' + str(count) + '.csv', index=False)
+        #user_sessions.to_csv(PATH_SESSIONS + '/' + str(uid) + '-' + str(count) + '.csv', index=False)
 
         split_session = [user_sessions]
 
@@ -279,61 +276,6 @@ def transform_to_sessions(events, uid):
 
     result, lists = so.create_dataframe()
     return result, lists
-
-
-def add_focus_data(data, focus):
-    """
-    Looks in the focus data the segment that correspond to a working session
-    """
-    inte_exp = []
-    res_focus = []
-    for i in range(0, len(data)):
-        session = data.iloc[i]
-        user = session['user']
-        
-        start = time.strptime(session['start_time'], '%Y-%m-%d %H:%M:%S')
-        end = time.strptime(session['end_time'], '%Y-%m-%d %H:%M:%S')
-        
-        # Get a focus segment beetween the starting and ending datetime of the session
-        focus_user = focus[(focus['user'] == user) & (focus['datetime2'] >= start) 
-                            & (focus['datetime2'] <= end)]
-        
-        if len(focus_user) > 0:
-            inte_start = ':'.join(session['start_time'].split(':')[:-1])
-            interruptions = [float(x) for x in session['interruptions'].split(' ')]
-            is_interruption = []
-            for i in interruptions:
-                if i == 0:
-                    is_interruption.append(0)
-                else:
-                    j = 0
-                    while j <= i:
-                        is_interruption.append(1)
-                        j += 1
-            
-            delta_start = datetime.strptime(focus_user['datetime'].iloc[0], 
-                                            '%Y-%m-%d %H:%M:%S') - datetime.strptime(inte_start, '%Y-%m-%d %H:%M')
-                                        
-            time_diff_start = 0 if delta_start == 0 else int(delta_start.seconds/60)
-            
-            offset = [0]*time_diff_start
-            
-            focus_data = focus_user['focus'].tolist()
-            if time_diff_start >= 1:
-                offset.extend(focus_user['focus'])
-                focus_data = offset
-            if len(is_interruption) > len(focus_data):
-                focus_data.extend([0]*(len(is_interruption)-len(focus_data)))
-            
-            inte_exp.append(' '.join(str(i) for i in is_interruption))
-            res_focus.append(' '.join(str(i) for i in focus_data))
-        else:
-            inte_exp.append(' ')
-            res_focus.append(' ')
-            
-    data['interruptions_expanded'] = inte_exp
-    data['focus'] = res_focus
-    return data
     
 
 def chunks(l, n):
@@ -409,7 +351,7 @@ def decompose_sessions(sessions, lists,  time_frame_min):
     return decomposed_sessions
     
     
-def pipe_trans_events(file_path, files, focus):
+def pipe_trans_events(file_path, files):
     """
     Applies transformation to the data on the files. Returns an object with the sessions
     """
@@ -421,7 +363,6 @@ def pipe_trans_events(file_path, files, focus):
         print 'processing file: ' + files[i]
         events = preprocess_events(events)
         sessions, lists = transform_to_sessions(events, i)
-        #sessions = add_focus_data(sessions, focus)
         if len(res) == 0:
             res = sessions
             res_lists = lists
@@ -430,15 +371,12 @@ def pipe_trans_events(file_path, files, focus):
             res_lists = res_lists.append(lists, ignore_index=True)
     return res, res_lists
     
-
-if __name__ == '__main__':
-
-    print 'starting transformation'
-
-    start = time.time()
     
-    # load all the data
-    events = load_data(PATH_PREPROC)
+def pipeline(events, directory, sessions_file_name, chunks_file_name):
+    """
+    Main pipeline for the transformation of the ABB and UDC datasets
+    """
+    start = time.time()
     
     # sort it by user and datetime
     events = events.sort(['user', 'datetime'], ascending=[1, 1])
@@ -447,27 +385,22 @@ if __name__ == '__main__':
     events = events.groupby(["user"])
     
     # Create a file per user
-    store_grouped_data(events, PATH_GROUPED_DATA)
+    store_grouped_data(events, directory + 'users')
     
     cores = multiprocessing.cpu_count()
     
     # Split the files into n groups
-    files = os.listdir(PATH_GROUPED_DATA)
+    files = os.listdir(directory + 'users')
     files = np.array_split(files, cores)
-    
-    # Load focus data
-    focus = DataFrame.from_csv(PATH_PREPROC_MAIN + 'focus.clean.csv', index_col=False)
-    focus['datetime2'] = [time.strptime(d, '%Y-%m-%d %H:%M:%S') for d in focus['datetime']]
     
     # Transform the data to sessions in parallel
     pool = Pool()
-    
     r = []
     res = DataFrame()
     lists = DataFrame()
     
     for i in range(0, cores):
-        r1 = pool.apply_async(pipe_trans_events, [PATH_GROUPED_DATA, files[i], focus])
+        r1 = pool.apply_async(pipe_trans_events, [directory + 'users', files[i]])
         r.append(r1)
 
     for i in range(0, cores):
@@ -496,11 +429,26 @@ if __name__ == '__main__':
 
     res['session_id'] = range(0,len(res))
 
-    res.to_csv(PATH_TS_RESULT, index=False)
+    res.to_csv(directory + '/' + sessions_file_name, index=False)
 
     # decompose the sessions into chunks of productive time of at least n minutes
     decomposed_sessions = decompose_sessions(res, lists, 4)
-    decomposed_sessions.to_csv(PATH_PREPROC_MAIN + 'decomposed_ts.csv', index=False)
+    decomposed_sessions.to_csv(directory + '/' + chunks_file_name, index=False)
 
     end = time.time()
     print end-start
+    
+
+if __name__ == '__main__':
+    
+    print 'Starting ABB data transformation'
+    
+    log = load_data(PATH_TO_ABB + 'preproc')
+    pipeline(log, PATH_TO_ABB, 'ts_abb.csv', 'chunks_abb.csv')
+    
+    print '\n\nStarting UDC data transformation'
+    
+    log = DataFrame.from_csv(PATH_TO_UDC + 'clean.dataC.csv', index_col=False)
+    pipeline(log, PATH_TO_UDC, 'ts_udc.csv', 'chunks_udc.csv')
+    
+    print 'Transformation finished'
