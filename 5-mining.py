@@ -4,7 +4,7 @@ import numpy as np
 import random
 import scipy
 from pandas import *
-from sklearn.cluster import MeanShift, AffinityPropagation
+from sklearn.cluster import AffinityPropagation, MeanShift     
 
 PATH_TO_ABB = '/home/luis/abb/'
 PATH_TO_UDC = '/home/luis/udc/'
@@ -12,78 +12,171 @@ TIME_SERIES_NAMES = ['edition', 'text_nav', 'high_nav', 'file', 'refactoring',
                      'debug', 'tools', 'control', 'testing', 'search']
 
 
-def levenshtein(s1, s2):
+def calc_metrics(data):
     """
-    Calculates the levenshtein distance of the two parameters
+    Calculates the metrics for every session in the data
     """
-    if len(s1) < len(s2):
-        return levenshtein(s2, s1)
+    nrows = len(data)
+    types_edit = ['edition', 'refactoring', 'text_nav']
+    types_selection = ['high_nav', 'search', 'debug']
+    emin = []
+    smin = []
+    eratio = []
+    for i in range(0,nrows):
+        sum_edits = 0
+        sum_selections = 0
+        for j in range(0, len(types_edit)):
+            chain = data.iloc[i][types_edit[j]]
+            vector = chain.split(' ')
+            vector = [int(x) for x in vector]
+            sum_edits += sum(vector)
 
-    # len(s1) >= len(s2)
-    if len(s2) == 0:
-        return len(s1)
+        for k in range(0, len(types_selection)):
+            chain = data.iloc[i][types_selection[k]]
+            vector = chain.split(' ')
+            vector = [int(x) for x in vector]
+            sum_selections += sum(vector)
 
-    previous_row = range(len(s2) + 1)
-    for i, c1 in enumerate(s1):
-        current_row = [i + 1]
-        for j, c2 in enumerate(s2):
-            insertions = previous_row[j + 1] + 1  
-            deletions = current_row[j] + 1 
-            substitutions = previous_row[j] + (c1 != c2)
-            current_row.append(min(insertions, deletions, substitutions))
-        previous_row = current_row
+        size = data.iloc[i]['size_ts']
+        e = sum_edits/size
+        s = sum_selections/size
+        emin.append(e)
+        smin.append(s)
 
-    return previous_row[-1]
+        er = e/(e+s)
+        eratio.append(er)
+
+    data['emin'] = emin
+    data['smin'] = smin
+    data['eratio'] = eratio
+    return data
 
 
-def split_in_chunks(l,n):
+def calc_proportions(data):
     """
-    Splits the list 'l' into 'n' chunks of equal size
+    Calculates the proportion of type of events for every session
     """
-    size = len(l)    
-    size_chunks = size/n
-    residue = size%n
-    splitted = []
-    i = 0
-    j = 0
-    while n > 0:
-        r = 0
-        if residue != 0:
-            r = 1
-            residue = residue - 1
-        j = i + (size_chunks + r)
-        splitted.append(l[i:j])
-        n -= 1
-        i = j
-    return splitted
+    dic = {}
+    for i in TIME_SERIES_NAMES:
+        dic[i] = []
+        
+    for i in range(0,len(data)):
+        session = data.iloc[i]
+        n_events = session['n_events']
+        for ts in TIME_SERIES_NAMES:
+            values = [int(x) for x in session[ts].split(' ')]
+            sum_values = sum(values)
+            prop = 0 if sum_values == 0 else sum_values/n_events
+            dic[ts].append(prop)
     
-    
+    for i in TIME_SERIES_NAMES:
+        data['prop_' + i] = dic[i]
+        
+    return data
+
+
 def clustering_mean_shift(data_res):
     """
     Executes the mean shift model from sklearn
     """
+    #print('\nFitting a mean shift model')
+
     ms = MeanShift()
     ms.fit(data_res)
 
     predictions = ms.predict(data_res)
     cluster_centers = ms.cluster_centers_
 
-    return predictions, cluster_centers
-    
+    #print('Estimated number of clusters: ', len(cluster_centers))
+    return predictions, cluster_centers, 0
+
 
 def clustering_affinity_propagation(data_res):
     """
     Executes sklearn's affinity propagation function with the given data frame
     """
+    #print('\nFitting an affinity propagation model')
     af = AffinityPropagation()
     af.fit(data_res)
 
     predictions = af.predict(data_res)
     cluster_centers = af.cluster_centers_
+    #print('Estimated number of clusters: ', len(cluster_centers))
 
     return predictions, cluster_centers
     
     
+def clustering_sessions_by_proportions(data, attributes, n_clusters, users, method='kmeans'):
+    """
+    Perform clustering of sessions by the proportion using different methods. 
+    Creates a file with the resulting centers
+    """
+    # prepare the dataset
+    data_res = DataFrame()
+    data.is_copy = False
+    g = []
+    for ts in attributes:
+        data_res['prop_' + ts] = data['prop_' + ts]
+        g.append('prop_' + ts)
+
+    pred, cluster_centers, error = clustering_affinity_propagation(data_res) if method == 'affinity' \
+                                    else clustering_mean_shift(data_res)
+
+    n_clusters = len(cluster_centers)
+
+    data['prediction'] = pred
+
+    # create a dataset with the summary of clusters and predictions per cluster
+    n_sessions = []
+    users_by_cluster = [0] * n_clusters
+    n_predictions_by_cluster = [0] * n_clusters
+    c = 65
+    for u in users:
+        data_user = data[data['user'] == u]
+        user_predictions = np.asarray(data_user['prediction'])
+
+        # count the number of times a session was predicted in some cluster
+        for i in user_predictions:
+            n_predictions_by_cluster[i] += 1
+
+        unique_predictions = set(user_predictions)
+        for i in unique_predictions:
+            users_by_cluster[i] += 1
+
+        n_sessions.append(len(data_user))
+
+        c = (c + 1) if c != 90 else 97
+
+    centers = DataFrame(cluster_centers, columns=attributes)
+    centers['n_predictions'] = n_predictions_by_cluster
+    centers['n_users'] = users_by_cluster
+
+    return cluster_centers, centers
+
+
+def clustering_bootstrap(samples,repetitions, algorithm):
+    """
+    Generates n models and return all the resulting centers
+    """
+    all_centers = []
+    for i in range(0, repetitions):
+        # selects chunks data
+        rows = random.sample(chunks.index, samples)
+
+        chunks2 = chunks.ix[rows]
+        users = chunks2['user']
+        users = users.unique()
+
+        centers, df = clustering_sessions_by_proportions(chunks2, TIME_SERIES_NAMES, 
+                                                            0, users, 'meanshift')
+        if len(all_centers) == 0:
+            all_centers = np.array(df)
+        else:
+            all_centers = np.concatenate([all_centers, np.array(df)])
+            
+    return all_centers
+
+
 def summarize_centers(all_centers, proximity_threshold, n_attributes, n_extended_attributes):
     """
     Summarizes all the detected centers taking all the close centers and getting 
@@ -115,7 +208,7 @@ def summarize_centers(all_centers, proximity_threshold, n_attributes, n_extended
                 values = [all_centers[r][k] for r in related]
                 new_center = new_center + [max(values)]
 
-           # new_center = new_center + [len(related)]
+            new_center = new_center + [len(related)]
 
             # add the summarized center to to the 2d array
             if len(summarized_centers) == 0:
@@ -125,100 +218,73 @@ def summarize_centers(all_centers, proximity_threshold, n_attributes, n_extended
 
     return summarized_centers, differences
     
-    
-def pipeline(chunks, sessions, chunk_centers, directory, chunk_types, column_names, 
-             algorithm, splitted_sessions_name, sessions_centers_name, sessions_name):
-    """
-    Pipeline for the clustering of sessions
-    """
-    # get the label from the centers
-    centers_labels = list(set(chunks_centers['label']))
-    chunks_centers['label'] = chunks_centers['label'].astype('str')
-    
-    # add the string label to the chunks
-    label_c = []
-    for i in range(0,len(chunks)):
-        l = chunks.iloc[i]['label']
-        label_c.append(chunks_centers.iloc[l]['label'])
-    chunks['label_c'] = label_c
-    
-    print '\nClustering sessions'
-    
-    # for every session get the correspondent chunks and split them into 3 
-    # phases of equal size
-    splitted_sessions = DataFrame(columns=column_names+('id',))
-    sessions_ids = list(set(chunks['session_id']))
-    
-    c = 0
-    for s in sessions_ids:
-        session_chunks = chunks[chunks['session_id'] == s]
-        if len(session_chunks) >= 3:
-            splitted_ids = split_in_chunks(np.array(session_chunks['label_c']), 3)
-            row = []
-            for i in range(0,len(splitted_ids)):
-                for j in chunk_types:
-                    row.append(splitted_ids[i].tolist().count(j))
-            
-            total = sum(row)
-            if total > 0:
-                row = [x/total for x in row]
-                row.append(s)
-                splitted_sessions.loc[c] = row
-                c = c + 1
-    
-    pred, centers = 0,0
-    if algorithm == 'meanshift':
-        pred, centers = clustering_mean_shift(splitted_sessions.iloc[:,0:len(column_names)].as_matrix())
-    else:
-        pred, centers = clustering_affinity_propagation(splitted_sessions.iloc[:,0:len(column_names)].as_matrix())
 
-    # summarize the close centers  and fit a new model with the new centers
-    centers2 = summarize_centers(centers, 0.3, 15, 15)[0]
-    prediction_model = MeanShift()
-    prediction_model.cluster_centers_ = centers2
-    pred2 = prediction_model.predict(splitted_sessions.iloc[:,0:len(column_names)].as_matrix())
+def pipeline(chunks, directory, chunks_file_name, chunks_centers_file_name,
+             n_sample, rep, algorithm):
+    """
+    Main pipeline for the first phase of data mining.
+    Chunks clustering.
+    """
     
-    # create a dataframe with the sessions split into 3 phases
-    splitted_sessions['label'] = pred2
-    centers = DataFrame(data=centers, columns=column_names)
-    centers['id'] = range(0, len(centers))
-    labels = []
-    for i in range(0, len(sessions)):
-        ss = splitted_sessions[splitted_sessions['id'] == i]
-        if len(ss) == 0:
-            labels.append(-1) # label with a -1 those sessions to small to split
-        else:
-            labels.append(ss['label'].iloc[0])
-    sessions['label'] = labels
+    # calculate the proportion of events
+    chunks = calc_proportions(chunks)
     
-    splitted_sessions.to_csv(directory + splitted_sessions_name, index=False)
-    sessions.to_csv(directory + sessions_name, index=False)
-    centers.to_csv(directory + sessions_centers_name, index=False)
+    # creates n models and store all found clusters
+    print 'Creating ' + str(rep) + ' models with bootstrap'
+    all_centers = clustering_bootstrap(n_sample, rep, algorithm)
+        
+    # remove redundant centers, param based on quantiles
+    summarized_centers, diffs = summarize_centers(all_centers, 0.4, 10, 12)
+    
+    summarized_centers = DataFrame(summarized_centers, 
+                                   columns= TIME_SERIES_NAMES +
+                                   ['n_predictions', 'n_users', 'repetitions'])
+
+    summarized_centers = summarized_centers[summarized_centers['repetitions'] > 1]
+    summarized_centers['id'] = range(0,len(summarized_centers))
+    summarized_centers.set_index([range(0,len(summarized_centers))], inplace=True)
+    summarized_centers.to_csv(directory + chunks_centers_file_name, index=False)
+    
+    
+    print "Final number of clusters of chunks: " + str(len(summarized_centers))
+
+    # get a prediction with the summarized centers
+    print "Predicting labels with the new centers"
+    final_model = MeanShift()
+    final_model.cluster_centers_ = summarized_centers.ix[:,0:10].as_matrix()
+    chunks['label'] = final_model.predict(chunks.ix[:,15:25])
+
+    # measure the distance of the chunks to the center of the cluster
+    print 'Measuring distances to the center...'
+    labels = ['prop_' + x for x in TIME_SERIES_NAMES]
+    distances = []
+    for i in range(0,len(chunks)):
+        c = chunks.ix[i]
+        center = summarized_centers.ix[c['label']][TIME_SERIES_NAMES]
+        c = c[labels]
+        d = np.linalg.norm(np.array(c) - np.array(center))
+        distances.append(d)
+
+    chunks['distance_to_center'] = distances
+    
+    print 'Distribution of distance to the centers'
+    for i in range(0,len(summarized_centers)):
+        elements = np.array(chunks[chunks['label'] == i]['distance_to_center'])
+        print 'Cluster ' + str(i) + ': ' 
+        print scipy.stats.mstats.mquantiles(elements, prob=[0, 0.25, 0.50, 0.75, 1])
+
+    chunks.to_csv(directory + chunks_file_name, index=False)
     
     
 if __name__ == "__main__":
     
-    print 'Clustering sessions with ABB'    
+    print 'Clustering chunks with ABB'    
     
     chunks = pandas.read_csv(PATH_TO_ABB + 'chunks_abb.csv', index_col=None, header=0)
-    sessions = pandas.read_csv(PATH_TO_ABB + 'ts_abb.csv', index_col=None, header=0)
-    chunks_centers = pandas.read_csv(PATH_TO_ABB + 'chunks_centers_abb.csv', index_col=None, header=0)
-    chunk_types = ['Programming', 'Debugging', 'Navigation', 'Version', 'Testing']
-    column_names=('Programming_1', 'Debugging_1', 'Navigation_1', 'Version_1', 'Testing_1',
-                  'Programming_2', 'Debugging_2', 'Navigation_2', 'Version_2', 'Testing_2', 
-                  'Programming_3', 'Debugging_3', 'Navigation_3', 'Version_3', 'Testing_3')
-    pipeline(chunks, sessions, chunks_centers, PATH_TO_ABB, chunk_types, column_names,
-             'affinity', 'splitted_sessions_abb.csv', 'sessions_centers_abb.csv', 'ts_abb.csv')
+    #pipeline(chunks,PATH_TO_ABB,'chunks_abb.csv', 'chunks_centers_abb.csv',  2000, 100, 'meanshift')
     
-    print '\n\nClustering sessions with UDC'    
+    print '\n\nClustering chunks with UDC'    
     
     chunks = pandas.read_csv(PATH_TO_UDC + 'chunks_udc.csv', index_col=None, header=0)
-    sessions = pandas.read_csv(PATH_TO_UDC + 'ts_udc.csv', index_col=None, header=0)
-    chunks_centers = pandas.read_csv(PATH_TO_UDC + 'chunks_centers_udc.csv', index_col=None, header=0)
-    chunk_types = ['Programming', 'Debugging', 'Version', 'Tools', 'Refactoring']
-    column_names = ('Programming_1', 'Debugging_1', 'Version_1', 'Tools_1', 'Refactoring_1',
-                    'Programming_2', 'Debugging_2', 'Version_2', 'Tools_2', 'Refactoring_2',
-                    'Programming_3', 'Debugging_3', 'Version_3', 'Tools_3', 'Refactoring_3')
-    pipeline(chunks, sessions, chunks_centers, PATH_TO_UDC, chunk_types, column_names,
-             'affinity', 'splitted_sessions_udc.csv', 'sessions_centers_udc.csv', 'ts_udc.csv')
-             
+    pipeline(chunks,PATH_TO_UDC,'chunks_udc.csv', 'chunks_centers_udc.csv', 500, 200, 'meanshift')
+    
