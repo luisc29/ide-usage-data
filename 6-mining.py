@@ -6,8 +6,8 @@ import scipy
 from pandas import *
 from sklearn.cluster import MeanShift, AffinityPropagation
 
-PATH_TO_ABB = '/home/luis/abb/'
-PATH_TO_UDC = '/home/luis/udc/'
+PATH_TO_ABB = '~/abb/'
+PATH_TO_UDC = '~/udc/'
 TIME_SERIES_NAMES = ['edition', 'text_nav', 'high_nav', 'file', 'refactoring',
                      'debug', 'tools', 'control', 'testing', 'search']
 
@@ -125,6 +125,46 @@ def summarize_centers(all_centers, proximity_threshold, n_attributes, n_extended
 
     return summarized_centers, differences
     
+
+def calc_metrics(data):
+    """
+    Calculates the metrics for every session in the data
+    """
+    nrows = len(data)
+    types_edit = ['edition', 'refactoring', 'text_nav']
+    types_selection = ['high_nav', 'search', 'debug']
+    emin = []
+    smin = []
+    eratio = []
+    for i in range(0,nrows):
+        sum_edits = 0
+        sum_selections = 0
+        for j in range(0, len(types_edit)):
+            chain = data.iloc[i][types_edit[j]]
+            vector = chain.split(' ')
+            vector = [int(x) for x in vector]
+            sum_edits += sum(vector)
+
+        for k in range(0, len(types_selection)):
+            chain = data.iloc[i][types_selection[k]]
+            vector = chain.split(' ')
+            vector = [int(x) for x in vector]
+            sum_selections += sum(vector)
+
+        size = data.iloc[i]['size_ts']
+        e = sum_edits/size
+        s = sum_selections/size
+        emin.append(e)
+        smin.append(s)
+
+        er = e/(e+s)
+        eratio.append(er)
+
+    data['emin'] = emin
+    data['smin'] = smin
+    data['eratio'] = eratio
+    return data
+
     
 def pipeline(chunks, sessions, chunk_centers, directory, chunk_types, column_names, 
              algorithm, splitted_sessions_name, sessions_centers_name, sessions_name):
@@ -142,7 +182,7 @@ def pipeline(chunks, sessions, chunk_centers, directory, chunk_types, column_nam
         label_c.append(chunks_centers.iloc[l]['label'])
     chunks['label_c'] = label_c
     
-    print '\nClustering sessions'
+    print '\nClustering sessions...'
     
     # for every session get the correspondent chunks and split them into 3 
     # phases of equal size
@@ -180,8 +220,8 @@ def pipeline(chunks, sessions, chunk_centers, directory, chunk_types, column_nam
     
     # create a dataframe with the sessions split into 3 phases
     splitted_sessions['label'] = pred2
-    centers = DataFrame(data=centers, columns=column_names)
-    centers['id'] = range(0, len(centers))
+    centers = DataFrame(data=centers2, columns=column_names)
+    centers['id'] = range(0, len(centers2))
     labels = []
     for i in range(0, len(sessions)):
         ss = splitted_sessions[splitted_sessions['id'] == i]
@@ -190,6 +230,20 @@ def pipeline(chunks, sessions, chunk_centers, directory, chunk_types, column_nam
         else:
             labels.append(ss['label'].iloc[0])
     sessions['label'] = labels
+    
+    # calculate the metrics of editions, selections and edit ratio
+    sessions = calc_metrics(sessions)
+    
+    # measure the distance of the chunks to the center of the cluster
+#    print 'Measuring distances to the center...'
+#    distances = []
+#    for i in range(0,len(splitted_sessions)):
+#        c = splitted_sessions.ix[i]
+#        center = centers.ix[c['label']][column_names]
+#        c = c[column_names]
+#        d = np.linalg.norm(np.array(c) - np.array(center))
+#        distances.append(d)
+#    splitted_sessions['distance_to_center'] = distances
     
     splitted_sessions.to_csv(directory + splitted_sessions_name, index=False)
     sessions.to_csv(directory + sessions_name, index=False)
@@ -200,25 +254,25 @@ if __name__ == "__main__":
     
     print 'Clustering sessions with ABB'    
     
-    chunks = pandas.read_csv(PATH_TO_ABB + 'chunks_abb.csv', index_col=None, header=0)
-    sessions = pandas.read_csv(PATH_TO_ABB + 'ts_abb.csv', index_col=None, header=0)
-    chunks_centers = pandas.read_csv(PATH_TO_ABB + 'chunks_centers_abb.csv', index_col=None, header=0)
+    chunks = pandas.read_csv(PATH_TO_ABB + 'abb.chunks.csv', index_col=None, header=0)
+    sessions = pandas.read_csv(PATH_TO_ABB + 'abb.sessions.csv', index_col=None, header=0)
+    chunks_centers = pandas.read_csv(PATH_TO_ABB + 'abb.chunkscenters.csv', index_col=None, header=0)
     chunk_types = ['Programming', 'Debugging', 'Navigation', 'Version', 'Testing']
     column_names=('Programming_1', 'Debugging_1', 'Navigation_1', 'Version_1', 'Testing_1',
                   'Programming_2', 'Debugging_2', 'Navigation_2', 'Version_2', 'Testing_2', 
                   'Programming_3', 'Debugging_3', 'Navigation_3', 'Version_3', 'Testing_3')
-    pipeline(chunks, sessions, chunks_centers, PATH_TO_ABB, chunk_types, column_names,
-             'affinity', 'splitted_sessions_abb.csv', 'sessions_centers_abb.csv', 'ts_abb.csv')
+    #pipeline(chunks, sessions, chunks_centers, PATH_TO_ABB, chunk_types, column_names,
+     #        'affinity', 'abb.splittedsessions.csv', 'abb.sessioncenters.csv', 'abb.sessions.csv')
     
     print '\n\nClustering sessions with UDC'    
     
-    chunks = pandas.read_csv(PATH_TO_UDC + 'chunks_udc.csv', index_col=None, header=0)
-    sessions = pandas.read_csv(PATH_TO_UDC + 'ts_udc.csv', index_col=None, header=0)
-    chunks_centers = pandas.read_csv(PATH_TO_UDC + 'chunks_centers_udc.csv', index_col=None, header=0)
-    chunk_types = ['Programming', 'Debugging', 'Version', 'Tools', 'Refactoring']
-    column_names = ('Programming_1', 'Debugging_1', 'Version_1', 'Tools_1', 'Refactoring_1',
-                    'Programming_2', 'Debugging_2', 'Version_2', 'Tools_2', 'Refactoring_2',
-                    'Programming_3', 'Debugging_3', 'Version_3', 'Tools_3', 'Refactoring_3')
+    chunks = pandas.read_csv(PATH_TO_UDC + 'udc.chunks.csv', index_col=None, header=0)
+    sessions = pandas.read_csv(PATH_TO_UDC + 'udc.sessions.csv', index_col=None, header=0)
+    chunks_centers = pandas.read_csv(PATH_TO_UDC + 'udc.chunkscenters.csv', index_col=None, header=0)
+    chunk_types = ['Programming', 'Debugging', 'Version', 'Navigation', 'Refactoring']
+    column_names = ('Programming_1', 'Debugging_1', 'Version_1', 'Navigation_1', 'Refactoring_1',
+                    'Programming_2', 'Debugging_2', 'Version_2', 'Navigation_2', 'Refactoring_2',
+                    'Programming_3', 'Debugging_3', 'Version_3', 'Navigation_3', 'Refactoring_3')
     pipeline(chunks, sessions, chunks_centers, PATH_TO_UDC, chunk_types, column_names,
-             'affinity', 'splitted_sessions_udc.csv', 'sessions_centers_udc.csv', 'ts_udc.csv')
+             'affinity', 'udc.splittedsessions.csv', 'udc.sessioncenters.csv', 'udc.sessions.csv')
              

@@ -6,7 +6,7 @@ import numpy as np
 import time
 import math
 
-PATH_TO_MAIN = '//home//luis//udc//'
+PATH_TO_MAIN = '/home/luis/udc/'
 
 
 def infer_detailed_type(cmds):
@@ -29,28 +29,40 @@ def infer_detailed_type(cmds):
         
         if '.file' in d:
             value = "file"
+        
+        if '.wst' in d:
+            value = 'tools'
+        
+        if '.refactor' in d:
+            value = 'refactoring'
+            
+        if '.ui.navigate' in d or 'Hierarchy' in d or '.CPerspective' in d or '.DefaultTextEditor' in d:
+            value = 'high-nav'
             
         if ('.report' in d or '.pde' in d or '.php' in d or '.emf' in d
-            or '.gmf' in d or '.mylyn' in d):
+            or '.gmf' in d or '.mylyn' in d or '.datatools' in d or '.jst' in d
+            or '.equinox' in d):
             value = 'tools'
         else:
             if '.ui.edit' in d:
                 value = 'edit-text'
                 if '.goto' in d or '.scroll' in d or '.select' in d:
                     value = 'text-nav'
-                if '.find' in d or '.search' in d:
-                    value = 'search'
                 if '.ui.edit.text.java' in d:
                     value = 'refactoring'
+                if '.find' in d or '.search' in d:
+                    value = 'search'
+                if '.CompilationUnitEditor' in d or '.open' in d:
+                    value = 'high-nav'
             else:
-                if '.Search' in d:
+                if '.Search' in d or '.search.' in d:
                     value = 'search'
                     
                 if ('.CompilationUnitEditor' in d or 'hierarchy' in d or 'View' in d
-                    or '.ui.window' in d):
+                    or '.ui.window' in d or '.jdt.ui' in d):
                     value = 'high-nav'
                     
-                if '.debug.ui' in d:
+                if '.debug' in d:
                     value = 'debug'
                 
                 if '.junit' in d:
@@ -67,7 +79,7 @@ def infer_detailed_type(cmds):
 def infer_general_type(types):
     res = []
     for t in types:
-        if t == 'edit-text' or t == 'text-nav':
+        if t == 'edit-text' or t == 'text-nav' or t == 'refactoring':
             res.append('edition')
         else:
             if t == 'clean-build':
@@ -97,10 +109,16 @@ def clean_events(log):
 if __name__ == "__main__":
     print "Preprocessing started"
     
-    log = DataFrame.from_csv(PATH_TO_MAIN + 'dataC.csv', index_col=False)
+    log = DataFrame.from_csv(PATH_TO_MAIN + 'clean.dataC.csv', index_col=False)
     
     clean_events(log)
     
+    print 'Preprocessing finished'
     
-    
+    descriptions = list(set(log['description']))
+    types = infer_detailed_type(descriptions)
+    temp = DataFrame()
+    temp['description']=descriptions
+    temp['type'] = types
+
     

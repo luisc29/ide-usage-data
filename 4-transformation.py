@@ -443,12 +443,12 @@ if __name__ == '__main__':
     
     print 'Starting ABB data transformation'
     
-    log = load_data(PATH_TO_ABB + 'preproc')
-    pipeline(log, PATH_TO_ABB, 'ts_abb.csv', 'chunks_abb.csv')
+    #log = load_data(PATH_TO_ABB + 'preproc')
+    #pipeline(log, PATH_TO_ABB, 'abb.sessions.csv', 'abb.chunks.csv')
     
     print '\n\nStarting UDC data transformation'
     
     log = DataFrame.from_csv(PATH_TO_UDC + 'clean.dataC.csv', index_col=False)
-    pipeline(log, PATH_TO_UDC, 'ts_udc.csv', 'chunks_udc.csv')
+    pipeline(log, PATH_TO_UDC, 'udc.sessions.csv', 'udc.chunks.csv')
     
     print 'Transformation finished'

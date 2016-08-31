@@ -6,44 +6,21 @@ import numpy as np
 import time
 
 
-PATH_TO_DATA = "//home//luis//abb//export-2015-10-23//"
-PATH_TO_RESULT = "//home//luis//abb//preproc//"
-PATH_TO_RESULT_MAIN = "//home//luis//abb//"
+PATH_TO_DATA = "~/abb/export-2015-10-23/"
+PATH_TO_RESULT = "~/luis/abb/preproc/"
+PATH_TO_RESULT_MAIN = "~/abb/"
 
 
-def infer_type(cmds):
-    """
-    Based on the description of the command, infers a type between edition, selection,
-    system and control
-    """
-    desc = [s.split('.') for s in cmds["description"]]
+def infer_general_type(types):
     res = []
-    for i in range(0,len(desc)):
-        d = desc[i]
-        value = ""
-        # All the context menus labeled as selection
-        if "ContextMenus" in d[0]:
-            value = "selection"
-            
-        if("Analyze" in  d[0] or "Data" in d[0] or "Help" in d[0] or "Image" in d[0] or "Debug" in d[0] or "Design" in d[0]
-        or "Report" in d[0] or "View" in d[0] or "File" in d[0] or "Macros" in d[0]
-        or "Project" in d[0] or "Resources" in d[0] or "Explorer" in d[0]
-        or "SQL" in d[0] or "Sql" in d[0] or "Table" in d[0] or "Test" in d[0]
-        or "Tools" in d[0] or "Window" in d[0]):
-            value = "selection"
-        
-        if("Edit" in d[0] or "Format" in d[0] or "ReSharper" in d[0] 
-        or "Refactor" in d[0]):
-            value = "edition"
-            
-        if "Team" in d[0]:
-            value = "control"
-        
-        if "Build" in d[0] or "Action" in d[0]:
-            value = "system"
-
-
-        res.append(value)
+    for t in types:
+        if t == 'edit-text' or t == 'text-nav' or t == 'refactoring':
+            res.append('edition')
+        else:
+            if t == 'clean-build':
+                res.append('system')
+            else:
+                res.append('selection')
     return res
 
 
@@ -120,9 +97,9 @@ def clean_commands(cmds):
     cmds["category"] = res
     
     # infer the type and the detailed type of the events
-    cmds["type"] = infer_type(cmds)
+    #cmds["type"] = infer_type(cmds)
     cmds["detailed_type"] = infer_detailed_type(cmds)
-
+    cmds["type"] = infer_general_type(list(cmds["detailed_type"]))
     cmds.to_csv(PATH_TO_RESULT_MAIN + "cmds.clean.csv", index=False)
 
     return cmds
@@ -241,6 +218,7 @@ if __name__ == "__main__":
     files = os.listdir(path)
     
     cores = multiprocessing.cpu_count()
+    print "Number of cores: " + str(cores)
     
     # Split the files into n groups
     files = np.array_split(files,cores)

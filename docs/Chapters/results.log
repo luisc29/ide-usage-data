@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.1.13)  29 JUN 2016 14:56
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.7.15)  29 AUG 2016 10:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **results.tex
 (./results.tex
-LaTeX2e <2015/01/01>
-Babel <3.9l> and hyphenation patterns for 79 languages loaded.
+LaTeX2e <2016/02/01>
+Babel <3.9q> and hyphenation patterns for 81 language(s) loaded.
 ! Undefined control sequence.
 l.1 \chapter
             {Results}
@@ -40,7 +40,7 @@ Overfull \hbox (20.0pt too wide) in paragraph at lines 1--3
  []
 
 ! Undefined control sequence.
-l.8 \section
+l.4 \section
             {Activities and working patterns}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -55,7 +55,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.8 \section{A
+l.4 \section{A
               ctivities and working patterns}
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -144,20 +144,6 @@ Missing character: There is no o in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no f in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no g in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no m in font nullfont!
-Missing character: There is no m in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no d in font nullfont!
 Missing character: There is no w in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no r in font nullfont!
@@ -219,11 +205,18 @@ Missing character: There is no f in font nullfont!
 Missing character: There is no r in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no m in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
 Missing character: There is no A in font nullfont!
 Missing character: There is no B in font nullfont!
 Missing character: There is no B in font nullfont!
-Missing character: There is no ' in font nullfont!
-Missing character: There is no s in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no U in font nullfont!
+Missing character: There is no D in font nullfont!
+Missing character: There is no C in font nullfont!
 Missing character: There is no d in font nullfont!
 Missing character: There is no a in font nullfont!
 Missing character: There is no t in font nullfont!
@@ -231,13 +224,14 @@ Missing character: There is no a in font nullfont!
 Missing character: There is no s in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no t in font nullfont!
+Missing character: There is no s in font nullfont!
 Missing character: There is no . in font nullfont!
-Missing character: There is no A in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no t in font nullfont!
+Missing character: There is no T in font nullfont!
 Missing character: There is no h in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no A in font nullfont!
+Missing character: There is no B in font nullfont!
+Missing character: There is no B in font nullfont!
 Missing character: There is no d in font nullfont!
 Missing character: There is no a in font nullfont!
 Missing character: There is no t in font nullfont!
@@ -275,16 +269,10 @@ Missing character: There is no e in font nullfont!
 Missing character: There is no r in font nullfont!
 Missing character: There is no s in font nullfont!
 Missing character: There is no , in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no i in font nullfont!
 Missing character: There is no s in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no f in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no t in font nullfont!
 Missing character: There is no o in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no e in font nullfont!
 Missing character: There is no a in font nullfont!
 Missing character: There is no s in font nullfont!
 Missing character: There is no s in font nullfont!
@@ -330,6 +318,16 @@ Missing character: There is no s in font nullfont!
 Missing character: There is no a in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no d in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
 Missing character: There is no a in font nullfont!
 Missing character: There is no c in font nullfont!
 Missing character: There is no t in font nullfont!
@@ -340,10 +338,15 @@ Missing character: There is no t in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no s in font nullfont!
-Missing character: There is no , in font nullfont!
+Missing character: There is no . in font nullfont!
+Missing character: There is no F in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
 Missing character: There is no a in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no d in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no , in font nullfont!
 Missing character: There is no w in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no e in font nullfont!
@@ -398,7 +401,7 @@ Missing character: There is no r in font nullfont!
 Missing character: There is no s in font nullfont!
 Missing character: There is no . in font nullfont!
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 8--10
+Overfull \hbox (20.0pt too wide) in paragraph at lines 4--6
 []
  []
 
@@ -409,8 +412,8 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.11 I
-      n contrast, UDC's dataset contains more variety and different profiles...
+l.7 I
+     n contrast, UDC dataset contains more variety and different profiles of...
 
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -429,8 +432,6 @@ Missing character: There is no , in font nullfont!
 Missing character: There is no U in font nullfont!
 Missing character: There is no D in font nullfont!
 Missing character: There is no C in font nullfont!
-Missing character: There is no ' in font nullfont!
-Missing character: There is no s in font nullfont!
 Missing character: There is no d in font nullfont!
 Missing character: There is no a in font nullfont!
 Missing character: There is no t in font nullfont!
@@ -491,76 +492,59 @@ Missing character: There is no e in font nullfont!
 Missing character: There is no r in font nullfont!
 Missing character: There is no s in font nullfont!
 Missing character: There is no , in font nullfont!
-Missing character: There is no w in font nullfont!
-Missing character: There is no h in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no c in font nullfont!
-Missing character: There is no h in font nullfont!
-Missing character: There is no c in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no b in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no b in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no e in font nullfont!
 Missing character: There is no s in font nullfont!
 Missing character: There is no o in font nullfont!
-Missing character: There is no m in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no w in font nullfont!
-Missing character: There is no h in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no y in font nullfont!
 Missing character: There is no i in font nullfont!
-Missing character: There is no n in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no i in font nullfont!
 Missing character: There is no g in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
 Missing character: There is no t in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no f in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no d in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no c in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no m in font nullfont!
-Missing character: There is no m in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no n in font nullfont!
 Missing character: There is no s in font nullfont!
+Missing character: There is no p in font nullfont!
 Missing character: There is no e in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no f in font nullfont!
-Missing character: There is no a in font nullfont!
 Missing character: There is no c in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no a in font nullfont!
 Missing character: There is no t in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no v in font nullfont!
-Missing character: There is no i in font nullfont!
 Missing character: There is no t in font nullfont!
-Missing character: There is no i in font nullfont!
 Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no n in font nullfont!
 Missing character: There is no s in font nullfont!
 Missing character: There is no . in font nullfont!
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 11--12
+Overfull \hbox (20.0pt too wide) in paragraph at lines 7--8
 []
  []
 
 ! Undefined control sequence.
-l.13 \subsection
-                {Characterizing working sessions}
+l.9 \subsection
+               {Characterizing working sessions}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -574,8 +558,8 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.13 \subsection{C
-                  haracterizing working sessions}
+l.9 \subsection{C
+                 haracterizing working sessions}
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
@@ -822,9 +806,7 @@ Missing character: There is no e in font nullfont!
 Missing character: There is no s in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no t in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no h in font nullfont!
-Missing character: There is no e in font nullfont!
+Missing character: There is no a in font nullfont!
 Missing character: There is no t in font nullfont!
 Missing character: There is no h in font nullfont!
 Missing character: There is no r in font nullfont!
@@ -834,8 +816,8 @@ Missing character: There is no h in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no l in font nullfont!
 Missing character: There is no d in font nullfont!
-Missing character: There is no t in font nullfont!
 Missing character: There is no o in font nullfont!
+Missing character: There is no f in font nullfont!
 Missing character: There is no 4 in font nullfont!
 Missing character: There is no h in font nullfont!
 Missing character: There is no o in font nullfont!
@@ -879,17 +861,9 @@ Missing character: There is no d in font nullfont!
 Missing character: There is no , in font nullfont!
 Missing character: There is no w in font nullfont!
 Missing character: There is no e in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no w in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no t in font nullfont!
 Missing character: There is no h in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no d in font nullfont!
 Missing character: There is no 1 in font nullfont!
 Missing character: There is no , in font nullfont!
 Missing character: There is no 5 in font nullfont!
@@ -935,18 +909,25 @@ Missing character: There is no u in font nullfont!
 Missing character: There is no r in font nullfont!
 Missing character: There is no s in font nullfont!
 Missing character: There is no ( in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no = in font nullfont!
-Missing character: There is no 3 in font nullfont!
-Missing character: There is no . in font nullfont!
-Missing character: There is no 5 in font nullfont!
-Missing character: There is no 8 in font nullfont!
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 10.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 10.
 Missing character: There is no ) in font nullfont!
 Missing character: There is no . in font nullfont!
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 13--15
+Overfull \hbox (20.0pt too wide) in paragraph at lines 9--11
 []
+ []
+
+
+Overfull \hbox (15.24301pt too wide) in paragraph at lines 9--11
+\OML/cmm/m/it/10 s \OT1/cmr/m/n/10 =
+ []
+
+
+Overfull \hbox (17.77783pt too wide) in paragraph at lines 9--11
+\OT1/cmr/m/n/10 3\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 58$ 
  []
 
 
@@ -956,7 +937,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.16 F
+l.12 F
       rom the transformation phase, every session is composed of time series...
 
 You're in trouble here.  Try typing  <return>  to proceed.
@@ -1153,17 +1134,22 @@ Missing character: There is no r in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no s in font nullfont!
-Missing character: There is no t in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no h in font nullfont!
 Missing character: There is no o in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no e in font nullfont!
 Missing character: There is no s in font nullfont!
 Missing character: There is no e in font nullfont!
-Missing character: There is no n in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no i in font nullfont!
 Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no s in font nullfont!
 Missing character: There is no t in font nullfont!
 Missing character: There is no h in font nullfont!
 Missing character: There is no e in font nullfont!
@@ -1189,8 +1175,8 @@ Missing character: There is no e in font nullfont!
 Missing character: There is no r in font nullfont!
 Missing character: There is no y in font nullfont!
 Missing character: There is no t in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no m in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no p in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no p in font nullfont!
 Missing character: There is no e in font nullfont!
@@ -1335,12 +1321,6 @@ Missing character: There is no i in font nullfont!
 Missing character: There is no s in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no f in font nullfont!
-Missing character: There is no 1 in font nullfont!
-Missing character: There is no 2 in font nullfont!
-Missing character: There is no 1 in font nullfont!
-Missing character: There is no . in font nullfont!
-Missing character: There is no 6 in font nullfont!
-Missing character: There is no 1 in font nullfont!
 Missing character: There is no m in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no n in font nullfont!
@@ -1349,15 +1329,6 @@ Missing character: There is no t in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no s in font nullfont!
 Missing character: There is no ( in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no = in font nullfont!
-Missing character: There is no 1 in font nullfont!
-Missing character: There is no 4 in font nullfont!
-Missing character: There is no 7 in font nullfont!
-Missing character: There is no . in font nullfont!
-Missing character: There is no 8 in font nullfont!
-Missing character: There is no 1 in font nullfont!
 Missing character: There is no ) in font nullfont!
 Missing character: There is no . in font nullfont!
 Missing character: There is no T in font nullfont!
@@ -1471,8 +1442,23 @@ Missing character: There is no e in font nullfont!
 Missing character: There is no d in font nullfont!
 Missing character: There is no . in font nullfont!
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 16--17
+Overfull \hbox (20.0pt too wide) in paragraph at lines 12--13
 []
+ []
+
+
+Overfull \hbox (27.77786pt too wide) in paragraph at lines 12--13
+\OT1/cmr/m/n/10 121\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 61$
+ []
+
+
+Overfull \hbox (15.24301pt too wide) in paragraph at lines 12--13
+\OML/cmm/m/it/10 s \OT1/cmr/m/n/10 =
+ []
+
+
+Overfull \hbox (27.77786pt too wide) in paragraph at lines 12--13
+\OT1/cmr/m/n/10 147\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 81$
  []
 
 
@@ -1482,7 +1468,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.18 A
+l.14 A
        lot of the time of a working session is wasted in interruptions, or t...
 
 You're in trouble here.  Try typing  <return>  to proceed.
@@ -1808,12 +1794,12 @@ Missing character: There is no o in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no . in font nullfont!
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 18--19
+Overfull \hbox (20.0pt too wide) in paragraph at lines 14--15
 []
  []
 
 ! Undefined control sequence.
-l.20 \subsection
+l.16 \subsection
                 {Using focus data}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1828,7 +1814,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.20 \subsection{U
+l.16 \subsection{U
                   sing focus data}
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -1926,6 +1912,13 @@ Missing character: There is no m in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no r in font nullfont!
 Missing character: There is no s in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no A in font nullfont!
+Missing character: There is no B in font nullfont!
+Missing character: There is no B in font nullfont!
 Missing character: There is no . in font nullfont!
 Missing character: There is no T in font nullfont!
 Missing character: There is no h in font nullfont!
@@ -1978,8 +1971,6 @@ Missing character: There is no a in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no d in font nullfont!
 Missing character: There is no 1 in font nullfont!
-Missing character: There is no 0 in font nullfont!
-Missing character: There is no 0 in font nullfont!
 Missing character: There is no ) in font nullfont!
 Missing character: There is no p in font nullfont!
 Missing character: There is no e in font nullfont!
@@ -1990,25 +1981,6 @@ Missing character: There is no n in font nullfont!
 Missing character: There is no u in font nullfont!
 Missing character: There is no t in font nullfont!
 Missing character: There is no e in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no f in font nullfont!
-Missing character: There is no c in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no g in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no m in font nullfont!
-Missing character: There is no m in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no r in font nullfont!
 Missing character: There is no t in font nullfont!
 Missing character: There is no h in font nullfont!
 Missing character: There is no a in font nullfont!
@@ -2026,6 +1998,15 @@ Missing character: There is no u in font nullfont!
 Missing character: There is no s in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no s in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no l in font nullfont!
 Missing character: There is no a in font nullfont!
 Missing character: There is no s in font nullfont!
 Missing character: There is no a in font nullfont!
@@ -2169,6 +2150,7 @@ Missing character: There is no , in font nullfont!
 Missing character: There is no a in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no d in font nullfont!
+Missing character: There is no a in font nullfont!
 Missing character: There is no s in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no c in font nullfont!
@@ -2236,8 +2218,91 @@ Missing character: There is no i in font nullfont!
 Missing character: There is no v in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no . in font nullfont!
+Missing character: There is no T in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no I in font nullfont!
+Missing character: There is no D in font nullfont!
+Missing character: There is no E in font nullfont!
+Missing character: There is no . in font nullfont!
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 20--22
+Overfull \hbox (20.0pt too wide) in paragraph at lines 16--18
 []
  []
 
@@ -2248,8 +2313,8 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.23 T
-      his can be used as a summarization per minute of the user and get very...
+l.19 T
+      his can be used as a summarization of the activity the user and to get...
 
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -2283,17 +2348,19 @@ Missing character: There is no t in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no n in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no m in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no e in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no f in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no y in font nullfont!
 Missing character: There is no t in font nullfont!
 Missing character: There is no h in font nullfont!
 Missing character: There is no e in font nullfont!
@@ -2304,6 +2371,8 @@ Missing character: There is no r in font nullfont!
 Missing character: There is no a in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no d in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no o in font nullfont!
 Missing character: There is no g in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no t in font nullfont!
@@ -2353,7 +2422,7 @@ Missing character: There is no e in font nullfont!
 ! Undefined control sequence.
 <write> ...ence `fig:prod_hours' on page \thepage 
                                                   \space undefined\on@line .
-l.23 ...r example, the Figure \ref{fig:prod_hours}
+l.19 ...r example, the Figure \ref{fig:prod_hours}
                                                    shows the total focus per...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2362,7 +2431,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-LaTeX Warning: Reference `fig:prod_hours' on page  undefined on input line 23.
+LaTeX Warning: Reference `fig:prod_hours' on page  undefined on input line 19.
 
 Missing character: There is no s in font nullfont!
 Missing character: There is no h in font nullfont!
@@ -2559,6 +2628,7 @@ Missing character: There is no h in font nullfont!
 Missing character: There is no r in font nullfont!
 Missing character: There is no s in font nullfont!
 Missing character: There is no . in font nullfont!
+Missing character: There is no , in font nullfont!
 Missing character: There is no a in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no d in font nullfont!
@@ -2572,18 +2642,11 @@ Missing character: There is no s in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no s in font nullfont!
 Missing character: There is no a in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no e in font nullfont!
 Missing character: There is no a in font nullfont!
 Missing character: There is no g in font nullfont!
 Missing character: There is no a in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no n in font nullfont!
-Missing character: There is no , in font nullfont!
 Missing character: There is no t in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no l in font nullfont!
@@ -2652,12 +2715,12 @@ Missing character: There is no r in font nullfont!
 Missing character: There is no s in font nullfont!
 Missing character: There is no . in font nullfont!
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 23--24
+Overfull \hbox (20.0pt too wide) in paragraph at lines 19--20
 []
  []
 
 
-Overfull \hbox (10.86105pt too wide) in paragraph at lines 23--24
+Overfull \hbox (10.86105pt too wide) in paragraph at lines 19--20
 []
  []
 
@@ -2668,7 +2731,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.25 \begin{figure}
+l.21 \begin{figure}
                    [!ht]
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -2681,7 +2744,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.25 \begin{figure}[
+l.21 \begin{figure}[
                     !ht]
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -2691,13 +2754,9 @@ Missing character: There is no ! in font nullfont!
 Missing character: There is no h in font nullfont!
 Missing character: There is no t in font nullfont!
 Missing character: There is no ] in font nullfont!
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 27.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 27.
 ! Undefined control sequence.
-l.28 		\includegraphics
-                       [width=0.8\linewidth,clip=, angle=0]{Figures/producti...
+l.24 		\includegraphics
+                       [width=1\linewidth,clip=, angle=0]{Figures/productive...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -2711,14 +2770,12 @@ Missing character: There is no d in font nullfont!
 Missing character: There is no t in font nullfont!
 Missing character: There is no h in font nullfont!
 Missing character: There is no = in font nullfont!
-Missing character: There is no 0 in font nullfont!
-Missing character: There is no . in font nullfont!
-Missing character: There is no 8 in font nullfont!
+Missing character: There is no 1 in font nullfont!
 ! Illegal unit of measure (pt inserted).
 <to be read again> 
                    c
-l.28 		\includegraphics[width=0.8\linewidth,cl
-                                              ip=, angle=0]{Figures/producti...
+l.24 		\includegraphics[width=1\linewidth,cl
+                                            ip=, angle=0]{Figures/productive...
 Dimensions can be in units of em, ex, in, pt, pc,
 cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
 I'll assume that you meant to say pt, for printer's points.
@@ -2761,13 +2818,13 @@ Missing character: There is no e in font nullfont!
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.28 ...ewidth,clip=, angle=0]{Figures/productive_
+l.24 ...ewidth,clip=, angle=0]{Figures/productive_
                                                   hours_focus}
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
 ! Extra }, or forgotten $.
-l.28 ..., angle=0]{Figures/productive_hours_focus}
+l.24 ..., angle=0]{Figures/productive_hours_focus}
                                                   
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -2778,7 +2835,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -2787,7 +2844,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten $.
 <inserted text> }
                  
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -2798,7 +2855,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -2807,7 +2864,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten $.
 <inserted text> }
                  
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -2818,7 +2875,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -2827,7 +2884,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten $.
 <inserted text> }
                  
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -2838,7 +2895,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -2847,7 +2904,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten $.
 <inserted text> }
                  
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -2858,7 +2915,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -2867,7 +2924,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten $.
 <inserted text> }
                  
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -2878,7 +2935,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -2887,7 +2944,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten $.
 <inserted text> }
                  
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -2898,7 +2955,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -2907,7 +2964,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten $.
 <inserted text> }
                  
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -2918,7 +2975,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -2927,7 +2984,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten $.
 <inserted text> }
                  
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -2938,7 +2995,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -2947,7 +3004,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten $.
 <inserted text> }
                  
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -2958,7 +3015,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -2967,7 +3024,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten $.
 <inserted text> }
                  
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -2978,7 +3035,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -2987,7 +3044,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten $.
 <inserted text> }
                  
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -2998,7 +3055,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -3007,7 +3064,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten $.
 <inserted text> }
                  
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -3018,7 +3075,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -3027,7 +3084,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten $.
 <inserted text> }
                  
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -3038,7 +3095,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -3047,7 +3104,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten $.
 <inserted text> }
                  
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -3058,7 +3115,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -3067,7 +3124,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten $.
 <inserted text> }
                  
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -3078,7 +3135,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -3087,7 +3144,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten $.
 <inserted text> }
                  
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -3098,7 +3155,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -3107,7 +3164,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten $.
 <inserted text> }
                  
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -3118,7 +3175,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -3127,7 +3184,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten $.
 <inserted text> }
                  
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -3138,7 +3195,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -3147,7 +3204,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten $.
 <inserted text> }
                  
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -3158,7 +3215,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -3167,7 +3224,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten $.
 <inserted text> }
                  
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -3178,7 +3235,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -3187,7 +3244,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten $.
 <inserted text> }
                  
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -3198,7 +3255,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -3207,7 +3264,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten $.
 <inserted text> }
                  
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -3218,7 +3275,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -3227,7 +3284,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten $.
 <inserted text> }
                  
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -3238,7 +3295,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -3247,7 +3304,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten $.
 <inserted text> }
                  
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -3258,7 +3315,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -3267,7 +3324,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten $.
 <inserted text> }
                  
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -3278,7 +3335,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -3287,7 +3344,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten $.
 <inserted text> }
                  
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -3298,7 +3355,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -3307,7 +3364,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten $.
 <inserted text> }
                  
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -3318,7 +3375,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -3327,7 +3384,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten $.
 <inserted text> }
                  
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -3338,7 +3395,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -3347,7 +3404,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten $.
 <inserted text> }
                  
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -3358,7 +3415,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -3367,7 +3424,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten $.
 <inserted text> }
                  
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -3378,7 +3435,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -3387,7 +3444,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten $.
 <inserted text> }
                  
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -3398,7 +3455,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -3407,7 +3464,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten $.
 <inserted text> }
                  
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -3418,7 +3475,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -3427,7 +3484,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten $.
 <inserted text> }
                  
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -3438,7 +3495,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -3447,7 +3504,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten $.
 <inserted text> }
                  
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -3458,7 +3515,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -3467,7 +3524,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten $.
 <inserted text> }
                  
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -3478,7 +3535,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -3487,7 +3544,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten $.
 <inserted text> }
                  
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -3498,7 +3555,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -3507,7 +3564,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten $.
 <inserted text> }
                  
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -3518,7 +3575,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -3527,7 +3584,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten $.
 <inserted text> }
                  
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -3538,7 +3595,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -3547,7 +3604,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten $.
 <inserted text> }
                  
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -3558,7 +3615,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -3567,7 +3624,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten $.
 <inserted text> }
                  
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -3578,7 +3635,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -3587,7 +3644,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten $.
 <inserted text> }
                  
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -3598,7 +3655,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -3607,7 +3664,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten $.
 <inserted text> }
                  
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -3618,7 +3675,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -3627,7 +3684,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten $.
 <inserted text> }
                  
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -3638,7 +3695,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -3647,7 +3704,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten $.
 <inserted text> }
                  
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -3658,7 +3715,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -3667,7 +3724,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten $.
 <inserted text> }
                  
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -3678,7 +3735,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -3687,7 +3744,7 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten $.
 <inserted text> }
                  
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -3698,7 +3755,7 @@ deleted material, e.g., by typing `I$}'.
 ! Missing } inserted.
 <inserted text> 
                 }
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
@@ -3707,16 +3764,16 @@ Try to go on, since this might almost work.
 ! Extra }, or forgotten $.
 <inserted text> }
                  
-l.29 	\end{tabular}
+l.25 	\end{tabular}
                    
 (That makes 100 errors; please try again.) 
 Here is how much of TeX's memory you used:
- 13 strings out of 493085
- 224 string characters out of 6136917
- 53728 words of memory out of 5000000
- 3597 multiletter control sequences out of 15000+600000
+ 13 strings out of 493029
+ 224 string characters out of 6136234
+ 54571 words of memory out of 5000000
+ 3648 multiletter control sequences out of 15000+600000
  3948 words of font info for 15 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 19i,7n,19p,626b,96s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 18i,7n,14p,635b,96s stack positions out of 5000i,500n,10000p,200000b,80000s
 
 !  ==> Fatal error occurred, no output PDF file produced!
