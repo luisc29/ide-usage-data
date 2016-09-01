@@ -68,7 +68,7 @@ sessionssplit.filter.and.agg <- function(sessionssplit, chosen.session.labels, c
 chunks.transform <- function(chunks, chunkcenters){
   # add the label to every chunk
   chunks$label.c <- unlist(lapply(chunks$label, function(x){
-    chunkcenters[chunkcenters$id == x,]$label[1]
+    chunkcenters[x+1,]$label[1]
   }))
   chunks
 }
@@ -89,15 +89,15 @@ pipeline <- function(chunks, chunkscenters, sessions, sessionssplit, sessions.la
 #UDC
 sorted.sessions.type <- sort(summary(as.factor(udc.sessions$label)), decreasing=TRUE)
 sorted.sessions.type[0:10]
-session.labels <- c(16, 90, 89, 81, 0)
-chunk.labels <- c("Programming", "Debugging", "Version", "Navigation", "Refactoring")
+session.labels <- c(21, 38, 86, 79, 83)
+chunk.labels <- c("Programming", "Debugging", "Version", "Navigation")
 pipeline(udc.chunks, udc.chunkcenters, udc.sessions, udc.sessionssplit, session.labels, chunk.labels,
          "~/udc/", "udc")
 
 #ABB
 sorted.sessions.type <- sort(summary(as.factor(abb.sessions$label)), decreasing=TRUE)
 sorted.sessions.type[0:10]
-session.labels <- c(14, 23, 24, 26, 4)
-chunk.labels <- c("Programming", "Debugging", "Version", "Navigation", "Testing")
+session.labels <- c(31, 16, 5, 20, 0)
+chunk.labels <- c("Programming", "Debugging", "Version", "Navigation")
 pipeline(abb.chunks, abb.chunkcenters, abb.sessions, abb.sessionssplit, session.labels, chunk.labels,
          "~/abb/", "abb")

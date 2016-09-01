@@ -2,7 +2,6 @@ from __future__ import division
 
 import numpy as np
 import random
-import scipy
 from pandas import *
 from sklearn.cluster import AffinityPropagation, MeanShift, KMeans
 from sklearn.metrics import silhouette_score
@@ -44,7 +43,7 @@ def pipeline(chunks, directory, chunks_file_name, chunks_centers_file_name, n_cl
     chunks = calc_proportions(chunks)
 
     print 'Clustering first model...'
-    first_model = KMeans(n_clusters=2000, n_jobs=4)
+    first_model = KMeans(n_clusters=2000, n_jobs=8)
     first_model.fit(chunks.ix[:,15:25])
     centers = first_model.cluster_centers_
     
@@ -66,10 +65,9 @@ if __name__ == "__main__":
     print 'Clustering chunks with ABB'    
     
     chunks = pandas.read_csv(PATH_TO_ABB + 'abb.chunks.csv', index_col=None, header=0)
-    #pipeline(chunks,PATH_TO_ABB,'abb.chunks_a.csv', 'abb.chunkscenters_a.csv', 2000, 0.40)
+    pipeline(chunks,PATH_TO_ABB,'abb.chunks.csv', 'abb.chunkscenters.csv', 3000, 0.41)
     
     print '\n\nClustering chunks with UDC'    
     
     chunks = pandas.read_csv(PATH_TO_UDC + 'udc.chunks.csv', index_col=None, header=0)
-    pipeline(chunks,PATH_TO_UDC,'udc.chunks.csv', 'udc.chunkscenters.csv', 2000, 0.35)
-    
+    pipeline(chunks,PATH_TO_UDC,'udc.chunks.csv', 'udc.chunkscenters.csv', 4000, 0.33)    	

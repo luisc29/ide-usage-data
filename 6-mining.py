@@ -261,8 +261,8 @@ if __name__ == "__main__":
     column_names=('Programming_1', 'Debugging_1', 'Navigation_1', 'Version_1', 'Testing_1',
                   'Programming_2', 'Debugging_2', 'Navigation_2', 'Version_2', 'Testing_2', 
                   'Programming_3', 'Debugging_3', 'Navigation_3', 'Version_3', 'Testing_3')
-    #pipeline(chunks, sessions, chunks_centers, PATH_TO_ABB, chunk_types, column_names,
-     #        'affinity', 'abb.splittedsessions.csv', 'abb.sessioncenters.csv', 'abb.sessions.csv')
+    pipeline(chunks, sessions, chunks_centers, PATH_TO_ABB, chunk_types, column_names,
+             'affinity', 'abb.splittedsessions.csv', 'abb.sessioncenters.csv', 'abb.sessions.csv')
     
     print '\n\nClustering sessions with UDC'    
     
@@ -270,9 +270,9 @@ if __name__ == "__main__":
     sessions = pandas.read_csv(PATH_TO_UDC + 'udc.sessions.csv', index_col=None, header=0)
     chunks_centers = pandas.read_csv(PATH_TO_UDC + 'udc.chunkscenters.csv', index_col=None, header=0)
     chunk_types = ['Programming', 'Debugging', 'Version', 'Navigation', 'Refactoring']
-    column_names = ('Programming_1', 'Debugging_1', 'Version_1', 'Navigation_1', 'Refactoring_1',
-                    'Programming_2', 'Debugging_2', 'Version_2', 'Navigation_2', 'Refactoring_2',
-                    'Programming_3', 'Debugging_3', 'Version_3', 'Navigation_3', 'Refactoring_3')
+    column_names = ('Programming_1', 'Debugging_1', 'Version_1', 'Navigation_1', 'Search_1',
+                    'Programming_2', 'Debugging_2', 'Version_2', 'Navigation_2', 'Search_2',
+                    'Programming_3', 'Debugging_3', 'Version_3', 'Navigation_3', 'Search_3')
     pipeline(chunks, sessions, chunks_centers, PATH_TO_UDC, chunk_types, column_names,
              'affinity', 'udc.splittedsessions.csv', 'udc.sessioncenters.csv', 'udc.sessions.csv')
              
