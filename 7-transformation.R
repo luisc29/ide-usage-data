@@ -89,7 +89,7 @@ pipeline <- function(chunks, chunkscenters, sessions, sessionssplit, sessions.la
 #UDC
 sorted.sessions.type <- sort(summary(as.factor(udc.sessions$label)), decreasing=TRUE)
 sorted.sessions.type[0:10]
-session.labels <- c(21, 38, 86, 79, 83)
+session.labels <- c(32, 96, 13, 77, 4)
 chunk.labels <- c("Programming", "Debugging", "Version", "Navigation")
 pipeline(udc.chunks, udc.chunkcenters, udc.sessions, udc.sessionssplit, session.labels, chunk.labels,
          "~/udc/", "udc")
