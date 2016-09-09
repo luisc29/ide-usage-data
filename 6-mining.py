@@ -62,11 +62,11 @@ def split_in_chunks(l,n):
     return splitted
     
     
-def clustering_mean_shift(data_res):
+def clustering_mean_shift(data_res, b):
     """
     Executes the mean shift model from sklearn
     """
-    ms = MeanShift()
+    ms = MeanShift(bandwidth=b)
     ms.fit(data_res)
 
     predictions = ms.predict(data_res)
@@ -85,7 +85,7 @@ def clustering_affinity_propagation(data_res):
     predictions = af.predict(data_res)
     cluster_centers = af.cluster_centers_
 
-    return predictions, cluster_centers
+    return predictions, cluster_centers, af
     
     
 def summarize_centers(all_centers, proximity_threshold, n_attributes, n_extended_attributes):
@@ -171,7 +171,7 @@ def calc_metrics(data):
 
     
 def pipeline(chunks, sessions, chunk_centers, directory, chunk_types, column_names, 
-             algorithm, splitted_sessions_name, sessions_centers_name, sessions_name):
+             param, splitted_sessions_name, sessions_centers_name, sessions_name, t):
     """
     Pipeline for the clustering of sessions
     """
@@ -211,17 +211,12 @@ def pipeline(chunks, sessions, chunk_centers, directory, chunk_types, column_nam
                 c = c + 1
     
     print '\nClustering sessions...'
-    pred, centers = 0,0
-    if algorithm == 'meanshift':
-        pred, centers = clustering_mean_shift(splitted_sessions.iloc[:,0:len(column_names)].as_matrix())
-    else:
-        pred, centers = clustering_affinity_propagation(splitted_sessions.iloc[:,0:len(column_names)].as_matrix())
+    pred, centers, model = clustering_affinity_propagation(splitted_sessions.iloc[:,0:len(column_names)].as_matrix())
 
     # summarize the close centers  and fit a new model with the new centers
-    #centers = summarize_centers(centers, 0.3, 12, 12)[0]
-    #prediction_model = MeanShift()
-    #prediction_model.cluster_centers_ = centers
-    #pred2 = prediction_model.predict(splitted_sessions.iloc[:,0:len(column_names)].as_matrix())
+    centers = summarize_centers(centers, t, 12, 12)[0]
+    model.cluster_centers_ = centers
+    pred = model.predict(splitted_sessions.iloc[:,0:len(column_names)].as_matrix())
     
     # create a dataframe with the sessions split into 3 phases
     splitted_sessions['label'] = pred
@@ -238,7 +233,7 @@ def pipeline(chunks, sessions, chunk_centers, directory, chunk_types, column_nam
     
     # calculate the metrics of editions, selections and edit ratio
     sessions = calc_metrics(sessions)
-    
+    print 'Number of clusters: ' + str(len(centers))
     print '\nCalculatin silhouette score...'
     s_c = silhouette_score(splitted_sessions.iloc[:,0:len(column_names)], pred)
     print 'silhouette score: ' + str(s_c)
@@ -255,12 +250,13 @@ if __name__ == "__main__":
     chunks = pandas.read_csv(PATH_TO_ABB + 'abb.chunks.csv', index_col=None, header=0)
     sessions = pandas.read_csv(PATH_TO_ABB + 'abb.sessions.csv', index_col=None, header=0)
     chunks_centers = pandas.read_csv(PATH_TO_ABB + 'abb.chunkscenters.csv', index_col=None, header=0)
-    chunk_types = ['Programming', 'Debugging', 'Navigation', 'Version', 'Testing', 'Tools']
-    column_names=('Programming_1', 'Debugging_1', 'Navigation_1', 'Version_1', 'Testing_1', 'Tools_1',
-                  'Programming_2', 'Debugging_2', 'Navigation_2', 'Version_2', 'Testing_2', 'Tools_2',
-                  'Programming_3', 'Debugging_3', 'Navigation_3', 'Version_3', 'Testing_3', 'Tools_3')
+    chunk_types = ['Programming', 'Debugging', 'Navigation', 'Version']
+    column_names=('Programming_1', 'Debugging_1', 'Navigation_1', 'Version_1',
+                  'Programming_2', 'Debugging_2', 'Navigation_2', 'Version_2',
+                  'Programming_3', 'Debugging_3', 'Navigation_3', 'Version_3')
     pipeline(chunks, sessions, chunks_centers, PATH_TO_ABB, chunk_types, column_names,
-             'affinity', 'abb.splittedsessions.csv', 'abb.sessioncenters.csv', 'abb.sessions.csv')
+             0.5, 'abb.splittedsessions.csv', 'abb.sessioncenters.csv', 
+             'abb.sessions.csv', 0.21)
     
     print '\n\nClustering sessions with UDC'    
     
@@ -270,7 +266,8 @@ if __name__ == "__main__":
     chunk_types = ['Programming', 'Debugging', 'Version', 'Navigation']
     column_names = ('Programming_1', 'Debugging_1', 'Version_1', 'Navigation_1',
                     'Programming_2', 'Debugging_2', 'Version_2', 'Navigation_2',
-                    'Programming_3', 'Debugging_3', 'Version_3', 'Navigation_3',)
+                    'Programming_3', 'Debugging_3', 'Version_3', 'Navigation_3')
     pipeline(chunks, sessions, chunks_centers, PATH_TO_UDC, chunk_types, column_names,
-             'affinity', 'udc.splittedsessions.csv', 'udc.sessioncenters.csv', 'udc.sessions.csv')
-             
+              0.30, 'udc.splittedsessions.csv', 'udc.sessioncenters.csv', 
+              'udc.sessions.csv', 0.30)
+              

@@ -86,18 +86,20 @@ pipeline <- function(chunks, chunkscenters, sessions, sessionssplit, sessions.la
   write.csv(chunks, paste(directory,data.name,".","chunks.csv", sep=""), row.names=FALSE)
 }
 
+#ABB
+sorted.sessions.type <- sort(summary(as.factor(abb.sessions$label)), decreasing=TRUE)
+sorted.sessions.type[0:10]
+session.labels <- c(27, 4, 11, 13, 25)
+chunk.labels <- c("Programming", "Debugging", "Version", "Navigation")
+pipeline(abb.chunks, abb.chunkcenters, abb.sessions, abb.sessionssplit, session.labels, chunk.labels,
+         "~/abb/", "abb")
+
 #UDC
 sorted.sessions.type <- sort(summary(as.factor(udc.sessions$label)), decreasing=TRUE)
 sorted.sessions.type[0:10]
-session.labels <- c(32, 96, 13, 77, 4)
+session.labels <- c(78, 64, 23, 62, 37)
 chunk.labels <- c("Programming", "Debugging", "Version", "Navigation")
 pipeline(udc.chunks, udc.chunkcenters, udc.sessions, udc.sessionssplit, session.labels, chunk.labels,
          "~/udc/", "udc")
 
-#ABB
-sorted.sessions.type <- sort(summary(as.factor(abb.sessions$label)), decreasing=TRUE)
-sorted.sessions.type[0:10]
-session.labels <- c(31, 16, 5, 20, 0)
-chunk.labels <- c("Programming", "Debugging", "Version", "Navigation")
-pipeline(abb.chunks, abb.chunkcenters, abb.sessions, abb.sessionssplit, session.labels, chunk.labels,
-         "~/abb/", "abb")
+

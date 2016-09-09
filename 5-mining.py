@@ -43,7 +43,7 @@ def pipeline(chunks, directory, chunks_file_name, chunks_centers_file_name, n_cl
     chunks = calc_proportions(chunks)
 
     print 'Clustering first model...'
-    first_model = KMeans(n_clusters=2000, n_jobs=8)
+    first_model = KMeans(n_clusters=n_clus, n_jobs=8)
     first_model.fit(chunks.ix[:,15:25])
     centers = first_model.cluster_centers_
     
@@ -70,4 +70,4 @@ if __name__ == "__main__":
     print '\n\nClustering chunks with UDC'    
     
     chunks = pandas.read_csv(PATH_TO_UDC + 'udc.chunks.csv', index_col=None, header=0)
-    pipeline(chunks,PATH_TO_UDC,'udc.chunks.csv', 'udc.chunkscenters.csv', 4000, 0.33)    	
+    pipeline(chunks,PATH_TO_UDC,'udc.chunks.csv', 'udc.chunkscenters.csv', 2000, 0.33)    	
