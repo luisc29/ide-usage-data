@@ -443,8 +443,8 @@ if __name__ == '__main__':
     
     print 'Starting ABB data transformation'
     
-    #log = load_data(PATH_TO_ABB + 'preproc')
-    #pipeline(log, PATH_TO_ABB, 'abb.sessions.csv', 'abb.chunks.csv')
+    log = load_data(PATH_TO_ABB + 'preproc')
+    pipeline(log, PATH_TO_ABB, 'abb.sessions.csv', 'abb.chunks.csv')
     
     print '\n\nStarting UDC data transformation'
     

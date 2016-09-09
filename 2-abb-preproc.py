@@ -6,9 +6,9 @@ import numpy as np
 import time
 
 
-PATH_TO_DATA = "~/abb/export-2015-10-23/"
-PATH_TO_RESULT = "~/luis/abb/preproc/"
-PATH_TO_RESULT_MAIN = "~/abb/"
+PATH_TO_DATA = "/home/luis/abb/export-2015-10-23/"
+PATH_TO_RESULT = "/home/luis/abb/preproc/"
+PATH_TO_RESULT_MAIN = "/home/luis/abb/"
 
 
 def infer_general_type(types):

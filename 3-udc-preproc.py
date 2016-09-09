@@ -109,16 +109,11 @@ def clean_events(log):
 if __name__ == "__main__":
     print "Preprocessing started"
     
-    log = DataFrame.from_csv(PATH_TO_MAIN + 'clean.dataC.csv', index_col=False)
+    log = DataFrame.from_csv(PATH_TO_MAIN + 'dataC.csv', index_col=False)
     
     clean_events(log)
     
     print 'Preprocessing finished'
     
-    descriptions = list(set(log['description']))
-    types = infer_detailed_type(descriptions)
-    temp = DataFrame()
-    temp['description']=descriptions
-    temp['type'] = types
 
     
