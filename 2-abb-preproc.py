@@ -102,7 +102,12 @@ def clean_commands(cmds):
     cmds["type"] = infer_general_type(list(cmds["detailed_type"]))
     cmds.to_csv(PATH_TO_RESULT_MAIN + "cmds.clean.csv", index=False)
 
-    return cmds
+    cmds_d = {}
+    for i in range(0, len(cmds)):
+   	c = cmds.iloc[i]
+	cmds_d[(c['category'], str(c['event']))] = (c['description'], c['detailed_type'], c['type'])
+
+    return cmds_d
 
 
 def set_description(events):
@@ -115,19 +120,25 @@ def set_description(events):
     d_types = []
     for i in range(0,len(events)):
         e = events.iloc[i]
-        res = cmds[(cmds["category"] == e["category"]) & (cmds["event"] == e["event"])]
+        res = ()
+
+        try: 
+            res = cmds[(e["category"], str(e["event"]))]
+        except Exception:
+            res = ()
+
         if len(res)>0:
-            desc.append(res["description"].iloc[0])
-            types.append(res["type"].iloc[0])
-            d_types.append(res["detailed_type"].iloc[0])
+            desc.append(res[0])
+            types.append(res[2])
+            d_types.append(res[1])
         else:
             desc.append(" ")
             types.append(" ")
             d_types.append(" ")
-    return desc,types, d_types
+    return desc, types, d_types
 
 
-def clean_events(file_path, file_name):
+def clean_events(file_path, file_name, cmds):
     """
     Cleans a single file, formatting the datetime, dropping
     repeated rows and setting the description of the event
@@ -135,7 +146,7 @@ def clean_events(file_path, file_name):
     """
 
     print 'File: ' + file_name
-
+    t_start = time.time()
     # Load a file and rename the columns
     events = DataFrame.from_csv(file_path + "//" + file_name,index_col=False)
     events.columns = ["user", "datetime", "category", "event"]
@@ -150,8 +161,8 @@ def clean_events(file_path, file_name):
     # Remove events based on the event description:
     # Build.SolutionConfigurations
     # Build.SolutionPlatforms
-    events = events[events["event"] != 684]
-    events = events[events["event"] != 1990]
+    # events = events[events["event"] != 684]
+    # events = events[events["event"] != 1990]
     
     # Get the description and type from the commands dataset
     desc, types, d_types = set_description(events)
@@ -164,8 +175,8 @@ def clean_events(file_path, file_name):
     
     # Store the cleaned data
     events.to_csv(PATH_TO_RESULT + "clean."+ file_name, index=False)
-    
-
+    t_end = time.time()
+    print "it took: " + str(t_end-t_start)
     return events
 
 
@@ -176,13 +187,13 @@ def clean_focus_data(file_path, file_name):
     return focus
 
 
-def pipe_clean_events(file_path, files):
+def pipe_clean_events(file_path, files, cmd):
     """
     Processes a number of files on a single thread
     """
     res = DataFrame()
     for i in range(0,len(files)):
-        res = res.append(clean_events(file_path,files[i]))
+        res = res.append(clean_events(file_path, files[i], cmd))
     return res
     
     
@@ -228,7 +239,7 @@ if __name__ == "__main__":
     pool = Pool()
     r = []
     for i in range(0,cores):
-        r1 = pool.apply_async(pipe_clean_events,[path,files[i]])
+        r1 = pool.apply_async(pipe_clean_events,[path,files[i],cmds])
         r.append(r1)
 
     desc2 = []
