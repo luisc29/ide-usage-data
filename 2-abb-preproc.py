@@ -151,7 +151,7 @@ def clean_events(file_path, file_name, cmds):
     events.columns = ["user", "datetime", "category", "event"]
     
     # Remove duplicated rows (all the values are the same)
-    # events = events.drop_duplicates()
+    events = events.drop_duplicates()
 
     # Format the datetime value
     events["datetime"] = [s.split('.')[0] for s in events["datetime"]]
@@ -160,8 +160,8 @@ def clean_events(file_path, file_name, cmds):
     # Remove events based on the event description:
     # Build.SolutionConfigurations
     # Build.SolutionPlatforms
-    # events = events[events["event"] != 684]
-    # events = events[events["event"] != 1990]
+    events = events[events["event"] != 684]
+    events = events[events["event"] != 1990]
     
     # Get the description and type from the commands dataset
     desc, types, d_types = set_description(events)
