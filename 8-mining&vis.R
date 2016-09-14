@@ -181,9 +181,10 @@ ggplot(sessions, aes(x=g_inte, y=smin)) + geom_boxplot(outlier.size = 0.5)
 
 
 # Sessions stats
-sessions <- udc.sessions.old
+sessions <- abb.sessions.old
 cat("Number of sessions: ", nrow(sessions))
 cat("Number of users: ", length(unique(sessions$user)))
+cat("Number of observations:", sum(sessions$n_events))
 x <- difftime(as.POSIXct(sessions$end_time), as.POSIXct(sessions$start_time), units = "hours")
 cat("Avg. duration:", mean(x))
 cat("Avg. productive time: ", mean(sessions$size_ts))
