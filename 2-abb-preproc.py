@@ -146,7 +146,6 @@ def clean_events(file_path, file_name, cmds):
     """
 
     print 'File: ' + file_name
-    t_start = time.time()
     # Load a file and rename the columns
     events = DataFrame.from_csv(file_path + "//" + file_name,index_col=False)
     events.columns = ["user", "datetime", "category", "event"]
@@ -175,9 +174,6 @@ def clean_events(file_path, file_name, cmds):
     
     # Store the cleaned data
     events.to_csv(PATH_TO_RESULT + "clean."+ file_name, index=False)
-    t_end = time.time()
-    print "it took: " + str(t_end-t_start)
-    return events
 
 
 def clean_focus_data(file_path, file_name):
