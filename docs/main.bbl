@@ -1,0 +1,43 @@
+\begin{thebibliography}{}
+
+\bibitem[\protect\citeauthoryear{Corley, Lois, and Quezada}{Corley
+  et~al.}{2015}]{CLQ15}
+Corley, C.~S., F.~Lois, and S.~Quezada (2015).
+\newblock Web usage patterns of developers.
+\newblock In {\em Software Maintenance and Evolution (ICSME), 2015 IEEE
+  International Conference on}, pp.\  381--390. IEEE.
+
+\bibitem[\protect\citeauthoryear{Fayyad, Piatetsky-Shapiro, and Smyth}{Fayyad
+  et~al.}{1996}]{FPG96}
+Fayyad, U., G.~Piatetsky-Shapiro, and P.~Smyth (1996).
+\newblock From data mining to knowledge discovery in databases.
+\newblock {\em AI magazine\/}~{\em 17\/}(3), 37.
+
+\bibitem[\protect\citeauthoryear{Gonz{\'{a}}lez and Mark}{Gonz{\'{a}}lez and
+  Mark}{2004}]{GM04}
+Gonz{\'{a}}lez, V.~M. and G.~Mark (2004).
+\newblock "constant, constant, multi-tasking craziness": managing multiple
+  working spheres.
+\newblock In {\em Proceedings of {CHI} 2004}, pp.\  113--120.
+
+\bibitem[\protect\citeauthoryear{Kaptelinin and Nardi}{Kaptelinin and
+  Nardi}{2007}]{KaptelininN07}
+Kaptelinin, V. and B.~A. Nardi (2007).
+\newblock Acting with technology: Activity theory and interaction design.
+\newblock {\em First Monday\/}~{\em 12\/}(4).
+
+\bibitem[\protect\citeauthoryear{Kersten and Murphy}{Kersten and
+  Murphy}{2006}]{KM06}
+Kersten, M. and G.~C. Murphy (2006).
+\newblock {Using task context to improve programmer productivity}.
+\newblock In {\em Proceedings of {FSE} 2006}, pp.\  1--11.
+
+\bibitem[\protect\citeauthoryear{Snipes, Murphy-Hill, Fritz, Vakilian,
+  Damevski, Nair, and Shepherd}{Snipes et~al.}{2015}]{SnipesETALASD}
+Snipes, W., E.~Murphy-Hill, T.~Fritz, M.~Vakilian, K.~Damevski, A.~R. Nair, and
+  D.~Shepherd (2015).
+\newblock {\em Analyzing Software Data}, Chapter A Practical Guide to Analyzing
+  IDE Usage Data.
+\newblock Morgan Kaufmann.
+
+\end{thebibliography}

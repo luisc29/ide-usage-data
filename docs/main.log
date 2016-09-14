@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.7.15)  25 AUG 2016 13:51
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.7.15)  14 SEP 2016 11:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -411,7 +411,14 @@ Now handling font encoding U ...
    defining Unicode char U+2026 (decimal 8230)
    defining Unicode char U+2122 (decimal 8482)
    defining Unicode char U+2423 (decimal 9251)
-)) (./main.aux
+))
+(/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty
+Package: natbib 2010/09/13 8.31b (PWD, AO)
+\bibhang=\skip52
+\bibsep=\skip53
+LaTeX Info: Redefining \cite on input line 694.
+\c@NAT@ctr=\count91
+) (./main.aux
 LaTeX Info: Redefining \. on input line 6.
 LaTeX Info: Redefining \% on input line 6.
 LaTeX Info: Redefining \. on input line 14.
@@ -426,30 +433,30 @@ LaTeX Warning: Label `ch:intro' multiply defined.
 ))
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
  (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count91
+\scratchcounter=\count92
 \scratchdimen=\dimen107
 \scratchbox=\box26
-\nofMPsegments=\count92
-\nofMParguments=\count93
+\nofMPsegments=\count93
+\nofMParguments=\count94
 \everyMPshowfont=\toks19
-\MPscratchCnt=\count94
+\MPscratchCnt=\count95
 \MPscratchDim=\dimen108
-\MPnumerator=\count95
-\makeMPintoPDFobject=\count96
+\MPnumerator=\count96
+\makeMPintoPDFobject=\count97
 \everyMPtoPDFconversion=\toks20
 ) (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
@@ -499,9 +506,9 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-LaTeX Info: Redefining \. on input line 20.
-LaTeX Info: Redefining \% on input line 20.
-Class tesisITAM Info: Loaded portada.tex on input line 23.
+LaTeX Info: Redefining \. on input line 21.
+LaTeX Info: Redefining \% on input line 21.
+Class tesisITAM Info: Loaded portada.tex on input line 24.
 
 (./portada.tex
 LaTeX Font Info:    External font `cmex10' loaded for size
@@ -517,7 +524,7 @@ Package pdftex.def Info: ./Figures/LOGO_ITAM.jpg used on input line 11.
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./Figures/LOGO_ITAM.jpg>])
-Class tesisITAM Info: Loaded derechos.tex on input line 24.
+Class tesisITAM Info: Loaded derechos.tex on input line 25.
  (./derechos.tex
 Underfull \hbox (badness 10000) in paragraph at lines 3--5
 
@@ -526,13 +533,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 3--5
 [1
 
 ])
-LaTeX Info: Redefining \. on input line 30.
-LaTeX Info: Redefining \% on input line 30.
+LaTeX Info: Redefining \. on input line 31.
+LaTeX Info: Redefining \% on input line 31.
  [2
 
 ]
-LaTeX Info: Redefining \. on input line 34.
-LaTeX Info: Redefining \% on input line 34.
+LaTeX Info: Redefining \. on input line 35.
+LaTeX Info: Redefining \% on input line 35.
  [3
 
 ] (./main.toc
@@ -581,28 +588,54 @@ LaTeX Info: Redefining \% on input line 5.
 
 (./Chapters/method.tex
 Chapter 1.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <9> on input line 16.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 16.
 [1
 
 
-] [2]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 37.
- (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
-File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/bx/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/b/n' tried instead on input line 37.
-
-Overfull \hbox (8.77113pt too wide) in paragraph at lines 37--38
-[]\OT1/cmr/m/n/10 El co-mando \OMS/cmsy/b/n/10 n\OT1/cmr/bx/n/10 maketitle \OT1
-/cmr/m/n/10 pro-duce la por-tada con los cam-pos pre-vi-a-mente definidos.
+] [2] [3] [4]
+Underfull \hbox (badness 5741) in paragraph at lines 106--107
+[]\OT1/cmr/m/n/9 LineUp, Line-Down and Li-
  []
 
-[3]) [4]
+
+Underfull \hbox (badness 10000) in paragraph at lines 114--115
+[]\OT1/cmr/m/n/9 Encapsulate, Re-name and
+ []
+
+
+Underfull \hbox (badness 3078) in paragraph at lines 118--118
+[]\OT1/cmr/m/n/9 Execution of ver-sion con-trol
+ []
+
+
+Underfull \hbox (badness 6032) in paragraph at lines 118--119
+[]\OT1/cmr/m/n/9 Compare, ViewChanges and
+ []
+
+
+Underfull \hbox (badness 5260) in paragraph at lines 122--122
+[]\OT1/cmr/m/n/9 Events ex-e-cuted dur-ing the
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 124--125
+[]\OT1/cmr/m/n/9 DatabaseDesigner, Codealike
+ []
+
+
+Overfull \hbox (3.9803pt too wide) in paragraph at lines 99--127
+ [][] 
+ []
+
+[5] [6] [7]) [8]
 \openout2 = `Chapters/results.aux'.
 
  (./Chapters/results.tex
 Chapter 2.
-[5
+[9
 
 
 
@@ -619,7 +652,7 @@ ocus-eps-converted-to.pdf Figures/productive_hours_focus.eps>
 (epstopdf)             \includegraphics on input line 24.
 Package epstopdf Info: Output file is already uptodate.
 
-<Figures/productive_hours_focus-eps-converted-to.pdf, id=51, 451.6875pt x 225.8
+<Figures/productive_hours_focus-eps-converted-to.pdf, id=65, 451.6875pt x 225.8
 4375pt>
 File: Figures/productive_hours_focus-eps-converted-to.pdf Graphic file (type pd
 f)
@@ -644,7 +677,7 @@ cus-eps-converted-to.pdf Figures/productive_days_focus.eps>
 (epstopdf)             \includegraphics on input line 35.
 Package epstopdf Info: Output file is already uptodate.
 
-<Figures/productive_days_focus-eps-converted-to.pdf, id=53, 451.6875pt x 225.84
+<Figures/productive_days_focus-eps-converted-to.pdf, id=67, 451.6875pt x 225.84
 375pt>
 File: Figures/productive_days_focus-eps-converted-to.pdf Graphic file (type pdf
 )
@@ -657,8 +690,8 @@ Overfull \hbox (12.0pt too wide) in paragraph at lines 34--37
  [][] 
  []
 
-[6] [7 <./Figures/productive_hours_focus-eps-converted-to.pdf> <./Figures/produ
-ctive_days_focus-eps-converted-to.pdf>] [8] [9]
+[10] [11 <./Figures/productive_hours_focus-eps-converted-to.pdf> <./Figures/pro
+ductive_days_focus-eps-converted-to.pdf>] [12] [13]
 Package epstopdf Info: Source file: <Figures/activities_phases.eps>
 (epstopdf)                    date: 2016-07-13 14:34:06
 (epstopdf)                    size: 11123 bytes
@@ -671,7 +704,7 @@ eps-converted-to.pdf Figures/activities_phases.eps>
 (epstopdf)             \includegraphics on input line 120.
 Package epstopdf Info: Output file is already uptodate.
 
-<Figures/activities_phases-eps-converted-to.pdf, id=84, 677.53125pt x 301.125pt
+<Figures/activities_phases-eps-converted-to.pdf, id=98, 677.53125pt x 301.125pt
 >
 File: Figures/activities_phases-eps-converted-to.pdf Graphic file (type pdf)
  <use Figures/activities_phases-eps-converted-to.pdf>
@@ -683,42 +716,46 @@ Overfull \hbox (12.0pt too wide) in paragraph at lines 119--122
  [][] 
  []
 
-[10]) [11 <./Figures/activities_phases-eps-converted-to.pdf>] (./main.aux
+[14]) [15 <./Figures/activities_phases-eps-converted-to.pdf>] (./main.bbl)
+[16
+
+
+
+] (./main.aux
 LaTeX Info: Redefining \. on input line 6.
 LaTeX Info: Redefining \% on input line 6.
 LaTeX Info: Redefining \. on input line 14.
 LaTeX Info: Redefining \% on input line 14.
 LaTeX Info: Redefining \. on input line 22.
 LaTeX Info: Redefining \% on input line 22.
-
-(./Chapters/method.aux) (./Chapters/results.aux))
+ (./Chapters/method.aux) (./Chapters/results.aux))
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 2896 strings out of 493029
- 38094 string characters out of 6136234
- 107627 words of memory out of 5000000
- 6346 multiletter control sequences out of 15000+600000
- 7920 words of font info for 28 fonts, out of 8000000 for 9000
+ 3242 strings out of 493029
+ 42126 string characters out of 6136234
+ 114921 words of memory out of 5000000
+ 6682 multiletter control sequences out of 15000+600000
+ 9833 words of font info for 34 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  38i,13n,45p,921b,384s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb></u
-sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/tex
-live/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texlive/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmti10.pfb>
-Output written on main.pdf (18 pages, 866304 bytes).
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/tex
+live/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/font
+s/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmti9.pfb>
+Output written on main.pdf (23 pages, 900607 bytes).
 PDF statistics:
- 138 PDF objects out of 1000 (max. 8388607)
- 93 compressed objects within 1 object stream
+ 155 PDF objects out of 1000 (max. 8388607)
+ 104 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  39 words of extra memory for PDF output out of 10000 (max. 10000000)
 

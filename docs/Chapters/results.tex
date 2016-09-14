@@ -2,12 +2,12 @@
 \label{ch:intro}
 
 \section{Activities and working patterns}
-For the first part of this section we present a characterization of working sessions at different levels, extracting the information from the ABB and UDC datasets. The ABB data corresponds to full-time developers, so we assume that they follow certain working patterns and have common activities. For that, we expect to see an homogeneous behavior among the developers.
+For the first part of this section we present a characterization of working patterns within small segments of time (3 to 5 minutes) and larger frames of activity (>4 hours). We extracted  the information from both datasets. The ABB data corresponds to full-time developers, so we assume that they follow certain working patterns and have common activities. For that, we expect to see an homogeneous behavior among the developers that we can easily characterize and find structures via machine learning techniques.
 
-In contrast, UDC dataset contains more variety and different profiles of programmers, so it might be troublesome to find specific patterns.
+In contrast, the UDC dataset contains more variety and different profiles of programmers, so it might be troublesome to find specific patterns.
 
 \subsection{Characterizing working sessions}
-We defined a working session as a lapse of recorded activity surrounded by interruptions of large duration (8 hours), to model a day of work. However, in many cases the extracted sessions contained an interruption of moderate length in the middle, so we set a threshold of 4 hours to split this kind of sessions. At the end, we had 1,585 sessions with an average duration of 4.7 hours ($s=3.58$).
+We defined a working session as a lapse of recorded activity surrounded by interruptions of large duration ($\geq$ 4 hours), to model a day of work. In this case, our definition of interruption is any lapse of time without events recorded, but based on observational studies we set a threshold of 3 minutes to label
 
 From the transformation phase, every session is composed of time series and other attributes. There is a time series to represent the interruptions, where the amplitude is the duration of every interruption, and 11 more series whose amplitude is the amount of events of every type per minute. Every data point of the time series is equal to a minute of activity in the data, meaning that all the time series have the same length. In average this length is of $121.61$ minutes ($s=147.81$). This is also refereed as productive time, or the total time that the programmer spent working on the IDE without being interrupted.
 

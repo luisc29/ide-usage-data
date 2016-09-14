@@ -140,6 +140,9 @@ def clean_events(file_path, file_name):
     events = DataFrame.from_csv(file_path + "//" + file_name,index_col=False)
     events.columns = ["user", "datetime", "category", "event"]
     
+    # Remove duplicated rows (all the values are the same)
+    # events = events.drop_duplicates()
+
     # Format the datetime value
     events["datetime"] = [s.split('.')[0] for s in events["datetime"]]
     events["seconds"] = [time.mktime(time.strptime(s,'%Y-%m-%d %H:%M:%S')) for s in events["datetime"]]
@@ -149,9 +152,6 @@ def clean_events(file_path, file_name):
     # Build.SolutionPlatforms
     events = events[events["event"] != 684]
     events = events[events["event"] != 1990]
-    
-    # Remove duplicated rows (all the values are the same)
-    events = events.drop_duplicates()
     
     # Get the description and type from the commands dataset
     desc, types, d_types = set_description(events)
