@@ -76,14 +76,13 @@ silhouette.analysis.chunks <- function(chunks, chunks.labels){
   
 }
 
-
 plot.silhouette.chunks <- function(data, data.name, cbPalette){
   plot <- ggplot(data, aes(x=name, y=sil_width, color=cluster, fill=cluster)) + 
           geom_bar(stat="identity") + ylim(c(NA,1)) + theme_few() +  scale_color_manual(values=cbPalette) +
           scale_fill_manual(values=cbPalette) + theme(axis.text.x = element_blank(), axis.ticks.x = element_blank()) +
           labs(x="Observations", y="Silhouette width", fill="Cluster (activity)", color="Cluster (activity)") 
   
-  save.plot(plot, paste(data.name, "silhouette_chunks", sep="_"), 21, 13)
+  save.plot(plot, paste(data.name, "silhouette_chunks", sep="_"), 15, 7)
 }
 
 plot.silhouette.sessions <- function(data, data.name, cbPalette){
@@ -93,7 +92,7 @@ plot.silhouette.sessions <- function(data, data.name, cbPalette){
     labs(x="Observations", y="Silhouette width", fill="Cluster (sessions)", color="Cluster (sessions)") +
     scale_fill_pander() + scale_color_pander()
   
-  save.plot(plot, paste(data.name, "silhouette_sessions", sep="_"), 21, 13)
+  save.plot(plot, paste(data.name, "silhouette_sessions", sep="_"), 15, 7)
 }
 
 plot.phases.by.session.type.log <- function(data, data.name, plot.name, width, height, cbPalette){
@@ -106,6 +105,9 @@ plot.phases.by.session.type.log <- function(data, data.name, plot.name, width, h
   save.plot(plot, plot.name, width, height)
 }
 
+plot.rq1 <- function(sessions){
+  
+}
 
 pipeline <- function(chunks, sessions, sessionssplit, sessionssplit.1, chunks.label, sessions.label, plot1.name, data.name, cbPalette){
   #chunks$label.c <- factor(chunks$label.c, levels = chunks.label.c)
@@ -160,10 +162,26 @@ pipeline(abb.chunks, abb.sessions, abb.sessionssplit, abb.sessionssplit.1, chunk
 # UDC
 cat("Statistics UDC data")
 chunk.labels <- c("Programming", "Debugging", "Version", "Navigation")
-session.labels <- c(23, 24, 74, 77, 45)
+session.labels <- c(40, 43, 95, 81, 28)
 color.pallete <- c("#7188cc", "#d04d3f","#61a275","#4D4D4D","#cf5f9e")
 pipeline(udc.chunks, udc.sessions, udc.sessionssplit, udc.sessionssplit.1, chunk.labels, session.labels, "udc.phases", "UDC", color.pallete)
 
+# Sessions stats
+sessions <- udc.sessions.old
+cat("Number of sessions: ", nrow(sessions))
+cat("Number of users: ", length(unique(sessions$user)))
+cat("Number of observations:", sum(sessions$n_events))
+x <- difftime(as.POSIXct(sessions$end_time), as.POSIXct(sessions$start_time), units = "hours")
+cat("Avg. duration:", mean(x))
+cat("Avg. productive time: ", mean(sessions$size_ts))
+cat("Avg. of interruptions: ", mean(sessions$n_inte))
+x <- as.numeric(unlist(strsplit(sessions$interruptions, split=" ")))
+cat("Avg. duration of inte.: ", mean(x[x>0]))
+x <- unlist(lapply(strsplit(sessions$interruptions, split=" "), function(x){length(x[x>12])} ))
+cat("Avg. of prop. of long inte.: ", mean(sessions$prop_inte))
+
+
+# Only for the UDC data
 
 sessions <- udc.sessions.old
 q <- quantile(sessions$n_inte)
@@ -177,20 +195,14 @@ sessions[sessions$n_inte >= q[3] & sessions$n_inte < q[4],]$g_inte <- r[4]
 sessions[sessions$n_inte >= q[4] ,]$g_inte <- r[5]
 sessions$g_inte <- factor(sessions$g_inte, levels = r)
 
-ggplot(sessions, aes(x=g_inte, y=smin)) + geom_boxplot(outlier.size = 0.5) 
+g1 <- ggplot(sessions, aes(x=g_inte, y=emin)) + geom_boxplot(outlier.size = 0.5, color="red", fill="lightgray", outlier.colour = "black") + 
+      labs(x="Interruptions", y="Edits / minute") + ylim(0, 10) + theme_few() #+ theme(text = element_text(size=20))
+g2 <- ggplot(sessions, aes(x=g_inte, y=smin)) + geom_boxplot(outlier.size = 0.5, color="blue", fill="lightgray", outlier.colour = "black") + 
+      labs(x="Interruptions", y="Selections / minute") + ylim(0, 7) + theme_few()
+g3 <- ggplot(sessions, aes(x=g_inte, y=eratio)) + geom_boxplot(outlier.size = 0.5, color="darkgreen", fill="lightgray", outlier.colour = "black") + 
+      labs(x="Interruptions", y="Edit ratio") + ylim(0, 1) + theme_few()
 
-
-# Sessions stats
-sessions <- abb.sessions.old
-cat("Number of sessions: ", nrow(sessions))
-cat("Number of users: ", length(unique(sessions$user)))
-cat("Number of observations:", sum(sessions$n_events))
-x <- difftime(as.POSIXct(sessions$end_time), as.POSIXct(sessions$start_time), units = "hours")
-cat("Avg. duration:", mean(x))
-cat("Avg. productive time: ", mean(sessions$size_ts))
-cat("Avg. of interruptions: ", mean(sessions$n_inte))
-x <- as.numeric(unlist(strsplit(sessions$interruptions, split=" ")))
-cat("Avg. duration of inte.: ", mean(x[x>0]))
-x <- unlist(lapply(strsplit(sessions$interruptions, split=" "), function(x){length(x[x>12])} ))
-cat("Avg. of prop. of long inte.: ", mean(sessions$prop_inte))
+ggsave("~/udc/UDC_inte_emin.pdf", width = 10, height = 5, units="cm", g1)
+ggsave("~/udc/UDC_inte_smin.pdf", width = 10, height = 5, units="cm", g2)
+ggsave("~/udc/UDC_inte_eratio.pdf", width = 10, height = 5, units="cm", g3)
 
