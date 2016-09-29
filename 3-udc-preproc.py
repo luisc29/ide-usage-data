@@ -100,6 +100,8 @@ def clean_events(log):
     log['detailed_type'] = types
     log['type'] = infer_general_type(types)
     
+    #log = log[log['detailed_type'] != 'system']
+    
     log["seconds"] = [time.mktime(time.strptime(s,'%Y-%m-%d %H:%M:%S')) for s in log["datetime"]]
     
     log.to_csv(PATH_TO_MAIN + 'clean.dataC.csv', index=False)

@@ -1,5 +1,30 @@
 \begin{thebibliography}{}
 
+\bibitem[\protect\citeauthoryear{Ahmadzadeh, Elliman, and Higgins}{Ahmadzadeh
+  et~al.}{2005}]{AEH05}
+Ahmadzadeh, M., D.~Elliman, and C.~Higgins (2005).
+\newblock An analysis of patterns of debugging among novice computer science
+  students.
+\newblock {\em ACM SIGCSE Bulletin\/}~{\em 37\/}(3), 84--88.
+
+\bibitem[\protect\citeauthoryear{Aral, Brynjolfsson, and Van~Alstyne}{Aral
+  et~al.}{2012}]{ABV12}
+Aral, S., E.~Brynjolfsson, and M.~Van~Alstyne (2012).
+\newblock Information, technology, and information worker productivity.
+\newblock {\em Information Systems Research\/}~{\em 23\/}(3-part-2), 849--867.
+
+\bibitem[\protect\citeauthoryear{Cohen}{Cohen}{1994}]{C94}
+Cohen, J. (1994).
+\newblock The earth is round (p $<$ 0.5).
+\newblock {\em American Psychologist\/}~{\em 49\/}(12), 997--1003.
+
+\bibitem[\protect\citeauthoryear{Comaniciu and Meer}{Comaniciu and
+  Meer}{2002}]{CM02}
+Comaniciu, D. and P.~Meer (2002).
+\newblock Mean shift: A robust approach toward feature space analysis.
+\newblock {\em IEEE Transactions on pattern analysis and machine
+  intelligence\/}~{\em 24\/}(5), 603--619.
+
 \bibitem[\protect\citeauthoryear{Corley, Lois, and Quezada}{Corley
   et~al.}{2015}]{CLQ15}
 Corley, C.~S., F.~Lois, and S.~Quezada (2015).
@@ -7,11 +32,22 @@ Corley, C.~S., F.~Lois, and S.~Quezada (2015).
 \newblock In {\em Software Maintenance and Evolution (ICSME), 2015 IEEE
   International Conference on}, pp.\  381--390. IEEE.
 
+\bibitem[\protect\citeauthoryear{Czerwinski, Horvitz, and Wilhite}{Czerwinski
+  et~al.}{2004}]{CHW04}
+Czerwinski, M., E.~Horvitz, and S.~Wilhite (2004).
+\newblock A diary study of task switching and interruptions.
+\newblock In {\em Proceedings of {CHI} 2004}, pp.\  175--182.
+
 \bibitem[\protect\citeauthoryear{Fayyad, Piatetsky-Shapiro, and Smyth}{Fayyad
   et~al.}{1996}]{FPG96}
 Fayyad, U., G.~Piatetsky-Shapiro, and P.~Smyth (1996).
 \newblock From data mining to knowledge discovery in databases.
 \newblock {\em AI magazine\/}~{\em 17\/}(3), 37.
+
+\bibitem[\protect\citeauthoryear{Frey and Dueck}{Frey and Dueck}{2007}]{FD07}
+Frey, B.~J. and D.~Dueck (2007).
+\newblock Clustering by passing messages between data points.
+\newblock {\em science\/}~{\em 315\/}(5814), 972--976.
 
 \bibitem[\protect\citeauthoryear{Gonz{\'{a}}lez and Mark}{Gonz{\'{a}}lez and
   Mark}{2004}]{GM04}
@@ -20,17 +56,110 @@ Gonz{\'{a}}lez, V.~M. and G.~Mark (2004).
   working spheres.
 \newblock In {\em Proceedings of {CHI} 2004}, pp.\  113--120.
 
+\bibitem[\protect\citeauthoryear{Iqbal and Horvitz}{Iqbal and
+  Horvitz}{2007}]{IH07}
+Iqbal, S.~T. and E.~Horvitz (2007).
+\newblock Disruption and recovery of computing tasks: field study, analysis,
+  and directions.
+\newblock In {\em Proceedings of {CHI} 2007}, pp.\  677--686.
+
 \bibitem[\protect\citeauthoryear{Kaptelinin and Nardi}{Kaptelinin and
   Nardi}{2007}]{KaptelininN07}
 Kaptelinin, V. and B.~A. Nardi (2007).
 \newblock Acting with technology: Activity theory and interaction design.
 \newblock {\em First Monday\/}~{\em 12\/}(4).
 
+\bibitem[\protect\citeauthoryear{Keogh}{Keogh}{2005}]{KE05}
+Keogh, E.~J. (2005).
+\newblock Exact indexing of dynamic time warping.
+\newblock {\em Knowledge and Information Systems\/}~{\em 7}, 358--386.
+
 \bibitem[\protect\citeauthoryear{Kersten and Murphy}{Kersten and
   Murphy}{2006}]{KM06}
 Kersten, M. and G.~C. Murphy (2006).
 \newblock {Using task context to improve programmer productivity}.
 \newblock In {\em Proceedings of {FSE} 2006}, pp.\  1--11.
+
+\bibitem[\protect\citeauthoryear{LaToza, Venolia, and DeLine}{LaToza
+  et~al.}{2006}]{LVD06}
+LaToza, T.~D., G.~Venolia, and R.~DeLine (2006).
+\newblock Maintaining mental models: a study of developer work habits.
+\newblock In {\em Proceedings of the 28th international conference on Software
+  engineering}, pp.\  492--501. ACM.
+
+\bibitem[\protect\citeauthoryear{Mark, Gudith, and Klocke}{Mark
+  et~al.}{2008}]{MGK08}
+Mark, G., D.~Gudith, and U.~Klocke (2008).
+\newblock The cost of interrupted work: more speed and stress.
+\newblock In {\em Proceedings of {CHI} 2008}, pp.\  107--110.
+
+\bibitem[\protect\citeauthoryear{Minelli, Mocci, Lanza, and Kobayashi}{Minelli
+  et~al.}{2014}]{MMLK14}
+Minelli, R., A.~Mocci, M.~Lanza, and T.~Kobayashi (2014).
+\newblock Quantifying program comprehension with interaction data.
+\newblock In {\em 2014 14th International Conference on Quality Software}, pp.\
+   276--285. IEEE.
+
+\bibitem[\protect\citeauthoryear{Murphy, Kersten, and Findlater}{Murphy
+  et~al.}{2006}]{MKF06}
+Murphy, G.~C., M.~Kersten, and L.~Findlater (2006).
+\newblock How are java software developers using the elipse ide?
+\newblock {\em IEEE software\/}~{\em 23\/}(4), 76--83.
+
+\bibitem[\protect\citeauthoryear{Murphy, Lewandowski, McCauley, Simon, Thomas,
+  and Zander}{Murphy et~al.}{2008}]{MKM08}
+Murphy, L., G.~Lewandowski, R.~McCauley, B.~Simon, L.~Thomas, and C.~Zander
+  (2008).
+\newblock Debugging: the good, the bad, and the quirky--a qualitative analysis
+  of novices' strategies.
+\newblock In {\em ACM SIGCSE Bulletin}, Volume~40, pp.\  163--167. ACM.
+
+\bibitem[\protect\citeauthoryear{Murphy-Hill, Parnin, and Black}{Murphy-Hill
+  et~al.}{2012}]{MPB12}
+Murphy-Hill, E., C.~Parnin, and A.~P. Black (2012).
+\newblock How we refactor, and how we know it.
+\newblock {\em IEEE Transactions on Software Engineering\/}~{\em 38\/}(1),
+  5--18.
+
+\bibitem[\protect\citeauthoryear{Parnin and DeLine}{Parnin and
+  DeLine}{2010}]{PD10}
+Parnin, C. and R.~DeLine (2010).
+\newblock Evaluating cues for resuming interrupted programming tasks.
+\newblock In {\em Proceedings of {CHI} 2010}, pp.\  93--102.
+
+\bibitem[\protect\citeauthoryear{Parnin and Rugaber}{Parnin and
+  Rugaber}{2011}]{PR11}
+Parnin, C. and S.~Rugaber (2011).
+\newblock Resumption strategies for interrupted programming tasks.
+\newblock {\em Software Quality Journal\/}~{\em 19\/}(1), 5--34.
+
+\bibitem[\protect\citeauthoryear{Parnin and Rugaber}{Parnin and
+  Rugaber}{2012}]{PR12}
+Parnin, C. and S.~Rugaber (2012).
+\newblock Programmer information needs after memory failure.
+\newblock In {\em Program Comprehension (ICPC), 2012 IEEE 20th International
+  Conference on}, pp.\  123--132. IEEE.
+
+\bibitem[\protect\citeauthoryear{Rousseeuw}{Rousseeuw}{1987a}]{R87}
+Rousseeuw, P.~J. (1987a).
+\newblock Silhouettes: a graphical aid to the interpretation and validation of
+  cluster analysis.
+\newblock {\em Journal of computational and applied mathematics\/}~{\em 20},
+  53--65.
+
+\bibitem[\protect\citeauthoryear{Rousseeuw}{Rousseeuw}{1987b}]{RP87}
+Rousseeuw, P.~J. (1987b).
+\newblock Silhouettes: a graphical aid to the interpretation and validation of
+  cluster analysis.
+\newblock {\em Journal of computational and applied mathematics\/}~{\em 20},
+  53--65.
+
+\bibitem[\protect\citeauthoryear{Sanchez, Robbes, and Gonzalez}{Sanchez
+  et~al.}{2015}]{SRV15}
+Sanchez, H., R.~Robbes, and V.~M. Gonzalez (2015).
+\newblock An empirical study of work fragmentation in software evolution tasks.
+\newblock In {\em 2015 IEEE 22nd International Conference on Software Analysis,
+  Evolution, and Reengineering (SANER)}, pp.\  251--260. IEEE.
 
 \bibitem[\protect\citeauthoryear{Snipes, Murphy-Hill, Fritz, Vakilian,
   Damevski, Nair, and Shepherd}{Snipes et~al.}{2015}]{SnipesETALASD}
@@ -39,5 +168,17 @@ Snipes, W., E.~Murphy-Hill, T.~Fritz, M.~Vakilian, K.~Damevski, A.~R. Nair, and
 \newblock {\em Analyzing Software Data}, Chapter A Practical Guide to Analyzing
   IDE Usage Data.
 \newblock Morgan Kaufmann.
+
+\bibitem[\protect\citeauthoryear{Struyf, Hubert, and Rousseeuw}{Struyf
+  et~al.}{1997}]{AMP97}
+Struyf, A., M.~Hubert, and P.~Rousseeuw (1997, 2).
+\newblock Clustering in an object-oriented environment.
+\newblock {\em Journal of Statistical Software\/}~{\em 1\/}(4), 1--30.
+
+\bibitem[\protect\citeauthoryear{Van~Solingen, Berghout, and
+  Van~Latum}{Van~Solingen et~al.}{1998}]{SBV98}
+Van~Solingen, R., E.~Berghout, and F.~Van~Latum (1998).
+\newblock Interrupts: just a minute never is.
+\newblock {\em IEEE software\/}~(5), 97--103.
 
 \end{thebibliography}

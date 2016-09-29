@@ -6,6 +6,11 @@
 \select@language {english}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Histogram of productivity per hour according to the focus data.}}{11}
-\contentsline {figure}{\numberline {2.2}{\ignorespaces Histogram of productivity per day according to the focus data.}}{11}
-\contentsline {figure}{\numberline {2.3}{\ignorespaces Evolution of the activities throughout the sessions.}}{15}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Boxplots showing the relation between the number of edits and selection events per minute, the edit ratio, and the number of interruptions. }}{19}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Median values of edits and selection events per minute, and the edit ratio according to the number of interruptions and proportion of prolonged interruptions.}}{22}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Local effect of an interruption in the user activity.}}{24}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Cluster of sessions in UDC (left) and ABB (right).}}{38}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Silhouette analysis of the clustering of chunks for UDC (top) and ABB (bottom).}}{39}
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Silhouette analysis of the clustering of sessions for UDC (top) and ABB (bottom).}}{40}

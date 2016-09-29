@@ -1,51 +1,63 @@
 This is BibTeX, Version 0.99d (TeX Live 2015/Debian)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: main.aux
+A level-1 auxiliary file: Chapters/introduction.aux
+A level-1 auxiliary file: Chapters/relatedwork.aux
 A level-1 auxiliary file: Chapters/method.aux
 A level-1 auxiliary file: Chapters/results.aux
 The style file: chicago.bst
 Database file #1: mybib.bib
+Repeated entry---line 171 of file mybib.bib
+ : @article{AEH05
+ :               ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 317 of file mybib.bib
+ : @inproceedings{KM06
+ :                    ,
+I'm skipping whatever remains of this entry
 Warning--page numbers missing in KaptelininN07
+Warning--can't use both volume and number fields in MKM08
 Warning--page numbers missing in SnipesETALASD
-You've used 6 entries,
+Warning--no volume for SBV98
+You've used 28 entries,
             2861 wiz_defined-function locations,
-            657 strings with 5917 characters,
-and the built_in function-call counts, 4949 in all, are:
-= -- 405
-> -- 407
-< -- 4
-+ -- 126
-- -- 138
-* -- 445
-:= -- 879
-add.period$ -- 19
-call.type$ -- 6
-change.case$ -- 48
-chr.to.int$ -- 6
-cite$ -- 8
-duplicate$ -- 147
-empty$ -- 281
-format.name$ -- 162
-if$ -- 953
-int.to.chr$ -- 1
+            810 strings with 9235 characters,
+and the built_in function-call counts, 22089 in all, are:
+= -- 1912
+> -- 1618
+< -- 14
++ -- 496
+- -- 536
+* -- 1973
+:= -- 3835
+add.period$ -- 90
+call.type$ -- 28
+change.case$ -- 214
+chr.to.int$ -- 27
+cite$ -- 32
+duplicate$ -- 661
+empty$ -- 1339
+format.name$ -- 632
+if$ -- 4288
+int.to.chr$ -- 2
 int.to.str$ -- 0
-missing$ -- 7
-newline$ -- 33
-num.names$ -- 60
-pop$ -- 57
+missing$ -- 29
+newline$ -- 143
+num.names$ -- 278
+pop$ -- 204
 preamble$ -- 1
-purify$ -- 85
+purify$ -- 381
 quote$ -- 0
-skip$ -- 147
+skip$ -- 662
 stack$ -- 0
-substring$ -- 209
-swap$ -- 56
-text.length$ -- 4
+substring$ -- 1209
+swap$ -- 255
+text.length$ -- 14
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 110
-warning$ -- 2
-while$ -- 58
+type$ -- 546
+warning$ -- 4
+while$ -- 280
 width$ -- 0
-write$ -- 85
-(There were 2 warnings)
+write$ -- 386
+(There were 2 error messages)
