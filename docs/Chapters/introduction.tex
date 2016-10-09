@@ -1,2 +1,42 @@
 \chapter{Introduction}
-\label{ch:intro}
+
+\section{Background}
+The search for better working conditions in software engineering has been a research topic for many years now. From compilers and tools to methodologies and practices, there are a considerable amount of proposals of artifacts meant to assist in some part of the software development life cycle. But before that there is a discovery phase where researchers identify the parts-to-be-enhanced; it usually involves experiments, observational studies and/or surveys. Through those empirical analyses we are able to better understand how software engineering teams work and what kind of the problems they face.
+
+In order to understand developers' activities and practices, researchers resort to observational studies, experiments and surveys to extract the data. LaToza et al. \cite{LVD06} performed an in-depth analysis with data from a set of interviews and surveys	to approximately 300 developers from Microsoft; their findings shed light about the day-to-day developers' activities and some of the challenges that they face both in personal matter and when collaborating with other developers. Ko et al. \cite{KMC06} performed an experiment with 31 developers who were asked to perform a set of activities while begin interrupted; from this study they obtained information about how developers understand the code and how they navigate to collect information relevant to the task. Gonzalez and Mark \cite{GM04} observed 25 information workers to see how they manage with a fragmented working time, where they switch often between tasks and have multiple interruptions throughout the day. Parnin and Rugaber \cite{PR11} surveyed 414 programmers to get insight about the suspension strategies used before an interruption and activities performed to recovery after it.
+
+Interruptions of work are one of the events studied in software engineering research due to their disruptive nature, as seen in several studies \cite{BKC01, BL96, CDT07, AT04}, and the continuous search for the best ways to assist programmers when facing them. Researchers have studied interruptions through observational studies \cite{IH07, LVD06} and experiments \cite{CDT07} just like the ones described before, but another way to do it is analyzing programmer's usage data \cite{SRV15}.
+
+The usage data contains the history of interactions between the developer and development tools or IDEs (Integrated Development Environment). With this information we can tell how other events (like interruptions) affect the activity of the developers \cite{SnipesETALASD}. Analyzing this kind of data is part of the Mining Software Repositories research area \cite{H04} and it is often used to understand developers' working patterns. For example, Baracchi \cite{B14} used it to understand how often certain activities are performed and Minelli et al. \cite{MMLK14} to delve into the program comprehension activities.
+
+Kersten and Murphy \cite{KM06} used usage data to identify the classes related to certain tasks and provide navigation assistance to developers using a degree of interest model. This model was also used by Fritz et al. \cite{FMH07} to see if there is a correlation between the degree of interest and knowledge of code. Carter and Dewan \cite{CD10} proposed a model to detect when a programmer is stuck using usage data.
+
+
+
+\section{Objectives}
+The objective of this work is to extract knowledge from interaction data between programmers and IDE that allows us to understand the amount of information reflected in it about the programmers' activities, productivity and environment. Specifically, the objective is to answer the following research questions grouped in two different approaches: 
+
+\emph{On interruptions of work and productivity:}
+\begin{itemize}
+	\item RQ1: What is the relationship between the observed interruptions and the observed developer productivity?
+	\item RQ2: Is the observed relationship more pronounced in the presence of prolonged interruptions?
+	\item RQ3: What is the observed relationship in the vicinity of interruptions?
+	\item RQ4: What events are more common during recovery time?
+\end{itemize}
+
+\emph{On activities and working patterns of programmers:}
+\begin{itemize}
+	\item RQ5: What kind of activities can be identified with interaction data?
+	\item RQ6: What working patterns during a session are commonly performed by developers?
+\end{itemize}
+
+\section{Scope}
+This is an empirical and exploratory analysis that seeks to determine the effect of the interruptions of work and find the activities and working patterns of software developers with usage data. We do not have extra information about the developers in the data, so we base our hypothesis and observations in the literature. 
+
+We have two data sets available: the Eclipse Usage Data Collector dataset and data from Codealike while being used by developers from ABB. Due to the magnitude of the first dataset we only use a sample of 1,000 random developers. As for the ABB data, we have the information of 87 developers and we use it all to execute the analyses. Both datasets only contain the registry of events executed while using the IDE.
+
+Given that we do not have extra information or contact from the developers in both datasets, we are unable to verify the conclusions we arrive to in this work and have the feedback from the participants. But the background in the literature is solid and proven, so we are confident that reaching similar conclusions to other authors is an assurance of the validity of this work
+
+\section{Organization of the document}
+
+After the Introduction, the Chapter 2 presents a review of the literature and related work about developers' activities, interruptions of work and research with usage data. After that we describe the data used and methodology in the Chapter 3, followed by the Chapter 4 with the results of the analyses. We finish the work with concluding remarks in the Chapter 5.

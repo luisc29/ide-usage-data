@@ -4,7 +4,7 @@
 This sections corresponds to the phases Data Mining and Interpretation of the Knowledge Discovery in Databases process. Here, we present two different analyses using the UDC and ABB datasets:
 \begin{enumerate}
 	\item Analysis of the impact of interruptions of work in the programmers' performance and activities
-	\item An identification and characterization of the programmers' activities at low level (activities within 5 minutes) and high level, covering working sessions.
+	\item Identification and characterization of the programmers' activities at low level (activities within 5 minutes) and high level, covering working sessions.
 \end{enumerate}
 
 First, we present the analysis of the impact of interruptions in the following section.
@@ -14,7 +14,7 @@ In this section we present an analysis of the effects of interruptions of work i
 
 To assess the impact of interruptions we use a set of metrics described in Chapter 3: edits per minute, selections per minute and edit ratio. We measure the effects on productivity using mainly the edit and selection events per minute as indicators. The edit ratio \cite{KM06} might be also a good indicator, under the assumption that a productive programmer will execute more editing activities than selection or navigation events. However, this is not always the case, given that depending on the role of the worker, selection events can be equivalent to the usage of a designing or reporting tool.
 
-The results presented in this section correspond to a replica of a published paper \cite{SRV15} in the 22nd IEEE International Conference on Software Analysis, Evolution, and Reengineering. That paper included the same analyses described in the next three subsections (4.2.1 to 4.2.3) but with a different dataset (Mylyn). During this work we improved some of the methodology and extended the results to include a detailed analysis of the Recovery Time (subsection 4.2.4). The extended version is now being submitted to the Journal of Software: Evolution and Process.
+The results presented in this section correspond to a replica of a published paper \cite{SRV15} in the 22nd IEEE International Conference on Software Analysis, Evolution, and Reengineering. That paper included the same analyses described in the next three subsections (4.1.1 to 4.1.3) but with a different dataset (Mylyn). During this work we improved some of the methodology and extended the results to include a detailed analysis of the Recovery Time (subsection 4.1.4). The extended version is now being submitted to the Journal of Software: Evolution and Process.
 
 
 \subsection{Relationship between the number of interruptions and productivity}
@@ -23,23 +23,6 @@ As mentioned above, we use the metrics of edit, selection, and edit ratio as ind
 
 %First, we analyzed the number of interruptions over the productivity. In this sense, 
 We split the data in five groups: The first group contains all the sessions without interruptions (\textit{none}). For the others groups, we have considered four ranges of number of interruptions delimited by their quartiles, being 2, 4 and 7 the first, second and third quartile respectively.
-
-%\begin{figure}[!ht]
-%	\centering
-%	\begin{tabular}{c}
-%		\minipage{0.33\textwidth}
-%		\includegraphics[width=\linewidth,clip=, angle=0]{Figures/UDC_inte_emin}  
-%		\endminipage\hfill
-%		\minipage{0.33\textwidth}
-%		\includegraphics[width=\linewidth,clip=, angle=0]{Figures/UDC_inte_smin}  
-%		\endminipage\hfill
-%		\minipage{0.33\textwidth}
-%		\includegraphics[width=\linewidth,clip=, angle=0]{Figures/UDC_inte_eratio} 
-%		\endminipage\hfill
-%	\end{tabular}
-%	\caption{Boxplots showing the relation between the number of edits and selection events per minute, the edit ratio, and the number of interruptions. }
-%	\label{fig:box_int_events}
-%\end{figure}
 
 \begin{figure}[!ht]
 	\centering
@@ -60,11 +43,10 @@ Beyond visual inspection, we also quantify the statistical and the practical sig
 
 
 More importantly, we used \textit{Cliff's delta} to measure the practical significance of these results in term of effect size % the effect size of the differences in means as standardized difference~
-\cite{C94}. \textit{Cliff's delta thresholds} are defined as follows: negligible ($<0.147$), small  ($<0.33$), moderate ($<0.476$) and large effect otherwise. As shown in Table \ref{tbl:p_value_udc}, we note that the effect size of the interruptions over the number of edits per minute is overall moderate, being larger for edits per minute and small in the edit ratio. Note that despite the differences in effect sizes, the differences are still significant and it is possible to reach the same conclusions.
+\cite{C94}. \textit{Cliff's delta thresholds} are defined as follows: negligible ($<0.147$), small  ($<0.33$), moderate ($<0.476$) and large effect otherwise. As shown in Table \ref{tbl:p_value_udc}, we note that the effect size of the interruptions over the number of edits per minute is overall moderate, being larger for edits per minute and small in the edit ratio. %Note that despite the differences in effect sizes, the differences are still significant and it is possible to reach the same conclusions.
 
 \begin{table}[ht!]
-	\tiny
-	\renewcommand{\arraystretch}{1.3}
+	\small
 	\caption{Effect size and significance of the relationship between number of editions per minute, selections per minute, edit ratio, and the number of interruptions on UDC data} 
 	\label{tbl:p_value_udc}
 	\centering
@@ -120,7 +102,7 @@ More importantly, we used \textit{Cliff's delta} to measure the practical signif
 
 In this section we analyze whether or not the duration of interruptions is a factor in the relationship between interruptions and developer productivity. Under the hypothesis that prolonged interruptions require more time to recover from, we built two groups of sessions based on the proportion of long interruptions. As we described previously we consider that a prolonged interruption has a duration of $\geq$ 12 minutes, a decision based on the literature \cite{GM04, KaptelininN07}. %Prolonged interruptions could be due to an extended interruption, such as a coffee break or a meeting.
 
-For every session, we calculated the proportion of prolonged interruptions as the sum of interruptions with duration equal or greater than 12 minutes, divided by the total count of interruptions in that session. Then, we created 2 groups of sessions described as follows:
+For every session, we calculated the proportion of prolonged interruptions as the sum of interruptions with duration greater or equal than 12 minutes, divided by the total count of interruptions in that session. Then, we created 2 groups of sessions described as follows:
 
 \begin{itemize}
 	\item \textit{low}: the first group consists of sessions where the proportion of prolonged interruptions is $<$0.50; this includes sessions for which the proportion of long interruption is zero, that is, sessions with only short interruptions. They are the 38.7\% of all the sessions.
@@ -133,13 +115,14 @@ Thus we want to compare the proportions of prolonged interruptions among session
 The Figure \ref{fig:udc_rq2} shows the median of the metrics when grouping the sessions by the number of interruptions and the proportion of prolonged interruptions. According to our hypothesis, we expect sessions that have a low number of interruptions and a low proportion of prolonged interruptions to have higher rates of productivity, and the results mostly agree with this statement. First, we observe that when the number of interruptions increases the median of the metrics decrease until reaching a point (approximately between three and four interruptions) where the change is minimal and continues that way for the rest of the groups. Second, in the vast majority of groups the median value of the \emph{low} group is greater than the \emph{high} group.
 
 \begin{figure}[!ht]
-	\caption{Median values of edits and selection events per minute, and the edit ratio according to the number
-		of interruptions and proportion of prolonged interruptions.}
 	\centering		
 	\includegraphics[width=0.5\textwidth]{Figures/UDC_rq2_emin}
 	\includegraphics[width=0.5\textwidth]{Figures/UDC_rq2_smin}
 	\includegraphics[width=0.5\textwidth]{Figures/UDC_rq2_eratio}
-	\label{fig:udc_rq2}
+
+	\caption{Median values of edits and selection events per minute, and the edit ratio according to the number
+		of interruptions and proportion of prolonged interruptions.}
+		\label{fig:udc_rq2}
 \end{figure}
 
 When having a small number of interruptions (between 1 and 3) the difference between sessions with a low or high proportion of prolonged interruptions is very noticeable, and the group of sessions with a low proportion has higher median values. As the number of interruptions increases the differences get smaller, but we observe that the group of low proportion of prolonged interruptions usually shows higher values. This applies on the edits and selections per minute, and to a lesser extent to the edit ratio, where the changes between groups (both by number of interruptions and proportion) are comparatively smaller.
@@ -147,8 +130,8 @@ When having a small number of interruptions (between 1 and 3) the difference bet
 We tested the statistical significance of this results and show the results in the Table \ref{tbl:effect_size_dur_udc}. For every group according to the number of interruptions, we measured the effect between the low and high groups of sessions, with the Cliff's delta test and U-test. The groups with one or two interruptions have moderate size effects, in comparison with the other groups with more interruptions that have lower size effects; this matches our observations via visual inspection on a more defined difference between the low and high groups when having a small number of interruptions. Starting from (approximately) three interruptions, the distributions of the metrics are very similar.
 
 \begin{table}[ht!]
-	\tiny
-	\renewcommand{\arraystretch}{1.3}
+	\small
+
 	\caption{Effect size and statistical significance of the relationships between the groups of sessions by proportion of prolonged interruptions and the number of interruptions in UDC}
 	\label{tbl:effect_size_dur_udc}
 	\centering
@@ -218,23 +201,23 @@ Table \ref{tbl:local_effect} shows the applied thresholds and the results. This 
 
 
 \begin{table}[ht!]
-	\caption{Local Effect of Interruption. }
+	\caption{Local effect of interruptions around 30 minutes. }
 	\label{tbl:local_effect}
 	\centering
-	\begin{tabular}{m{6cm} | m{5cm}}
+	\begin{tabular}{m{6cm} | m{6cm}}
 		\hline
 		Effect & Pattern \\
 		\hline
 		\hline \\
 		\textit{negative}: when the frequency of edit events decreases after the interruption (Cohen's $d < -0.2$)
 		& 
-		  \multicolumn{1}{m{3cm}}{\includegraphics[scale=0.3]{Figures/UDC_local_effect_negative}} 
+		  \multicolumn{1}{m{3cm}}{\includegraphics[scale=0.4]{Figures/UDC_local_effect_negative}} 
 		      \\
 		\textit{positive}: when the frequency of edit events increases after the interruption (Cohen's $d > 0.2$)
-		& \multicolumn{1}{m{3cm}}{\includegraphics[scale=0.3]{Figures/UDC_local_effect_positive}} 
+		& \multicolumn{1}{m{3cm}}{\includegraphics[scale=0.4]{Figures/UDC_local_effect_positive}} 
 		\\
 		\textit{neutral}: when there is no well defined effect before or after the interruption ($abs(d) <= 0.2$)
-		& \multicolumn{1}{m{3cm}}{\includegraphics[scale=0.3]{Figures/UDC_local_effect_neutral}} 
+		& \multicolumn{1}{m{3cm}}{\includegraphics[scale=0.4]{Figures/UDC_local_effect_neutral}} 
 		\\
 	\end{tabular}
 \end{table}
@@ -249,7 +232,7 @@ In general, the effect of positive and negative interruptions seems to be revers
 
 In the last section we saw different patterns of activity around positive and negative interruptions. In particular, we observed that the edits per minute were higher after a positive interruption and the contrary after a negative interruption.
 
-The presence of this pattern and the important difference observed in Figure \ref{fig:udc_local_effect} led us to investigate the effect more closely. To this aim, we did an exploratory study of the activities performed by programmers during the recovery time of an interruption. This is possible due to the high variety of events present in the UDC dataset, which can tell us a lot more about the type of activities that developers do. . 
+The presence of this pattern and the important difference observed in Figure \ref{fig:udc_local_effect} led us to investigate the effect more closely. To this aim, we did an exploratory study of the activities performed by programmers during the recovery time of an interruption. This is possible due to the high variety of events present in the UDC dataset, which can tell us a lot more about the type of activities that developers do.
 
 The goal of the exploratory study was to better understand whether the activity taken after an interruption were indicative of different types of behavior for each type of interruption (positive or negative), and also whether these different kinds of activities supported our earlier hypotheses explaining why the two patterns of interruptions were present. Assuming that different commands represented different types of activity, the hypothesis was that the frequency of a given activity (as represented by the commands used to carry it) would vary between the different types of sessions.
 
@@ -303,7 +286,7 @@ To get a baseline, the same frequency calculation was made for the entire datase
 
 After positive interruptions the events belonging to the Edit-Text, File and Refactoring categories are more frequent than in the average. In addition, these categories of events are less frequent than the average after a negative interruptions. Of these three, Edit-Text and Refactoring have the largest differences between positive and negative interruptions. This three categories are much more clearly associated with edition activities than program comprehension, and thus fit the previous hypothesis.
 
-After a negative interruption, Debug, Search, High-Nav, Search and Clean-Build categories are all more common than average. The categories of Debug, Search, and High-Nav are clearly associated with program comprehension rather than program edition. The Clean-Build category is not strongly associated with program comprehension, but it is however associated with debugging activities. 
+After a negative interruption, Debug, High-Nav, Search and Clean-Build categories are all more common than average. The categories of Debug, Search, and High-Nav are clearly associated with program comprehension rather than program edition. The Clean-Build category is not strongly associated with program comprehension, but it is however associated with debugging activities. 
 
 Finally, the Text-Nav and Control categories are less common in both positive and negative interruptions than in the average. We were somewhat surprised that Text-Nav was less common in positive interruptions than the average, as we expected it to be associated with program edition behavior. We note that it is however more frequent in positive interruptions rather than negative interruptions. Additional exploration is necessary to understand the behavior of the Control category.
 
@@ -312,10 +295,10 @@ Summing up, we can conclude that edition-related activities are indeed more freq
 Of course, this exploratory study does not allow us to confirm these hypotheses. However, the evidence we have discovered so far does not disprove them, and rather goes in the direction of our hypotheses, which means that our confidence in these hypotheses is higher as a consequence.
 
 \section{Activities and working patterns}
-There are numerous ways to identify the kind of activities and working patterns performed by programmers, like through observational studies \cite{GM04}, surveys \cite{PR11}, usage data \cite{MPB12} and activity logs, being the first the one that provides richer information. Usage and activity data has been widely used to analyze activity patterns from programmers as part of the Mining Software Repositories research area, but the kind of activities that can be assessed depends on the available data. In this case, our approach to identifying activities and working patterns is by analyzing the execution frequency of certain events.
+There are numerous ways to identify the kind of activities and working patterns performed by programmers, like through observational studies \cite{GM04}, surveys \cite{PR11}, usage data \cite{MPB12} and activity logs \cite{CLQ15}, being the first the one that provides richer information. Usage and activity data has been widely used to analyze activity patterns from programmers as part of the Mining Software Repositories research area, but the kind of activities that can be assessed depends on the available data. In this case, our approach to identifying activities and working patterns is by analyzing the execution frequency of certain events.
 
 \subsection{Identifying activities}
-In the literature we can find evidence about the kind of activities performed by programmers, mostly from observational studies and usage data \cite{LVD06,GM04, MMLK14, MKF06}. We could have defined a set of activities based on the conclusions from these resources, but how can we assure that the same activities are present in our data? Do we have enough data to identify those activities? Is the same kind of activities identifiable in both datasets? These are some of the problems in establishing a set of activities based on related work. To avoid that we used clustering techniques to find them. This way we can find a set of common activities according to the data and the thresholds to differentiate between them.
+In the literature we can find evidence about the kind of activities performed by programmers, mostly from observational studies and usage data \cite{LVD06, GM04, MMLK14, MKF06}. We could have defined a set of activities based on the conclusions from these resources, but how can we assure that the same activities are present in our data? Do we have enough data to identify those activities? Is the same kind of activities identifiable in both datasets? These are some of the problems in establishing a set of activities based on related work. To avoid that we used clustering techniques to find them. This way we can find a set of common activities according to the data and the thresholds to differentiate between them.
 
 During the Transformation phase we obtained a set of sessions and decomposed each into chunks of smaller size. Moreover, every one of these chunks has the proportion of execution of events by detailed type. So, the observations that were clustered are chunks and the attributes are the proportions. This means we have two datasets with 43,769 (UDC) and 23,624 (ABB) observations with 11 numerical attributes each.
 
@@ -403,7 +386,7 @@ There are some interesting differences. First, the Programming activity is commo
 
 The ABB programmers, which are Visual Studio users, make heavy use of the Locals Window of Visual Studio that allows them to explore the state of the objects when debugging and change around processes and threads. Eclipse has a similar functionality in the Debug Perspective and captures an event when the programmer use it, but it does not support exploring different instances in the same fashion as Visual Studio. On top of that, in the ABB data the most common events of the type Debug are in fact those that allow to change the current process or thread. This could be the main cause for the differences of Debugging activities between datasets.
 
-Another difference is that Navigation and Tool-usage activities have more incidence in the UDC data. First, in respect to Navigation, UDC users seems to perform more navigation around tabs and search for classes from the Package Explorer of Eclipse. In the other hand, ABB users commonly perform navigation around the hierarchy of classes by calling to definitions. The kind of navigation performed by UDC users is translated into much more navigation events of high level.
+Another difference is that Navigation and Tool-usage activities have more incidence in the UDC data. First, in respect to Navigation, UDC users seems to perform more navigation around tabs and search for classes from the Package Explorer of Eclipse, also noted by Murphy et al. \cite{MKF06}. In the other hand, ABB users commonly perform navigation around the hierarchy of classes by calling to definitions. The kind of navigation performed by UDC users is translated into much more navigation events of high level and it is referred as unstructured navigation \cite{AFQ15}.
 
 The amount of Tool-usage activities is related to the variety of programmers in the UDC data in contrast with ABB. In the former there are a group of users that are Web developers and execute events involving PHP, JavaServer Faces, HTML and CSS. To a lesser extent, there are also SQL and J2EE (Java Enteprise Edition) developers. In ABB the small amount of Tool-usage activities is mostly related to the design of classes and architecture of the system in development, and also to connections to SQL databases. From this, we can infer that the programmers in ABB have mostly \emph{back-end} roles and probably maintain an existing system that is supported by a multithreading paradigm, judging by our observations on the Debugging activities. However, we are unable to ascertain these assumptions.
 
@@ -414,16 +397,16 @@ In this section we look for patterns of sets of activities (sessions) that might
 
 Once we had the chunks clustered and labeled, we divided the chunks of each session into three groups of equal size representing the beginning, middle and end. We selected 4 activities that are present in both datasets (Programming, Navigation, Debugging and Version), to facilitate the comparison, and calculated the proportion of each at every phase. After that, every observation (session) had 12 attributes and proceeded to cluster them using the Affinity Propagation technique; this time we want to see all the possible clusters without limiting to a low number like when clustering with chunks. 
 
-We found 47 clusters in ABB and 98 in UDC, but we only work with the 5 more populated. The Figure \ref{ABB_phases} show the results for ABB and UDC. The Types (A to E) are ordered from the most to the less populated. This selection covers 35\% of the sessions in ABB and 39\% in UDC. 
+We found 47 clusters in ABB and 98 in UDC, but we only work with the 5 more populated. The Figure \ref{ABB_phases} shows the results for ABB and UDC. The Types (A to E) are ordered from the most to the less populated. This selection covers 35\% of the sessions in ABB and 39\% in UDC. 
 
-\subsection{Comparison of working sessions patterns}
+\subsection{Comparison of working session patterns}
 For the sessions in ABB we have the following observations:
 \begin{itemize}
 	\item The most common pattern (Type A) involves mostly Debugging activities throughout the session and its followed by Type B, where the most common activity is programming throughout the session as well; it could be an effect of the two more frequent activities.
 	
 	\item The pattern described by the Type C is mostly composed of Navigation activities followed by Debugging. This can be related to program comprehension sessions \cite{MMLK14} or bug fixing due to the low amount of Programming.
 	
-	\item Types D and E have a fair amount for all the activities throughout the sessions and do not show notorious changes. Also, both Debugging and Programming are executed frequently, whence we relate these two patterns to multitasking sessions.
+	\item Types D and E have a fair amount for all the activities throughout the sessions and do not show notorious changes. Also, both Debugging and Programming are executed frequently, whence we relate these two patterns to multitasking sessions \cite{SLV10}.
 	
 	\item Versioning tasks are common during all the session when Programming is also a common. However it is only common at the begging or ending of the session when the Programming tasks are low. It could be that during Programming activities the user reaches more checkpoints that should be committed. 
 \end{itemize}
@@ -439,11 +422,13 @@ For the sessions in UDC we have the following observations:
 	\item Although Debugging is a rather uncommon activity, it is frequently executed (to some extent) during the most common working session patterns.
 \end{itemize}
 \begin{figure}[!ht]
-	\caption{Cluster of sessions in UDC (left) and ABB (right).}
+
 	\centering
 	\includegraphics[width=0.49\textwidth]{Figures/UDC_phases_log}
 	\includegraphics[width=0.49\textwidth]{Figures/ABB_phases_log}
-	\label{ABB_phases}
+		
+	\caption{Cluster of sessions in UDC (left) and ABB (right).}
+		\label{ABB_phases}
 \end{figure}
 
 
@@ -452,26 +437,27 @@ To validate the results from the clustering of chunks and sessions we measure th
 
 In ABB the average Silhouette Average of the clusters of chunks is 0.55 and for UDC 0.38. This numbers represent a reasonable structural definition of the clusters. We can see in the Figure \ref{silhouette_chunks} the graphical representation of the silhouette of each cluster of chunks for ABB (right) and UDC (left). In average, the clusters in ABB are better defined but in both cases we can spot some observations wrongly clustered (negative values) that can also be outliers.
 
-In the case of the clustering of sessions, we have an average silhouette of 0.35 for ABB and 0.40 for UDC, indicating a somewhat weak structure but still identifiable. This can be observed in the Figure \ref{silhouette_sessions}. In UDC a big number of the observations of the cluster Type C are outliers and the rest of the clusters are better defined. In ABB clusters Type A and C show good shape but the rest of the clusters have smaller averages.
+In the case of the clustering of sessions, we have an average silhouette of 0.35 for ABB and 0.40 for UDC, indicating also a reasonable structure but weaker than the structures in the chunks. This can be observed in the Figure \ref{silhouette_sessions}. In UDC a big number of the observations of the cluster Type C are outliers and the rest of the clusters are better defined. In ABB clusters Type A and C show good shape but the rest of the clusters have smaller averages.
 
 Overall, we can see a clear pattern in the clustering of chunks and sessions. We believe the patters are strong enough to support our observations and the fact there are patters in the data. The data from ABB is stronger in this sense, probably due to the fact that it all comes from developers. In the other hand, the UDC data contains more variety of users and provokes a variety of activities and practices that are harder to cluster. 
 
 
 
 \begin{figure}[!ht]
-	\caption{Silhouette analysis of the clustering of chunks for UDC (top) and ABB (bottom).}
+
 	\centering		
 	\includegraphics[width=0.7\textwidth]{Figures/UDC_silhouette_chunks}
 	\includegraphics[width=0.7\textwidth]{Figures/ABB_silhouette_chunks}	
-	\label{silhouette_chunks}
+	\caption{Silhouette analysis of the clustering of chunks for UDC (top) and ABB (bottom).}
+		\label{silhouette_chunks}
 \end{figure}
 
 
 \begin{figure}[!ht]
-	\caption{Silhouette analysis of the clustering of sessions for UDC (top) and ABB (bottom).}
 	\centering		
 	\includegraphics[width=0.7\textwidth]{Figures/UDC_silhouette_sessions}
 	\includegraphics[width=0.7\textwidth]{Figures/ABB_silhouette_sessions}	
+	\caption{Silhouette analysis of the clustering of sessions for UDC (top) and ABB (bottom).}
 	\label{silhouette_sessions}
 \end{figure}
 

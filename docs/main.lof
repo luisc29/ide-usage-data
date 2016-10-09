@@ -8,9 +8,10 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Boxplots showing the relation between the number of edits and selection events per minute, the edit ratio, and the number of interruptions. }}{19}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Median values of edits and selection events per minute, and the edit ratio according to the number of interruptions and proportion of prolonged interruptions.}}{22}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Local effect of an interruption in the user activity.}}{24}
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Cluster of sessions in UDC (left) and ABB (right).}}{38}
-\contentsline {figure}{\numberline {4.5}{\ignorespaces Silhouette analysis of the clustering of chunks for UDC (top) and ABB (bottom).}}{39}
-\contentsline {figure}{\numberline {4.6}{\ignorespaces Silhouette analysis of the clustering of sessions for UDC (top) and ABB (bottom).}}{40}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Boxplots showing the relation between the number of edits and selection events per minute, the edit ratio, and the number of interruptions. \relax }}{32}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Median values of edits and selection events per minute, and the edit ratio according to the number of interruptions and proportion of prolonged interruptions.\relax }}{36}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Local effect of an interruption in the user activity.\relax }}{38}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Cluster of sessions in UDC (left) and ABB (right).\relax }}{57}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Silhouette analysis of the clustering of chunks for UDC (top) and ABB (bottom).\relax }}{58}
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Silhouette analysis of the clustering of sessions for UDC (top) and ABB (bottom).\relax }}{59}
+\addvspace {10\p@ }

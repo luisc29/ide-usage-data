@@ -9,39 +9,42 @@
 % El estudiante es libre de modificar este archivo a su gusto
 % 
 \documentclass{tesisITAM}
+\usepackage[left=3.5cm, right=3.5cm]{geometry}
 \usepackage[utf8]{inputenc}
 \usepackage[numbers]{natbib}
 \usepackage{array}
+\usepackage[labelfont=bf, justification=centering]{caption}
 
-\title{ANÁLISIS DE PATRONES DE TRABAJO DE PROGRAMADORES CON DATOS DE INTERACCIÓN}
+\title{INTERRUPCIONES Y PATRONES DE TRABAJO DE PROGRAMADORES EN DATOS DE INTERACCIÓN}
 \author{LUIS CARLOS CRUZ DÍAZ}
 \degree{MAESTRO EN CIENCIAS EN COMPUTACIÓN}
 \advisor{DR. VÍCTOR MANUEL GONZÁLEZ Y GONZÁLEZ \\* DR. ROMAIN ROBBES}
 \year{2016}
 
 \begin{document}
-
+	
 	\pagenumbering{gobble}
 	\maketitle
 	\publicationrights
+	
+	\large
 
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	% ABSTRACT
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+	
 	\begin{abstract}{english}
-		Este documento presenta una plantilla para usar en las tesis y tesinas del ITAM. Se provee de manera gratuita y sin ninguna responsabilidad bajo la licencia \emph{creative commons BY-SA 3.0}.
+		En este trabajo presentamos un análisis de los efectos de interrupciones de trabajo en la productividad de programadores y una caracterización de actividades y patrones de trabajo con datos de uso provienientes de dos fuentes: Eclipse Usage Data Collector y Codealike. Midiendo la productividad con métricas de intensidad de trabajo, observamos bajos niveles de productividad cuando se tienen un alto número de interrupciones, interrupciones prolongadas y un efecto negativo pronunciado en los minutos inmediatos antes y después de la interrupción. Además, usando técnicas de clusterización, identificamos las actividades realizadas por programadores y un conjunto de patrones de actividad efectuados a lo largo de sesiones de trabajo.
 	\end{abstract}
 
 	\begin{abstract}{english}
-		In this work we present a template for thesis and titulation works presented at ITAM. It is provided freely and without any responsability under the \emph{creative commons BY-SA 3.0}. 
+		In this work we present an analysis of the effects of interruptions of work in the productivity of developers and a characterization of activities and working patterns with usage data from two sources: Eclipse Usage Data Collector and Codealike. Measuring the productivity with work intensity metrics, we observed lower productivity rates when having a high number of interruptions, prolonged interruptions and a pronounced effect in the immediate minutes before and after an interruption. Also, using clustering techniques we identified activities performed by developers and a set of common working patterns executed throughout working sessions.
 	\end{abstract}
 
 
 	\selectlanguage{english}
 	\setcounter{page}{1}
 	\pagenumbering{roman}
-
 	\tableofcontents
 	\listoffigures
 	\listoftables
@@ -62,7 +65,7 @@
 
 	 \include{Chapters/results}
 
-	% \include{Chapters/conclusions}
+	 \include{Chapters/conclusions}
 
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	% APPENDIX

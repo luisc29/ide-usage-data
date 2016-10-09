@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.7.15)  16 SEP 2016 14:17
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.7.15)  9 OCT 2016 15:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -153,8 +153,8 @@ Overfull \hbox (47.18497pt too wide) in paragraph at lines 11--11
  []
 
 ! Undefined control sequence.
-l.13 		{\huge
-              \thetitle}\\
+l.15 			{\huge
+               \thetitle}\\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -162,8 +162,8 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.13 		{\huge \thetitle
-                       }\\
+l.15 			{\huge \thetitle
+                        }\\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -177,15 +177,15 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.13 		{\huge \thetitle}\\
-                          
+l.15 			{\huge \thetitle}\\
+                           
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 ! Undefined control sequence.
-l.17 		{\Large
-               \thethesis } \\
+l.19 			{\Large
+                \thethesis } \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -193,7 +193,68 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.17 		{\Large \thethesis
+l.19 			{\Large \thethesis
+                           } \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.19 			{\Large \thethesis } \\
+                               
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+Overfull \hbox (31.12967pt too wide) in paragraph at lines 21--21
+ []\OT1/cmr/m/n/14.4 QUE 
+ []
+
+
+Overfull \hbox (39.9346pt too wide) in paragraph at lines 21--21
+ \OT1/cmr/m/n/14.4 PARA 
+ []
+
+
+Overfull \hbox (71.26756pt too wide) in paragraph at lines 21--21
+ \OT1/cmr/m/n/14.4 OBTENER 
+ []
+
+
+Overfull \hbox (18.40314pt too wide) in paragraph at lines 21--21
+ \OT1/cmr/m/n/14.4 EL 
+ []
+
+
+Overfull \hbox (53.74443pt too wide) in paragraph at lines 21--21
+ \OT1/cmr/m/n/14.4 GRADO 
+ []
+
+
+Overfull \hbox (20.36145pt too wide) in paragraph at lines 21--21
+ \OT1/cmr/m/n/14.4 DE 
+ []
+
+! Undefined control sequence.
+l.23 			{\Large
+                \thedegree} \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.23 			{\Large \thedegree
                           } \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -208,40 +269,20 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.17 		{\Large \thethesis } \\
+l.23 			{\Large \thedegree} \\
                               
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
-Missing character: There is no Q in font nullfont!
-Missing character: There is no U in font nullfont!
-Missing character: There is no E in font nullfont!
-Missing character: There is no P in font nullfont!
-Missing character: There is no A in font nullfont!
-Missing character: There is no R in font nullfont!
-Missing character: There is no A in font nullfont!
-Missing character: There is no O in font nullfont!
-Missing character: There is no B in font nullfont!
-Missing character: There is no T in font nullfont!
-Missing character: There is no E in font nullfont!
-Missing character: There is no N in font nullfont!
-Missing character: There is no E in font nullfont!
-Missing character: There is no R in font nullfont!
-Missing character: There is no E in font nullfont!
-Missing character: There is no L in font nullfont!
-Missing character: There is no T in font nullfont!
-Missing character: There is no √ in font nullfont!
-Missing character: There is no ç in font nullfont!
-Missing character: There is no T in font nullfont!
-Missing character: There is no U in font nullfont!
-Missing character: There is no L in font nullfont!
-Missing character: There is no O in font nullfont!
-Missing character: There is no D in font nullfont!
-Missing character: There is no E in font nullfont!
+
+Overfull \hbox (77.13751pt too wide) in paragraph at lines 25--25
+ []\OT1/cmr/m/n/14.4 PRESENTA 
+ []
+
 ! Undefined control sequence.
-l.21 		{\Large
-               \thedegree} \\
+l.27 			{\Large
+                \theauthor} \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -249,85 +290,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.21 		{\Large \thedegree
-                         } \\
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.21 		{\Large \thedegree} \\
-                             
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-Missing character: There is no P in font nullfont!
-Missing character: There is no R in font nullfont!
-Missing character: There is no E in font nullfont!
-Missing character: There is no S in font nullfont!
-Missing character: There is no E in font nullfont!
-Missing character: There is no N in font nullfont!
-Missing character: There is no T in font nullfont!
-Missing character: There is no A in font nullfont!
-! Undefined control sequence.
-l.25 		{\Large
-               \theauthor} \\
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-l.25 		{\Large \theauthor
-                         } \\
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.25 		{\Large \theauthor} \\
-                             
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-Missing character: There is no A in font nullfont!
-Missing character: There is no S in font nullfont!
-Missing character: There is no E in font nullfont!
-Missing character: There is no S in font nullfont!
-Missing character: There is no O in font nullfont!
-Missing character: There is no R in font nullfont!
-Missing character: There is no E in font nullfont!
-Missing character: There is no S in font nullfont!
-! Undefined control sequence.
-l.28 		{\Large
-               \theadvisor} \\
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-l.28 		{\Large \theadvisor
+l.27 			{\Large \theauthor
                           } \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -342,27 +305,29 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.28 		{\Large \theadvisor} \\
+l.27 			{\Large \theauthor} \\
                               
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
-Missing character: There is no M in font nullfont!
-Missing character: There is no √ in font nullfont!
-Missing character: There is no â in font nullfont!
-Missing character: There is no X in font nullfont!
-Missing character: There is no I in font nullfont!
-Missing character: There is no C in font nullfont!
-Missing character: There is no O in font nullfont!
-Missing character: There is no , in font nullfont!
-Missing character: There is no D in font nullfont!
-Missing character: There is no . in font nullfont!
-Missing character: There is no F in font nullfont!
-Missing character: There is no . in font nullfont!
+
+Overfull \hbox (74.59917pt too wide) in paragraph at lines 29--29
+ []\OT1/cmr/m/n/14.4 ASESORES 
+ []
+
 ! Undefined control sequence.
-l.31 			M√âXICO, D.F. & \hspace{60pt} & \theyear
-                                                
+l.30 			{\Large
+                \theadvisor} \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.30 			{\Large \theadvisor
+                           } \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -370,7 +335,36 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-Overfull \hbox (60.00002pt too wide) in paragraph at lines 30--33
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.30 			{\Large \theadvisor} \\
+                               
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+LaTeX Font Info:    Calculating math sizes for size <14> on input line 32.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <14> on input line 32.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <9.79996> on input line 32.
+Missing character: There is no √ in font cmr12!
+Missing character: There is no â in font cmr12!
+! Undefined control sequence.
+l.33 				M√âXICO, D.F. & \hspace{60pt} & \theyear
+                                                 
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (146.1457pt too wide) in paragraph at lines 32--36
  [][] 
  []
 
@@ -381,7 +375,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.34 \end{titlepage}
+l.37 \end{titlepage}
                     
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -395,11 +389,11 @@ or  <return>  to continue without it.
 
  
 Here is how much of TeX's memory you used:
- 16 strings out of 493029
- 242 string characters out of 6136234
+ 30 strings out of 493029
+ 445 string characters out of 6136234
  54571 words of memory out of 5000000
- 3650 multiletter control sequences out of 15000+600000
- 4287 words of font info for 16 fonts, out of 8000000 for 9000
+ 3662 multiletter control sequences out of 15000+600000
+ 5200 words of font info for 19 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 19i,7n,12p,101b,224s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 21i,7n,12p,101b,224s stack positions out of 5000i,500n,10000p,200000b,80000s
 !  ==> Fatal error occurred, no output PDF file produced!

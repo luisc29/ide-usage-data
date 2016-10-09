@@ -7,11 +7,73 @@ Ahmadzadeh, M., D.~Elliman, and C.~Higgins (2005).
   students.
 \newblock {\em ACM SIGCSE Bulletin\/}~{\em 37\/}(3), 84--88.
 
+\bibitem[\protect\citeauthoryear{Altmann and Trafton}{Altmann and
+  Trafton}{2004}]{AT04}
+Altmann, E.~M. and J.~G. Trafton (2004).
+\newblock Task interruption: Resumption lag and the role of cues.
+\newblock Technical report, DTIC Document.
+
 \bibitem[\protect\citeauthoryear{Aral, Brynjolfsson, and Van~Alstyne}{Aral
   et~al.}{2012}]{ABV12}
 Aral, S., E.~Brynjolfsson, and M.~Van~Alstyne (2012).
 \newblock Information, technology, and information worker productivity.
 \newblock {\em Information Systems Research\/}~{\em 23\/}(3-part-2), 849--867.
+
+\bibitem[\protect\citeauthoryear{Augustine, Francis, Qu, Shepherd, Snipes,
+  Br{\"a}unlich, and Fritz}{Augustine et~al.}{2015}]{AFQ15}
+Augustine, V., P.~Francis, X.~Qu, D.~Shepherd, W.~Snipes, C.~Br{\"a}unlich, and
+  T.~Fritz (2015).
+\newblock A field study on fostering structural navigation with prodet.
+\newblock In {\em Proceedings of the 37th International Conference on Software
+  Engineering-Volume 2}, pp.\  229--238. IEEE Press.
+
+\bibitem[\protect\citeauthoryear{Bailey, Konstan, and Carlis}{Bailey
+  et~al.}{2001}]{BKC01}
+Bailey, B.~P., J.~A. Konstan, and J.~V. Carlis (2001).
+\newblock The effects of interruptions on task performance, annoyance, and
+  anxiety in the user interface.
+\newblock In {\em Proceedings of INTERACT}, Volume~1, pp.\  593--601.
+
+\bibitem[\protect\citeauthoryear{Baracchi}{Baracchi}{2014}]{B14}
+Baracchi, L. (2014).
+\newblock {\em Visualizing Developers Interactions with the IDE}.
+\newblock Ph.\ D. thesis, Universit{\`a} della Svizzera Italiana.
+
+\bibitem[\protect\citeauthoryear{Beller, Gousios, and Zaidman}{Beller
+  et~al.}{2015}]{BGZ15}
+Beller, M., G.~Gousios, and A.~Zaidman (2015).
+\newblock How (much) do developers test?
+\newblock In {\em 2015 IEEE/ACM 37th IEEE International Conference on Software
+  Engineering}, Volume~2, pp.\  559--562. IEEE.
+
+\bibitem[\protect\citeauthoryear{Burgess, Jackson, and Edwards}{Burgess
+  et~al.}{2005}]{BJE05}
+Burgess, A., T.~W. Jackson, and J.~Edwards (2005).
+\newblock Optimising the email communication environment.
+\newblock {\em Managing modern organizations with information technology: IRMA
+  2005 proceedings\/}.
+
+\bibitem[\protect\citeauthoryear{Burmistrov and Leonova}{Burmistrov and
+  Leonova}{1996}]{BL96}
+Burmistrov, I. and A.~Leonova (1996).
+\newblock Effects of interruptions on the computerised clerical task
+  performance.
+\newblock {\em Human-computer interaction: Human aspects of business computing.
+  Proceedings of EWHCI\/}~{\em 96}, 21--29.
+
+\bibitem[\protect\citeauthoryear{Cades, Davis, Trafton, and Monk}{Cades
+  et~al.}{2007}]{CDT07}
+Cades, D.~M., D.~A.~B. Davis, J.~G. Trafton, and C.~A. Monk (2007).
+\newblock Does the difficulty of an interruption affect our ability to resume?
+\newblock In {\em Proceedings of the Human Factors and Ergonomics Society
+  Annual Meeting}, Volume~51, pp.\  234--238. SAGE Publications.
+
+\bibitem[\protect\citeauthoryear{Carter and Dewan}{Carter and
+  Dewan}{2010}]{CD10}
+Carter, J. and P.~Dewan (2010).
+\newblock Are you having difficulty?
+\newblock In {\em Proceedings of the 2010 ACM conference on Computer supported
+  cooperative work}, pp.\  211--214. ACM.
 
 \bibitem[\protect\citeauthoryear{Cohen}{Cohen}{1994}]{C94}
 Cohen, J. (1994).
@@ -32,11 +94,24 @@ Corley, C.~S., F.~Lois, and S.~Quezada (2015).
 \newblock In {\em Software Maintenance and Evolution (ICSME), 2015 IEEE
   International Conference on}, pp.\  381--390. IEEE.
 
+\bibitem[\protect\citeauthoryear{Cutrell, Czerwinski, and Horvitz}{Cutrell
+  et~al.}{2001}]{CCH01}
+Cutrell, E., M.~Czerwinski, and E.~Horvitz (2001).
+\newblock Notification, disruption, and memory: Effects of messaging
+  interruptions on memory and performance.
+
 \bibitem[\protect\citeauthoryear{Czerwinski, Horvitz, and Wilhite}{Czerwinski
   et~al.}{2004}]{CHW04}
 Czerwinski, M., E.~Horvitz, and S.~Wilhite (2004).
 \newblock A diary study of task switching and interruptions.
 \newblock In {\em Proceedings of {CHI} 2004}, pp.\  175--182.
+
+\bibitem[\protect\citeauthoryear{Eyrolle and Cellier}{Eyrolle and
+  Cellier}{2000}]{EC00}
+Eyrolle, H. and J.-M. Cellier (2000).
+\newblock The effects of interruptions in work activity: Field and laboratory
+  results.
+\newblock {\em Applied ergonomics\/}~{\em 31\/}(5), 537--543.
 
 \bibitem[\protect\citeauthoryear{Fayyad, Piatetsky-Shapiro, and Smyth}{Fayyad
   et~al.}{1996}]{FPG96}
@@ -44,10 +119,31 @@ Fayyad, U., G.~Piatetsky-Shapiro, and P.~Smyth (1996).
 \newblock From data mining to knowledge discovery in databases.
 \newblock {\em AI magazine\/}~{\em 17\/}(3), 37.
 
+\bibitem[\protect\citeauthoryear{Finlay, Pears, and Connor}{Finlay
+  et~al.}{2014}]{FPC14}
+Finlay, J., R.~Pears, and A.~M. Connor (2014).
+\newblock Data stream mining for predicting software build outcomes using
+  source code metrics.
+\newblock {\em Information and Software Technology\/}~{\em 56\/}(2), 183--198.
+
+\bibitem[\protect\citeauthoryear{Fjeldstad and Hamlen}{Fjeldstad and
+  Hamlen}{1983}]{FH83}
+Fjeldstad, R.~K. and W.~T. Hamlen (1983).
+\newblock Application program maintenance study: Report to our respondents.
+\newblock {\em Proceedings Guide\/}~{\em 48}.
+
 \bibitem[\protect\citeauthoryear{Frey and Dueck}{Frey and Dueck}{2007}]{FD07}
 Frey, B.~J. and D.~Dueck (2007).
 \newblock Clustering by passing messages between data points.
 \newblock {\em science\/}~{\em 315\/}(5814), 972--976.
+
+\bibitem[\protect\citeauthoryear{Fritz, Murphy, and Hill}{Fritz
+  et~al.}{2007}]{FMH07}
+Fritz, T., G.~C. Murphy, and E.~Hill (2007).
+\newblock Does a programmer's activity indicate knowledge of code?
+\newblock In {\em Proceedings of the the 6th joint meeting of the European
+  software engineering conference and the ACM SIGSOFT symposium on The
+  foundations of software engineering}, pp.\  341--350. ACM.
 
 \bibitem[\protect\citeauthoryear{Gonz{\'{a}}lez and Mark}{Gonz{\'{a}}lez and
   Mark}{2004}]{GM04}
@@ -55,6 +151,24 @@ Gonz{\'{a}}lez, V.~M. and G.~Mark (2004).
 \newblock "constant, constant, multi-tasking craziness": managing multiple
   working spheres.
 \newblock In {\em Proceedings of {CHI} 2004}, pp.\  113--120.
+
+\bibitem[\protect\citeauthoryear{Hassan}{Hassan}{2004}]{H04}
+Hassan, A. (2004).
+\newblock Mining software repositories to assist developers and support
+  managers.
+
+\bibitem[\protect\citeauthoryear{Hassan}{Hassan}{2008}]{H08}
+Hassan, A.~E. (2008).
+\newblock The road ahead for mining software repositories.
+\newblock In {\em Frontiers of Software Maintenance, 2008. FoSM 2008.}, pp.\
+  48--57. IEEE.
+
+\bibitem[\protect\citeauthoryear{Hassan and Xie}{Hassan and Xie}{2010}]{HX10}
+Hassan, A.~E. and T.~Xie (2010).
+\newblock Software intelligence: the future of mining software engineering
+  data.
+\newblock In {\em Proceedings of the FSE/SDP workshop on Future of software
+  engineering research}, pp.\  161--166. ACM.
 
 \bibitem[\protect\citeauthoryear{Iqbal and Horvitz}{Iqbal and
   Horvitz}{2007}]{IH07}
@@ -80,6 +194,22 @@ Kersten, M. and G.~C. Murphy (2006).
 \newblock {Using task context to improve programmer productivity}.
 \newblock In {\em Proceedings of {FSE} 2006}, pp.\  1--11.
 
+\bibitem[\protect\citeauthoryear{Khomh, Dhaliwal, Zou, and Adams}{Khomh
+  et~al.}{2012}]{KDZ12}
+Khomh, F., T.~Dhaliwal, Y.~Zou, and B.~Adams (2012).
+\newblock Do faster releases improve software quality? an empirical case study
+  of mozilla firefox.
+\newblock In {\em Mining Software Repositories (MSR), 2012 9th IEEE Working
+  Conference on}, pp.\  179--188. IEEE.
+
+\bibitem[\protect\citeauthoryear{Ko, Myers, Coblenz, and Aung}{Ko
+  et~al.}{2006}]{KMC06}
+Ko, A.~J., B.~A. Myers, M.~J. Coblenz, and H.~H. Aung (2006).
+\newblock An exploratory study of how developers seek, relate, and collect
+  relevant information during software maintenance tasks.
+\newblock {\em IEEE Transactions on software engineering\/}~{\em 32\/}(12),
+  971--987.
+
 \bibitem[\protect\citeauthoryear{LaToza, Venolia, and DeLine}{LaToza
   et~al.}{2006}]{LVD06}
 LaToza, T.~D., G.~Venolia, and R.~DeLine (2006).
@@ -87,11 +217,34 @@ LaToza, T.~D., G.~Venolia, and R.~DeLine (2006).
 \newblock In {\em Proceedings of the 28th international conference on Software
   engineering}, pp.\  492--501. ACM.
 
+\bibitem[\protect\citeauthoryear{Luong and Rogelberg}{Luong and
+  Rogelberg}{2005}]{LR05}
+Luong, A. and S.~G. Rogelberg (2005).
+\newblock Meetings and more meetings: The relationship between meeting load and
+  the daily well-being of employees.
+\newblock {\em Group Dynamics: Theory, Research, and Practice\/}~{\em 9\/}(1),
+  58.
+
+\bibitem[\protect\citeauthoryear{Mark, Gonzalez, and Harris}{Mark
+  et~al.}{2005}]{MGH05}
+Mark, G., V.~M. Gonzalez, and J.~Harris (2005).
+\newblock No task left behind?: examining the nature of fragmented work.
+\newblock In {\em Proceedings of the SIGCHI conference on Human factors in
+  computing systems}, pp.\  321--330. ACM.
+
 \bibitem[\protect\citeauthoryear{Mark, Gudith, and Klocke}{Mark
   et~al.}{2008}]{MGK08}
 Mark, G., D.~Gudith, and U.~Klocke (2008).
 \newblock The cost of interrupted work: more speed and stress.
 \newblock In {\em Proceedings of {CHI} 2008}, pp.\  107--110.
+
+\bibitem[\protect\citeauthoryear{Meneely, Williams, Snipes, and
+  Osborne}{Meneely et~al.}{2008}]{MWS08}
+Meneely, A., L.~Williams, W.~Snipes, and J.~Osborne (2008).
+\newblock Predicting failures with developer networks and social network
+  analysis.
+\newblock In {\em Proceedings of the 16th ACM SIGSOFT International Symposium
+  on Foundations of software engineering}, pp.\  13--23. ACM.
 
 \bibitem[\protect\citeauthoryear{Minelli, Mocci, Lanza, and Kobayashi}{Minelli
   et~al.}{2014}]{MMLK14}
@@ -121,6 +274,13 @@ Murphy-Hill, E., C.~Parnin, and A.~P. Black (2012).
 \newblock {\em IEEE Transactions on Software Engineering\/}~{\em 38\/}(1),
   5--18.
 
+\bibitem[\protect\citeauthoryear{Nagappan, Ball, and Zeller}{Nagappan
+  et~al.}{2006}]{NBZ06}
+Nagappan, N., T.~Ball, and A.~Zeller (2006).
+\newblock Mining metrics to predict component failures.
+\newblock In {\em Proceedings of the 28th international conference on Software
+  engineering}, pp.\  452--461. ACM.
+
 \bibitem[\protect\citeauthoryear{Parnin and DeLine}{Parnin and
   DeLine}{2010}]{PD10}
 Parnin, C. and R.~DeLine (2010).
@@ -140,19 +300,36 @@ Parnin, C. and S.~Rugaber (2012).
 \newblock In {\em Program Comprehension (ICPC), 2012 IEEE 20th International
   Conference on}, pp.\  123--132. IEEE.
 
-\bibitem[\protect\citeauthoryear{Rousseeuw}{Rousseeuw}{1987a}]{R87}
+\bibitem[\protect\citeauthoryear{Parnin}{Parnin}{2014}]{P14}
+Parnin, C.~J. (2014).
+\newblock Supporting interrupted programming tasks with memory-based aids.
+
+\bibitem[\protect\citeauthoryear{Roehm, Tiarks, Koschke, and Maalej}{Roehm
+  et~al.}{2012}]{RTK12}
+Roehm, T., R.~Tiarks, R.~Koschke, and W.~Maalej (2012).
+\newblock How do professional developers comprehend software?
+\newblock In {\em Proceedings of the 34th International Conference on Software
+  Engineering}, pp.\  255--265. IEEE Press.
+
+\bibitem[\protect\citeauthoryear{Rousseeuw}{Rousseeuw}{1987a}]{RP87}
 Rousseeuw, P.~J. (1987a).
 \newblock Silhouettes: a graphical aid to the interpretation and validation of
   cluster analysis.
 \newblock {\em Journal of computational and applied mathematics\/}~{\em 20},
   53--65.
 
-\bibitem[\protect\citeauthoryear{Rousseeuw}{Rousseeuw}{1987b}]{RP87}
+\bibitem[\protect\citeauthoryear{Rousseeuw}{Rousseeuw}{1987b}]{R87}
 Rousseeuw, P.~J. (1987b).
 \newblock Silhouettes: a graphical aid to the interpretation and validation of
   cluster analysis.
 \newblock {\em Journal of computational and applied mathematics\/}~{\em 20},
   53--65.
+
+\bibitem[\protect\citeauthoryear{Rugaber}{Rugaber}{1995}]{R95}
+Rugaber, S. (1995).
+\newblock Program comprehension.
+\newblock {\em Encyclopedia of Computer Science and Technology\/}~{\em
+  35\/}(20), 341--368.
 
 \bibitem[\protect\citeauthoryear{Sanchez, Robbes, and Gonzalez}{Sanchez
   et~al.}{2015}]{SRV15}
@@ -160,6 +337,13 @@ Sanchez, H., R.~Robbes, and V.~M. Gonzalez (2015).
 \newblock An empirical study of work fragmentation in software evolution tasks.
 \newblock In {\em 2015 IEEE 22nd International Conference on Software Analysis,
   Evolution, and Reengineering (SANER)}, pp.\  251--260. IEEE.
+
+\bibitem[\protect\citeauthoryear{Singer, Lethbridge, Vinson, and
+  Anquetil}{Singer et~al.}{2010}]{SLV10}
+Singer, J., T.~Lethbridge, N.~Vinson, and N.~Anquetil (2010).
+\newblock An examination of software engineering work practices.
+\newblock In {\em CASCON First Decade High Impact Papers}, pp.\  174--188. IBM
+  Corp.
 
 \bibitem[\protect\citeauthoryear{Snipes, Murphy-Hill, Fritz, Vakilian,
   Damevski, Nair, and Shepherd}{Snipes et~al.}{2015}]{SnipesETALASD}
@@ -175,10 +359,23 @@ Struyf, A., M.~Hubert, and P.~Rousseeuw (1997, 2).
 \newblock Clustering in an object-oriented environment.
 \newblock {\em Journal of Statistical Software\/}~{\em 1\/}(4), 1--30.
 
+\bibitem[\protect\citeauthoryear{T{\'e}tard}{T{\'e}tard}{1999}]{T99}
+T{\'e}tard, F. (1999).
+\newblock {\em On Fragmentation of Working Time: A Study of Causes and Effects
+  of Work Interruptions}.
+\newblock {\AA}bo Akademi University.
+
 \bibitem[\protect\citeauthoryear{Van~Solingen, Berghout, and
   Van~Latum}{Van~Solingen et~al.}{1998}]{SBV98}
 Van~Solingen, R., E.~Berghout, and F.~Van~Latum (1998).
 \newblock Interrupts: just a minute never is.
 \newblock {\em IEEE software\/}~(5), 97--103.
+
+\bibitem[\protect\citeauthoryear{Zimmermann and Nagappan}{Zimmermann and
+  Nagappan}{2008}]{ZN08}
+Zimmermann, T. and N.~Nagappan (2008).
+\newblock Predicting defects using network analysis on dependency graphs.
+\newblock In {\em Proceedings of the 30th international conference on Software
+  engineering}, pp.\  531--540. ACM.
 
 \end{thebibliography}

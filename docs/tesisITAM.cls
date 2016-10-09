@@ -9,6 +9,8 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%% Opcion para declarar tesina %%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand\@thesis{TESIS}
+
+
 \DeclareOption{tesina}{\renewcommand{\@thesis}{TESINA}}
 
 \DeclareOption*{%
@@ -19,6 +21,7 @@
 
 % Usamos como clase base el de report
 \LoadClass{report}
+
 
 %Paquetes requeridos
 \RequirePackage{graphicx}
@@ -36,7 +39,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%% Espaciados %%%%%%%%%%%%%%%%%%%%%%%%%%
 \parindent 0pt
 \parskip 1ex
-\renewcommand{\baselinestretch}{1.33}
+\renewcommand{\baselinestretch}{1.6}
 
 %%%%%%%%%%%%%%%%% Usar numeros romanos en las subsecciones %%%%%%%%%%%%%%%%%%%%%%%
 \renewcommand\thesubsubsection{\Roman{subsubsection}}
