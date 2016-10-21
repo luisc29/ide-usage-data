@@ -378,4 +378,11 @@ Zimmermann, T. and N.~Nagappan (2008).
 \newblock In {\em Proceedings of the 30th international conference on Software
   engineering}, pp.\  531--540. ACM.
 
+\bibitem[\protect\citeauthoryear{Zimmermann, Zeller, Weissgerber, and
+  Diehl}{Zimmermann et~al.}{2005}]{ZZW05}
+Zimmermann, T., A.~Zeller, P.~Weissgerber, and S.~Diehl (2005).
+\newblock Mining version histories to guide software changes.
+\newblock {\em IEEE Transactions on Software Engineering\/}~{\em 31\/}(6),
+  429--445.
+
 \end{thebibliography}

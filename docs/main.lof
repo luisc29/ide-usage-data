@@ -6,12 +6,15 @@
 \select@language {english}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces User interface of the Eclipse IDE. \relax }}{14}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Boxplots showing the relation between the number of edits and selection events per minute, the edit ratio, and the number of interruptions. \relax }}{32}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Median values of edits and selection events per minute, and the edit ratio according to the number of interruptions and proportion of prolonged interruptions.\relax }}{36}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Local effect of an interruption in the user activity.\relax }}{38}
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Cluster of sessions in UDC (left) and ABB (right).\relax }}{57}
-\contentsline {figure}{\numberline {4.5}{\ignorespaces Silhouette analysis of the clustering of chunks for UDC (top) and ABB (bottom).\relax }}{58}
-\contentsline {figure}{\numberline {4.6}{\ignorespaces Silhouette analysis of the clustering of sessions for UDC (top) and ABB (bottom).\relax }}{59}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Boxplots showing the relation between the number of edits and selection events per minute, the edit ratio, and the number of interruptions. \relax }}{33}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Median values of edits and selection events per minute, and the edit ratio according to the number of interruptions and proportion of prolonged interruptions.\relax }}{37}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Local effect of an interruption in the user activity.\relax }}{40}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Most common patterns of activities in ABB.\relax }}{59}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Most common patterns of activities in UDC.\relax }}{61}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Silhouette analysis of the clustering of chunks for UDC (top) and ABB (bottom).\relax }}{63}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Silhouette analysis of the clustering of sessions for UDC (top) and ABB (bottom).\relax }}{64}
 \addvspace {10\p@ }

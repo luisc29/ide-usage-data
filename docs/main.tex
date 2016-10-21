@@ -13,7 +13,11 @@
 \usepackage[utf8]{inputenc}
 \usepackage[numbers]{natbib}
 \usepackage{array}
+\usepackage{changebar}
 \usepackage[labelfont=bf, justification=centering]{caption}
+\usepackage{ifthen}
+\usepackage{color}
+
 
 \title{INTERRUPCIONES Y PATRONES DE TRABAJO DE PROGRAMADORES EN DATOS DE INTERACCIÓN}
 \author{LUIS CARLOS CRUZ DÍAZ}
@@ -22,6 +26,32 @@
 \year{2016}
 
 \begin{document}
+	\newboolean{showchangedforreviewer}
+	\setboolean{showchangedforreviewer}{true} % toggle to show or hide sentences and paragraphs requested by the reviewers.
+	\ifthenelse{\boolean{showchangedforreviewer}} {
+		
+		\newcommand{\changedforreviewer}[1]{\textcolor{blue}{#1}}
+		
+		
+		
+		\newenvironment{changedforreviewerlong}
+			{\begin{color}{blue}}
+			{\end{color}}
+		
+	}{
+	
+		\newcommand{\changedforreviewer}[1]{#1}
+		
+		
+		
+		\newenvironment{changedforreviewerlong}%
+		
+		{}
+		
+		{}
+		
+	}
+
 	
 	\pagenumbering{gobble}
 	\maketitle

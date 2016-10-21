@@ -1,23 +1,32 @@
-\chapter{Results}
+%\chapter{Results}
 
 
-This sections corresponds to the phases Data Mining and Interpretation of the Knowledge Discovery in Databases process. Here, we present two different analyses using the UDC and ABB datasets:
-\begin{enumerate}
-	\item Analysis of the impact of interruptions of work in the programmers' performance and activities
-	\item Identification and characterization of the programmers' activities at low level (activities within 5 minutes) and high level, covering working sessions.
-\end{enumerate}
+%This sections corresponds to the phases Data Mining and Interpretation of the Knowledge Discovery in Databases process. Here, we present two different analyses using the UDC and ABB datasets:
+%\begin{enumerate}
+	%\item Analysis of the impact of interruptions of work in the programmers' performance and activities
+	%\item Identification and characterization of the programmers' activities at low level (activities within 5 minutes) and high level, covering working sessions.
+%\end{enumerate}
 
-First, we present the analysis of the impact of interruptions in the following section.
+%First, we present the analysis of the impact of interruptions in the following section.
 
-\section{Interruptions of work and productivity}
-In this section we present an analysis of the effects of interruptions of work in programmers' productivity, a phenomenon that has been previously investigated via field studies and to a wider spectrum of workers \cite{GM04, MGK08, CHW04, ABV12} instead of focusing on the population of programmers like this work. These studies agree that interruptions of work can be detrimental to the programmer performance, for every interruption demands a recovery or resumption time to restore the lost context.
+\chapter{Interruptions of work and productivity}
+In this chapter we present an analysis of the effects of interruptions of work in programmers' productivity, a phenomenon that has been previously investigated via field studies and to a wider spectrum of workers \cite{GM04, MGK08, CHW04, ABV12} instead of focusing on the population of programmers like this work. These studies agree that interruptions of work can be detrimental to the programmer performance, for every interruption demands a recovery or resumption time to restore the lost context.
 
 To assess the impact of interruptions we use a set of metrics described in Chapter 3: edits per minute, selections per minute and edit ratio. We measure the effects on productivity using mainly the edit and selection events per minute as indicators. The edit ratio \cite{KM06} might be also a good indicator, under the assumption that a productive programmer will execute more editing activities than selection or navigation events. However, this is not always the case, given that depending on the role of the worker, selection events can be equivalent to the usage of a designing or reporting tool.
 
-The results presented in this section correspond to a replica of a published paper \cite{SRV15} in the 22nd IEEE International Conference on Software Analysis, Evolution, and Reengineering. That paper included the same analyses described in the next three subsections (4.1.1 to 4.1.3) but with a different dataset (Mylyn). During this work we improved some of the methodology and extended the results to include a detailed analysis of the Recovery Time (subsection 4.1.4). The extended version is now being submitted to the Journal of Software: Evolution and Process.
+The results presented in this section correspond to a replica of a published paper \cite{SRV15} in the 22nd IEEE International Conference on Software Analysis, Evolution, and Reengineering. That paper included the same analyses described in the next three sections (4.1 to 4.3) but with a different dataset (Mylyn). During this work we improved some of the methodology and extended the results to include a detailed analysis of the Recovery Time (subsection 4.1.4). The extended version is now being submitted to the Journal of Software: Evolution and Process.
+
+As we described in the Introduction, in this chapter we answer the following research questions:
+\begin{itemize}
+	\item RQ1: What is the relationship between the observed interruptions and the observed developer productivity?
+	\item RQ2: Is the observed relationship more pronounced in the presence of prolonged interruptions?
+	\item RQ3: What is the observed relationship in the vicinity of interruptions?
+	\item RQ4: What events are more common during recovery time?
+\end{itemize}
 
 
-\subsection{Relationship between the number of interruptions and productivity}
+
+\section{Relationship between the number of interruptions and productivity}
 As mentioned above, we use the metrics of edit, selection, and edit ratio as indicators of productivity. We first examine the number of edits and selections, and how their distribution varies in function of the number and type of interruptions.
 %we assume that the productivity is in function of the number of edit and selection events that the programmer performs in a trace. 
 
@@ -31,8 +40,9 @@ We split the data in five groups: The first group contains all the sessions with
 		\includegraphics[width=0.6\linewidth,clip=, angle=0]{Figures/UDC_inte_smin}  
 		\includegraphics[width=0.6\linewidth,clip=, angle=0]{Figures/UDC_inte_eratio} 
 	
-	\caption{Boxplots showing the relation between the number of edits and selection events per minute, the edit ratio, and the number of interruptions. }
+	
 	\label{fig:box_int_events}
+	\caption{Boxplots showing the relation between the number of edits and selection events per minute, the edit ratio, and the number of interruptions. }
 \end{figure}
 
 We observe that when facing zero interruptions the editions and selections per minute are greater than in sessions with one or more interruptions, and as more interruptions occur the metrics gradually decrease. There is a big difference between sessions with no interruptions and at least one in the edits per minute metric.
@@ -98,7 +108,7 @@ More importantly, we used \textit{Cliff's delta} to measure the practical signif
 	\end{tabular}
 \end{table}
 
-\subsection{Relationship between duration of interruptions and productivity}
+\section{Relationship between duration of interruptions and productivity}
 
 In this section we analyze whether or not the duration of interruptions is a factor in the relationship between interruptions and developer productivity. Under the hypothesis that prolonged interruptions require more time to recover from, we built two groups of sessions based on the proportion of long interruptions. As we described previously we consider that a prolonged interruption has a duration of $\geq$ 12 minutes, a decision based on the literature \cite{GM04, KaptelininN07}. %Prolonged interruptions could be due to an extended interruption, such as a coffee break or a meeting.
 
@@ -164,7 +174,7 @@ We tested the statistical significance of this results and show the results in t
 	\end{tabular}
 \end{table}
 
-\subsection{Local relationships between interruptions and productivity}
+\section{Local relationships between interruptions and productivity}
 The impact of work fragmentation could be more noticeable in the immediate minutes before and after an interruption occurs. On the one hand, after an interruption the programmer may carry out activities meant to recover the lost mental state, such as reading the code, debugging, reading notes and cues, and other resumption strategies \cite{PR11}. Depending on the interruption, the recovery could last about 15 minutes, according to the reports from field studies \cite{IH07, SBV98}. In the data from UDC, the sessions with duration of at least seven hours (commonly the working time of a software developer) have 11 interruptions in average; if we consider a recovery time of 15 minutes, the total time required to recover from the interruptions can be of two hours, which is about one quarter of the whole session.
 
 %\RR{expand this paragraph, since a reviewer asks explicitely for that}
@@ -189,7 +199,7 @@ Below we describe some observations:
 	\item \textit{On the left,} we observe that the number of events near the interruption also goes down well below the median value. This was more surprising at first to us. However we hypothesize that this might be because of two reasons: the programmer could have found a problem while coding, and at first would try to solve it by reading the code, switching out from the IDE, navigating the call stack and debugging, before going to ask another teammate (as documented e.g. by LaToza et al. \cite{LVD06}); this set of actions end up with an interruption and reduce the observed activity within the IDE. In the case when the interruption is imminent or expected, another possibility is that the programmer may make use of different suspension strategies such as writing physical notes, making a mental note or leaving a reminder cue on the code or window, as documented by Parnin and DeLine \cite{PD10}. These activities reduce the activity before the gap and they are seen in the interaction data mostly as selection events. The latest can be better visualized in Figure \ref{fig:udc_local_effect}, in which the UDC data has a significant decrease of edit events, being below the selection events approximately 10 minutes before the interruption.
 \end{itemize}
 
-\subsubsection{Patterns of Interruptions}
+\subsection{Patterns of Interruptions}
 Given the overall activity pattern we noticed in the local analysis, we hypothesize that there are several kinds of interruptions, matching the scenarios observed in the literature: actual interruptions distracting the programmer from the task at hand, and switching tasks in case of being stuck in the current task.
 
 We hence looked for patterns in the interruptions. After applying clustering techniques over all the subsequences, we always found the formation of three recurrent patterns that show different effects of the interruption: neutral, positive and negative. The clustering was performed with the  K-Mediods~\cite{AMP97} technique, the Silhouette metric~\cite{RP87} to interpret and evaluate the results, the Dynamic Time Warping~\cite{KE05} as distance measure, and feature extraction techniques to reduce the dimensionality.  For this reason, we classified empirically each interruption by its local effect. 
@@ -228,7 +238,7 @@ In contrast, when facing the effects of a negative interruption the metrics take
 
 In general, the effect of positive and negative interruptions seems to be reversed. The editions per minute describe better the effect and the selections do not show a major change. There is not a clear pattern during a neutral interruption.
 
-\subsection{Recovery Time after an interruption}
+\section{Recovery Time after an interruption}
 
 In the last section we saw different patterns of activity around positive and negative interruptions. In particular, we observed that the edits per minute were higher after a positive interruption and the contrary after a negative interruption.
 
@@ -294,26 +304,63 @@ Summing up, we can conclude that edition-related activities are indeed more freq
 
 Of course, this exploratory study does not allow us to confirm these hypotheses. However, the evidence we have discovered so far does not disprove them, and rather goes in the direction of our hypotheses, which means that our confidence in these hypotheses is higher as a consequence.
 
-\section{Activities and working patterns}
-There are numerous ways to identify the kind of activities and working patterns performed by programmers, like through observational studies \cite{GM04}, surveys \cite{PR11}, usage data \cite{MPB12} and activity logs \cite{CLQ15}, being the first the one that provides richer information. Usage and activity data has been widely used to analyze activity patterns from programmers as part of the Mining Software Repositories research area, but the kind of activities that can be assessed depends on the available data. In this case, our approach to identifying activities and working patterns is by analyzing the execution frequency of certain events.
+\chapter{Activities and Working Patterns}
+There are numerous ways to identify the kind of activities and working patterns performed by programmers, such as through observational studies \cite{GM04}, surveys \cite{PR11}, usage data \cite{MPB12} and activity logs \cite{CLQ15}, being the first the one that provides richer information. Usage and activity data has been widely used to analyze activity patterns from programmers as part of the Mining Software Repositories research area, but the kind of activities that can be assessed depends on the available data. In this case, our approach to identifying activities and working patterns is by analyzing the execution frequency of certain events.
 
-\subsection{Identifying activities}
-In the literature we can find evidence about the kind of activities performed by programmers, mostly from observational studies and usage data \cite{LVD06, GM04, MMLK14, MKF06}. We could have defined a set of activities based on the conclusions from these resources, but how can we assure that the same activities are present in our data? Do we have enough data to identify those activities? Is the same kind of activities identifiable in both datasets? These are some of the problems in establishing a set of activities based on related work. To avoid that we used clustering techniques to find them. This way we can find a set of common activities according to the data and the thresholds to differentiate between them.
+Recalling from the Introduction, these are the research questions we take on this chapter:
+\begin{itemize}
+	\item RQ5: What kind of activities can be identified with usage data?
+	\item RQ6: What working patterns during a session are commonly performed by developers?
+\end{itemize}
 
-During the Transformation phase we obtained a set of sessions and decomposed each into chunks of smaller size. Moreover, every one of these chunks has the proportion of execution of events by detailed type. So, the observations that were clustered are chunks and the attributes are the proportions. This means we have two datasets with 43,769 (UDC) and 23,624 (ABB) observations with 11 numerical attributes each.
+\section{Identifying activities}
+In the literature we can find evidence about the kind of activities performed by programmers, mostly from observational studies and usage data \cite{LVD06, GM04, MMLK14, MKF06}. We could have defined a set of activities based on the conclusions from these resources, but how can we assure that the same activities are present in our data? Do we have enough data to identify those activities? Is the same kind of activities identifiable in both datasets? These are some of the problems in establishing a set of activities based on related work. \begin{changedforreviewerlong}
+To avoid them, we used clustering techniques to discover the activities: they will find groups of similar chunks according to their attributes and each of these group will represent a different activity. \end{changedforreviewerlong} This way we can find a set of common activities according to the data and the thresholds to differentiate between them.
 
-As we do not know the number of activities we need an algorithm that chooses the number of clusters based on the data provided, like Mean Shift, Affinity Propagation and DBSCAN. We need an implementation that allows us to explore the values for each of the axis (attributes) of the found clusters, so we only considered Mean Shift and Affinity Propagation.
+\begin{changedforreviewerlong}
 
-Mean Shift \cite{CM02} discovers centers based on the density of samples of a set of regions whose size relies on the parameter $bandwidth$. It updates possible centroids so they are mean of the samples within a given region. Afterwards, the centers that are near-duplicate are summarized and then it presents the final set of centers. After some initial experiments, the results with this algorithm tend to contain a small number of clusters; it finds very common activities but ignores some rare that are absorbed by more general clusters. This is reflected in low average values of the distance within clusters, which is translated into bad Silhouette Coefficients, a metric described later.
+During the Transformation phase we obtained a set of sessions and decomposed each into chunks of smaller size. According to the literature \cite{GM04}, in average, a task can last for at least 3 minutes. By creating chunks of 3 to 5 minutes we try to model the minimum activity unit; some activities might be of that size but others will require several chunks to cover them. Also, taking small time frames allowed us to observe activities that require just a few events.
 
-Affinity Propagation \cite{FD07} creates clusters by sending messages between all the data points; this message contains a value indicating how suitable is a point to be an exemplar, and the accumulated values of the messages are used to make a decision. This is performed until high-quality exemplars are found and corresponds to a cluster. We observed after some experiments that this algorithm tends to create a high number of clusters, providing all kinds of activities but some of them at many levels; this means that several clusters cover one activity (e.g. Programming) but at different levels of intensity (e.g. high usage of Programming and low usage of Programming). This can be seen as the contrary effect of the Mean Shift results and also with bad Silhouette averages. The main drawback of this algorithm is the high time-complexity of the order $O(n^2t)$, where $n$ is the number of samples and $t$ the number of iterations.
+\end{changedforreviewerlong}
 
-The Silhouette Coefficient \cite{R87} is a value per data point where high values are obtained from well defined clusters. It is composed of two scores: $a$ representing the mean distance between a sample and all other points of the same cluster, and $b$ the mean distance between a sample and all other points in the next nearest cluster. So, the Silhouette Coefficient $s$ of a point is obtained as:
+Every one of these chunks has the proportion of execution of events by detailed type. So, the observations that were clustered are chunks and the attributes are the proportions. This means we have two datasets with 43,769 (UDC) and 23,624 (ABB) observations with 11 numerical attributes each. That is, the attributes represent the proportion of execution of events of the type Edit-Text, Text-Nav, High-Nav, Debug, Search, Refactoring, Testing, Control, Clean-Build, File and Tools.
+
+\subsection{Preliminary studies}
+As we do not know the number of activities we need an algorithm that chooses the number of clusters based on the data provided, such as Mean Shift, Affinity Propagation and DBSCAN. We need an implementation that allows us to explore the values for each of the axis (attributes) of the found clusters, so we only considered Mean Shift and Affinity Propagation.
+
+We explored different models before arriving to the final approach; those models were compared using the Silhouette Coefficient and chose the one that offer the best values. The Silhouette Coefficient \cite{R87} is a value per data point where high values are obtained from well defined clusters. It is composed of two scores: $a$ representing the mean distance between a sample and all other points of the same cluster, and $b$ the mean distance between a sample and all other points in the next nearest cluster. So, the Silhouette Coefficient $s$ of a point is obtained as:
 
 $$s = \frac{b-a}{max(a,b)}$$
 
-This coefficient evaluates the compactness (how close are objects within the same cluster) and separation (how well-separated is a cluster from other clusters). It is a value between -1 and 1; a value of 1 indicates that the point is correctly clustered and a -1 indicates that it is probably contained in the wrong cluster. Values around 0 means the observation lies between two clusters. We use the average Silhouette Coefficient (also known as the Silhouette width) to compare between models and to conclude if there is an actual structure in the data.
+This coefficient evaluates the compactness (how close are objects within the same cluster) and separation (how well-separated is a cluster from other clusters). It is a value between -1 and 1; a value of 1 indicates that the point is correctly clustered and a -1 indicates that it is probably contained in the wrong cluster. Values around 0 means the observation lies between two clusters. We use the average Silhouette Coefficient (also known as the Silhouette width) to compare between models and to conclude if there is an actual structure in the data. The Table \ref{tbl:silhouette} contains an interpretation for the Silhouette Coefficient.
 
+\begin{table}
+	\caption{Interpretation of the Silhouette Coefficient.}
+	\label{tbl:silhouette}
+	\centering
+	\begin{tabular}{c | c }
+		\hline 
+		\emph{Range of values} & \emph{Meaning}\\  
+		\hline 
+		\hline
+		0.71 - 1.0 & A strong structure has been found\\
+		\hline
+		0.51 - 0.70 & A reasonable structure has been found\\
+		\hline
+		0.26 - 0.50 & The structure is weak and could be artificial.  \\
+		\hline	
+		$\le$ 0.25 & No substantial structure has been found \\
+		\hline
+		
+	\end{tabular}
+\end{table}
+
+
+In other topics, Mean Shift \cite{CM02} discovers centers based on the density of samples of a set of regions whose size relies on the parameter $bandwidth$. It updates possible centroids so they are mean of the samples within a given region. Afterwards, the centers that are near-duplicate are summarized and then it presents the final set of centers. After some initial experiments, the results with this algorithm tend to contain a small number of clusters; it finds very common activities but ignores some rare that are absorbed by more general clusters. %This is reflected in low average values of the distance within clusters, which is translated into bad Silhouette Coefficients, a metric described later.
+
+Affinity Propagation \cite{FD07} creates clusters by sending messages between all the data points; this message contains a value indicating how suitable is a point to be an exemplar, and the accumulated values of the messages are used to make a decision. This is performed until high-quality exemplars are found and corresponds to a cluster. We observed after some experiments that this algorithm tends to create a high number of clusters, providing all kinds of activities but some of them at many levels; this means that several clusters cover one activity (e.g. Programming) but at different levels of intensity (e.g. high usage of Programming and low usage of Programming). This can be seen as the contrary effect of the Mean Shift results and with bad Silhouette averages. The main drawback of this algorithm is the high time-complexity of the order $O(n^2t)$, where $n$ is the number of samples and $t$ the number of iterations.
+
+\subsection{Approach to the final model}
 The issues of implementing only one clustering technique were solved with the following approach:
 
 \begin{enumerate}
@@ -324,8 +371,9 @@ The issues of implementing only one clustering technique were solved with the fo
 
 By clustering first with K-means we approximate the number of clusters with an algorithm with lower time-space complexity. The value for $k$ should be many times greater than the actual number of centers we expect to see. With this we try to cover all the probable activities, common and rare. The resulting clusters will be separated enough (and without much elements in between) so that they will not be summarized into one or two when applying the second clustering algorithm.
 
-We still do not know what kind of activities are present in the data, so we need an algorithm that helps us discover them. For that, we cluster the centroids obtained from K-means with Mean Shift choosing a bandwidth $b$. To set the values for $k$ and $b$ we selected those that maximize the average Silhouette width. For ABB the parameters that maximize the metric are $k=3000$ and $b=0.41$. And for UDC the parameters should be $k=2500$ and $b=0.33$. With this approach we not only obtained acceptable clusters in terms of the activities they represent, but also got models with the best Silhouette width.
+We still do not know what kind of activities are present in the data, so we need an algorithm that helps us discover them. For that, we cluster the centroids obtained from K-means with Mean Shift choosing a bandwidth $b$. To set the values for $k$ and $b$ we selected those that maximize the average Silhouette width. For ABB the parameters that maximize the metric are $k=3000$ and $b=0.41$. And for UDC the parameters should be $k=2500$ and $b=0.33$. With this approach we not only obtained acceptable clusters in terms of the activities they represent (seven clusters for ABB and nine for UDC), but also got models with good Silhouette width (0.55 for ABB and 0.38 for ABB). Mean Shift by itself also provides models with acceptable average Silhouette width at the expense of reducing the number of clusters, in some cases resulting in only two.
 
+\subsection{Labeling the centers}
 After we have the centers from Mean Shift, the next step is to add a label to each of them considering the values of the attributes. We took advantage that a high value for one of the attributes indicates that the activities of that center have heavy use of that event. Every center has a group of attributes with higher values than the rest; for example, a center labeled as Debugging has a value of 0.8 for the Debug attribute, and a value close to 0 for the rest, and a center labeled as Programming has higher values for the Edit-Text and Text-Nav attributes. The task involves manual work and the interpretation from the authors of what activity a cluster is modeling, so this could be a threat to the validity of the results. 
 
 The assigned label represents the activity that a center models and several centers could represent the same activity. The Table \ref{tbl:activities} shows the resulting activities for ABB and UDC.
@@ -378,11 +426,11 @@ The assigned label represents the activity that a center models and several cent
 	\end{tabular}
 \end{table}
 
-\subsection{Comparing activities between datasets}
+\section{Comparing activities between datasets}
 
 Five activities (Programming, Navigation, Versioning, Debugging and Tool-usage) are present in both datasets and the rest are unique. We can see more variety of activities in the UDC dataset, which we attribute to the different types of programmers and to the sort of events that can be captured from the IDEs.
 
-There are some interesting differences. First, the Programming activity is common in both cases with a high percentage of activities (43.41\% in UDC and 34.67\% in ABB), and surprisingly Debugging is only common in ABB (44.45\%), falling to the third place in UDC with only 6.69\%. Both datasets contain a very similar amount of events classified as Debug, that is 68 for UDC and 76 for ABB. The common events of control like start debugging, step over and step into are present in both datasets, but the problem is in the 8 extra events available in ABB. 
+There are some interesting differences. First, the Programming activity is common in both cases with a high percentage of activities (43.41\% in UDC and 34.67\% in ABB), and surprisingly Debugging is only common in ABB (44.45\%), falling to the third place in UDC with only 6.69\%. Both datasets contain a very similar amount of events classified as Debug, that is 68 for UDC and 76 for ABB. The common events of control such as start debugging, step over and step into are present in both datasets, but the difference lies is in the 8 extra events available in ABB. 
 
 The ABB programmers, which are Visual Studio users, make heavy use of the Locals Window of Visual Studio that allows them to explore the state of the objects when debugging and change around processes and threads. Eclipse has a similar functionality in the Debug Perspective and captures an event when the programmer use it, but it does not support exploring different instances in the same fashion as Visual Studio. On top of that, in the ABB data the most common events of the type Debug are in fact those that allow to change the current process or thread. This could be the main cause for the differences of Debugging activities between datasets.
 
@@ -390,28 +438,53 @@ Another difference is that Navigation and Tool-usage activities have more incide
 
 The amount of Tool-usage activities is related to the variety of programmers in the UDC data in contrast with ABB. In the former there are a group of users that are Web developers and execute events involving PHP, JavaServer Faces, HTML and CSS. To a lesser extent, there are also SQL and J2EE (Java Enteprise Edition) developers. In ABB the small amount of Tool-usage activities is mostly related to the design of classes and architecture of the system in development, and also to connections to SQL databases. From this, we can infer that the programmers in ABB have mostly \emph{back-end} roles and probably maintain an existing system that is supported by a multithreading paradigm, judging by our observations on the Debugging activities. However, we are unable to ascertain these assumptions.
 
-\subsection{Identifying patterns of sessions}
-During a working session, a programmer could go throughout several states or perform multiple activities. It might be possible to understand better this activities by using the information of the clusters we got in the previous subsection. 
+\begin{changedforreviewerlong}
+We observed that all of theses activities has been identified and characterized before during observational studies. For example, from the categories found by Singel et al. \cite{SLV10}, we can match our findings with the debug, edit, management, search and testing categories. And from LaToza et al. \cite{LVD06} research we found editing, writing, unit testing and possibly non code. The Tool-usage activity we found is harder to relate to a category from the literature, for it can represent a wide range of tools used in a variety of activities, such as designing, configuration and in-house tools, from the Singel et al. categorization. Program comprehension (or understanding) is a common activity that is difficult to identify by itself in usage data given that it involves reading, debugging and navigating. We found the last two activities but we lack information to identify when they are executed due to program comprehension. So, answering the research question RQ5, we can identify at least 5 types of activities in usage data and the amount depends on the kind of information in the dataset and the type of events that can be captured from the IDE. From our two datasets we found Programming, Navigation, Debugging, Tool-usage and Versioning in both. The other activities File-management, Search, Refactoring and Testing depends on the dataset.
+\end{changedforreviewerlong}
+
+\section{Identifying patterns of sessions}
+During a working session, a programmer could go throughout several states or perform multiple activities. It might be possible to understand better these activities by using the information of the clusters we obtained in the previous subsection. 
 
 In this section we look for patterns of sets of activities (sessions) that might be common among programmers. Due to the nature of the data we expect to see more common patterns in the ABB data and more variety in the UDC data, for more kind of programmers are present in the latter.
 
-Once we had the chunks clustered and labeled, we divided the chunks of each session into three groups of equal size representing the beginning, middle and end. We selected 4 activities that are present in both datasets (Programming, Navigation, Debugging and Version), to facilitate the comparison, and calculated the proportion of each at every phase. After that, every observation (session) had 12 attributes and proceeded to cluster them using the Affinity Propagation technique; this time we want to see all the possible clusters without limiting to a low number like when clustering with chunks. 
+Once we had the chunks clustered and labeled, we divided the chunks of each session into three groups of equal size representing the beginning, middle and end. We selected 4 activities that are present in both datasets (Programming, Navigation, Debugging and Version), to facilitate the comparison, and calculated the proportion of each at every phase. After that, every observation (session) had 12 attributes and proceeded to cluster them using the Affinity Propagation technique; this time we want to see all the possible clusters without limiting to a low number as when clustering with chunks and this algorithm can offer us a variety of patterns from which we analyzed the most common.
 
-We found 47 clusters in ABB and 98 in UDC, but we only work with the 5 more populated. The Figure \ref{ABB_phases} shows the results for ABB and UDC. The Types (A to E) are ordered from the most to the less populated. This selection covers 35\% of the sessions in ABB and 39\% in UDC. 
+We found 47 clusters in ABB and 98 in UDC, but we only work with the 5 more populated. The Figure \ref{ABB_phases} shows the results for ABB and the Figure \ref{ABB_phases} for UDC. The Types (A to E) are ordered from the most to the less populated. This selection covers 35\% of the sessions in ABB and 39\% in UDC. 
 
-\subsection{Comparison of working session patterns}
-For the sessions in ABB we have the following observations:
+\begin{figure}[!ht]
+	
+	\centering
+	\includegraphics[width=0.6\textwidth]{Figures/ABB_phases_log}
+	
+	\caption{Most common patterns of activities in ABB.}
+	\label{ABB_phases}
+\end{figure}
+
+\section{Comparison of working session patterns}
+
+
+For the sessions from ABB in the Figure \ref{ABB_phases} we have the following observations:
 \begin{itemize}
-	\item The most common pattern (Type A) involves mostly Debugging activities throughout the session and its followed by Type B, where the most common activity is programming throughout the session as well; it could be an effect of the two more frequent activities.
+	\item The most common pattern (Type A) involves mostly Debugging activities throughout the session and it is followed by Type B, where the most common activity is programming throughout the session as well; it could be an effect of the two more frequent activities.
 	
 	\item The pattern described by the Type C is mostly composed of Navigation activities followed by Debugging. This can be related to program comprehension sessions \cite{MMLK14} or bug fixing due to the low amount of Programming.
 	
 	\item Types D and E have a fair amount for all the activities throughout the sessions and do not show notorious changes. Also, both Debugging and Programming are executed frequently, whence we relate these two patterns to multitasking sessions \cite{SLV10}.
 	
-	\item Versioning tasks are common during all the session when Programming is also a common. However it is only common at the begging or ending of the session when the Programming tasks are low. It could be that during Programming activities the user reaches more checkpoints that should be committed. 
+	\item Versioning tasks are common during all the session when Programming is also a common. However it is only common at the beginning or ending of the session when the Programming tasks are low. It could be that during Programming activities the user reaches more checkpoints that should be committed. 
 \end{itemize}
 
-For the sessions in UDC we have the following observations:
+\begin{figure}[!ht]
+	
+	\centering
+	\includegraphics[width=0.6\textwidth]{Figures/UDC_phases_log}
+	%\includegraphics[width=0.49\textwidth]{Figures/ABB_phases_log}
+	
+	\caption{Most common patterns of activities in UDC.}
+	\label{UDC_phases}
+\end{figure}
+
+For the sessions from UDC in the Figure \ref{UDC_phases} we have the following observations:
 \begin{itemize}
 	\item We relate Types A, C and D to multitasking sessions. The activities do not suffer sudden changes on any of the three phases.
 	
@@ -421,37 +494,28 @@ For the sessions in UDC we have the following observations:
 	
 	\item Although Debugging is a rather uncommon activity, it is frequently executed (to some extent) during the most common working session patterns.
 \end{itemize}
-\begin{figure}[!ht]
 
-	\centering
-	\includegraphics[width=0.49\textwidth]{Figures/UDC_phases_log}
-	\includegraphics[width=0.49\textwidth]{Figures/ABB_phases_log}
-		
-	\caption{Cluster of sessions in UDC (left) and ABB (right).}
-		\label{ABB_phases}
-\end{figure}
+\begin{changedforreviewerlong}
 
 
-\subsection{Validation of the results}
+Answering the research question RQ6, we found three recurring patterns among the five most common of each data set: Programming, Debugging and Multitasking. The Programming sessions are very common and we can match them to the Enhancement sessions \cite{B14}, where developers code new features or improve existing ones. The Multitasking patterns can also be matched to findings in the literature, named as sessions of general purpose. The patterns where Debugging is prominent could be related to bug-fixing sessions or program comprehension; the usage data do not provide enough information to make a differentiation. 
+\end{changedforreviewerlong}
+
+\section{Validation of the results}
 To validate the results from the clustering of chunks and sessions we measure the Silhouette Width of the observations. The Silhouette Width is a number between 1 and -1; a value of 1 means that the observation is very well clustered and the contrary for a value of -1. If the value is close to 0 it means that the observation is between two different clusters.
 
-In ABB the average Silhouette Average of the clusters of chunks is 0.55 and for UDC 0.38. This numbers represent a reasonable structural definition of the clusters. We can see in the Figure \ref{silhouette_chunks} the graphical representation of the silhouette of each cluster of chunks for ABB (right) and UDC (left). In average, the clusters in ABB are better defined but in both cases we can spot some observations wrongly clustered (negative values) that can also be outliers.
-
-In the case of the clustering of sessions, we have an average silhouette of 0.35 for ABB and 0.40 for UDC, indicating also a reasonable structure but weaker than the structures in the chunks. This can be observed in the Figure \ref{silhouette_sessions}. In UDC a big number of the observations of the cluster Type C are outliers and the rest of the clusters are better defined. In ABB clusters Type A and C show good shape but the rest of the clusters have smaller averages.
-
-Overall, we can see a clear pattern in the clustering of chunks and sessions. We believe the patters are strong enough to support our observations and the fact there are patters in the data. The data from ABB is stronger in this sense, probably due to the fact that it all comes from developers. In the other hand, the UDC data contains more variety of users and provokes a variety of activities and practices that are harder to cluster. 
-
-
-
 \begin{figure}[!ht]
-
+	
 	\centering		
 	\includegraphics[width=0.7\textwidth]{Figures/UDC_silhouette_chunks}
 	\includegraphics[width=0.7\textwidth]{Figures/ABB_silhouette_chunks}	
 	\caption{Silhouette analysis of the clustering of chunks for UDC (top) and ABB (bottom).}
-		\label{silhouette_chunks}
+	\label{silhouette_chunks}
 \end{figure}
 
+In ABB the average Silhouette Average of the clusters of chunks is 0.55 and for UDC 0.38. This numbers represent a reasonable structural definition of the clusters. We can see in the Figure \ref{silhouette_chunks} the graphical representation of the silhouette of each cluster of chunks for ABB (right) and UDC (left). In average, the clusters in ABB are better defined but in both cases we can spot some observations wrongly clustered (negative values) that can also be outliers.
+
+In the case of the clustering of sessions, we have an average silhouette of 0.35 for ABB and 0.40 for UDC, indicating also a reasonable structure but weaker than the structures in the chunks. This can be observed in the Figure \ref{silhouette_sessions}. In UDC a big number of the observations of the cluster Type C are outliers and the rest of the clusters are better defined. In ABB clusters Type A and C show good shape but the rest of the clusters have smaller averages.
 
 \begin{figure}[!ht]
 	\centering		
@@ -460,4 +524,13 @@ Overall, we can see a clear pattern in the clustering of chunks and sessions. We
 	\caption{Silhouette analysis of the clustering of sessions for UDC (top) and ABB (bottom).}
 	\label{silhouette_sessions}
 \end{figure}
+
+Overall, we can see a clear pattern in the clustering of chunks and sessions. We believe the patterns are strong enough to support our observations and the fact there are patterns in the data. The data from ABB is stronger in this sense, probably due to the fact that it all comes from developers. In the other hand, the UDC data contains more variety of users and provokes a variety of activities and practices that are harder to cluster. 
+
+
+
+
+
+
+
 

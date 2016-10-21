@@ -1,5 +1,8 @@
 \chapter{Data and Methodology}
-The results presented in this work are based on the information that can be extracted from usage data. We used two datasets to provide answers to our research questions that come from different sources but are similar in the kind information contained. In this Chapter we describe the data and methodology used for knowledge extraction.
+The results presented in this work are based on the information that can be extracted from usage data. We used two datasets to provide answers to our research questions that come from different sources but are similar in the kind information contained. In this Chapter we describe the data and methodology used for knowledge extraction. 
+\begin{changedforreviewerlong}
+We used the \emph{Knowledge Discovery in Databases} process \cite{FPG96}, a set of iterative steps composed of Selection, Preprocessing, Transformation, Data Mining and Interpretation. This chapter will cover the Selection, Preprocessing and Transformation steps. In the latter Chapters we will give details about the Data Mining and Interpretation steps.
+\end{changedforreviewerlong} First, we describe the data in the following section, which also covers the Selection step of the methodology.
 
 \section{Description of the data}
 It is important to first describe the data in terms of the attributes, magnitude and context of extraction. In the following subsection we describe in detail the characteristics of the datasets, limitations and some inferences we can obtain.
@@ -7,7 +10,7 @@ It is important to first describe the data in terms of the attributes, magnitude
 \subsection{Eclipse Usage Data Collector}
 The Usage Data Collector (UDC) dataset is a large compendium of information about interaction data from users of Eclipse, collected from December 2008 to August 2010, with the intention to keep track of how programmers are using the IDE. The framework listens to the events triggered by the user or the system, such as: edition and navigation commands; the startup of a plug in; or the closing of the platform. To be more specific, UDC collects information about loaded bundles, commands accessed via keyboard shortcuts, actions invoked via menu or tool-bars, perspective changes, view usage and editor usage. The UDC is a large dataset that contains information of around 1,800,000 users, and has a total of 2,323,233,101 unique rows with 5 attributes each. Table \ref{tbl:att_udc} shows a description of the attributes.
 
-This dataset only contains information of the execution of commands within the IDE and we do not have more context about the programmers or environments. Judging by the registry of events, there is a mix of programmers of different nature like Java SE, Java EE and Web developers. There are also programmers that use other kind of languages like PHP, SQL and Ruby. We assume that this data corresponds to programmers of all levels of expertise, from students to professionals.
+This dataset only contains information of the execution of commands within the IDE and we do not have more context about the programmers or environments. Judging by the registry of events, there is a mix of programmers of different nature such as Java SE, Java EE and Web developers. There are also programmers that use other kind of languages such as PHP, SQL and Ruby. We assume that this data corresponds to programmers of all levels of expertise, from students to professionals.
 
 
 \begin{table}[ht!]
@@ -38,16 +41,16 @@ This dataset only contains information of the execution of commands within the I
 	
 \end{table}
 
-We used the pre-processed version of the data that is published on Google BigQuery, by Murphy-Hill et al. \cite{SnipesETALASD}. This is an alternative version of the original UDC dataset, which is cleaned and preprocessed, so that the cleaning phase is simpler and focused on our needs. Due to the magnitude of the dataset we only worked on a fragment of it. 
+We used the pre-processed version of the data that is published on Google BigQuery, by Murphy-Hill et al. \cite{SnipesETALASD}. This is an alternative version of the original UDC dataset, which is cleaned and preprocessed, so that the cleaning phase is simpler and focused on our needs. 
 
-We took a subset of the data from 1,000 random users. We delimited the query to obtain only those events dispatched by the user, ignoring system events. We also ignored the BundleId and BundleVersion, leaving only the attributes UserId, What, Kind, Description and Datetime. From this query we extracted 4,321,349 unique events, which are around $0.18\%$ of the whole dataset.
+Due to the magnitude of the dataset we only worked on a fragment of it. We took a subset of the data from 1,000 random users. We delimited the query to obtain only those events dispatched by the user, ignoring system events. We also ignored the BundleId and BundleVersion, leaving only the attributes UserId, What, Kind, Description and Datetime. From this query we extracted 4,321,349 unique events, which are around $0.18\%$ of the whole dataset.
 
 \subsection{Codealike and ABB}
-Codealike \cite{CLQ15} is a tool that monitors the activity of the user and later offers analytics and insight about the programmer's productivity and working patterns. This tool is installed in the IDE (Eclipse and Visual Studio) and listens to the events executed by the user and system, similar to UDC. It captures almost the same kind of events like edition, navigation and tool usage. Shortly after the capture of events, the user can observe information derived from his activity through a website.
+Codealike \cite{CLQ15} is a tool that monitors the activity of the user and later offers analytics and insight about the programmer's productivity and working patterns. This tool is installed in the IDE (Eclipse and Visual Studio) and listens to the events executed by the user and system, similar to UDC. It captures almost the same kind of events (e.g. edition, navigation and tool usage). Shortly after the capture of events, the user can observe information derived from his activity through a website.
 
 Corvalius (the Argentinian company that created Codealike) is collaborating with ABB, a multinational corporation operating mainly in robotics, power and automation technology areas. The ABB's Software Engineering Research Group is using Codealike to obtain information from its developers with the objective of improving productivity and software quality. We had access to a dataset corresponding to the monitoring of 87 programmers between May and October of 2015 comprising 15,597,697 unique events. The main dataset that contains the registry of executed commands has the attributes described in the Table \ref{tbl:att_abb}.
 
-The data was extracted from Visual Studio via Codealike and the events seems to correspond to .NET programming languages, like C\# or Visual Basic. Similar to UDC, it only contains a registry of executed commands and no information about the developers, except for the country of origin judging by the email domain that was provided. The programmers were invited to use Codealike at will, so the amount of data collected varies among users. Additionally, we had access to the \emph{focus} level of the user, a feature of Codealike that measures the focus or concentration of programmers based on the amount of activity registered within the IDE. We assume that this data corresponds to professional programmers working for the same company and under similar circumstances. The latter meaning that they all have the same or similar equipment, methodology, tools and working hours. However, we can not be certain about any of these assumptions.
+The data was extracted from Visual Studio via Codealike and the events correspond to .NET programming languages, such as C\# or Visual Basic. Similar to UDC, it only contains a registry of executed commands and no information about the developers, except for the country of origin judging by the email domain that was provided. The programmers were invited to use Codealike at will, so the amount of data collected varies among users. We assume that this data corresponds to professional programmers working for the same company and under similar circumstances. The latter meaning that they are more likely to have same or similar equipment, methodology, tools and working hours. However, we can not be certain about any of these assumptions.
 
 \begin{table}[ht!]
 	\small
@@ -71,29 +74,40 @@ The data was extracted from Visual Studio via Codealike and the events seems to 
 	
 \end{table}
 
-The actual description of the events is stored on a different file, so we use the values of the Category and Events attributes to extract it. In this case, all the attributes are needed. From hereafter this dataset will be referred as ABB.
+The actual description of the events is stored on a different file, so we use the values of the Category and Events attributes to extract it. In this case, all the attributes are needed. From hereafter this dataset will be referred to as ABB.
 
 \section{Methodology}
-We followed the steps described by the \emph{Knowledge Discovery in Databases} process \cite{FPG96}, a set of iterative steps composed of Selection, Preprocessing, Transformation, Data Mining and Interpretation. The Selection was covered by the last two sections and the following sections will describe the tasks performed during the Preprocessing and Transformation steps. In the latter Chapters we will give details about the Data Mining and Interpretation steps.
+
+The following subsections will give detail about the Preprocessing and Transformation steps.
 
 \subsection{Preprocessing}
-During the Preprocessing stage we performed mainly two tasks: data cleaning and classification. The cleaning tasks are trivial, for the data is in overall good shape. However classifying the events is a complicated task that requires careful inspection and multiple iterations. The tasks involving data cleaning diverge between datasets, so we give details about this step separately. But the classification of events follows the same process for both datasets and is described afterwards.
+During the Preprocessing stage we performed mainly two tasks: data cleaning and classification. The cleaning tasks are trivial, for the data is in good conditions. However classifying the events is a complicated task that requires careful inspection and multiple iterations. The tasks involving data cleaning diverge between datasets, so we give details about this step separately. But the classification of events follows the same process for both datasets and is described afterwards.
 
+\begin{changedforreviewerlong}
 \subsubsection{UDC}
-First, we added a field with the duration of every event (time elapsing between one event and the next one, used to determine where interruptions take place and sessions end) and an ID to identify the different working sessions present on the data. For the latter, we sorted the data by UserId and Datetime. This was required because, by default, the user's data is mixed and we need it not only chronologically correct but also sorted by users to tag the working sessions of every user without interferences. We also filled the description for the events that indicate the activation or deactivation of the Eclipse's workbench, which were the only ones with that issue.
+First, we added a field with the duration of every event (time elapsing between one event and the next one). This task is required to identify the interruptions and working sessions later, and it is related to the first four research questions. Then, we sorted the data by UserId and Datetime. This was required because, by default, the user's data is mixed and we need it not only chronologically correct but also sorted by users to tag the working sessions of every user without interferences. We also filled the description for the events that indicate the activation or deactivation of the Eclipse's workbench, which were the only ones with that issue.
 
 \subsubsection{ABB}
-The Preprocessing for ABB is also simple. As with UDC, we added a duration in seconds and an ID to every event. Then, we extracted the Description from a second dataset, according to the Event and Category, and created a new attribute. We changed the Description to lowercases and removed curly braces and other special characters. 
+The Preprocessing for ABB is also simple. As with UDC, we added a duration in seconds to every event. Then, we extracted the Description from a second dataset, according to the Event and Category, and created a new attribute. We changed the Description to lowercases and removed curly braces and other special characters. Finally, we removed events executed by the system and ordered the data by Username and Datetime. It is necessary to have a clear description to add the classification, which is described in the next subsection.
 
-An interesting feature of this dataset is that plenty of data seems to be somewhat systematic, with a certain event executed every 5 minutes or less. We do not know in what scenarios this kind of activity is recorded (it could be executed by the IDE) so we decided to remove those observations. Finally, we ordered the data by Username and Datetime.
+
 
 \subsection{Classification of events}
+The classification of events adds a class or type to each of the events recorded in the data. It is a crucial task with the following motivations:
+\begin{enumerate}
+	\item Having more than a thousand different events, it reduces the complexity of managing each of the events separately. At the end, although they execute different tasks, they have a goal in common that we try to capture when assigning a classification.
+	\item Some of the metrics used throughout this study rely on the existence of a classification that describes the general behavior of the developer.
+\end{enumerate}
+
 To classify the events, we look into the description to see what it can tell us about the event. We worked with two kinds of classifications:
 \begin{itemize}
-	\item A detailed classification to tag the nature of every event.
-	\item A general classification to identify between Edition and Selection events.
+	\item A general classification to identify between Edition and Selection events. It is used to describe the behavior of the programmer in a general manner. It is used in the analysis of interruptions of work.
+	\item A detailed classification to tag the nature of every event. It is used when we need a detailed inspection of the activities. We use it in both analyses (interruptions of work and developers' activities).
 \end{itemize}
-Having two classifications will help us provide better answers to our research questions, for some of them require doing analyses in detail and others can be seen from a general perspective. The general classification is derived from the detailed classification, so we describe the latter first in the Table \ref{tbl:detailed_events}.
+
+The two classifications will help us provide better answers to our research questions, for some of them require doing analyses in detail and others can be seen from a general perspective. The general classification is derived from the detailed classification, and it is easily performed by setting as Selection all the events except those that perform text edition, text navigation and refactoring tasks; this set of events describe the kind of activities performed when editing code, while the rest involve navigation around classes, the opening of views and selection of graphical elements. To identify those events we rely on the detailed classification described in the Table \ref{tbl:detailed_events}.
+
+\end{changedforreviewerlong}
 
 \begin{table}[ht!]
 	\small
@@ -109,7 +123,7 @@ Having two classifications will help us provide better answers to our research q
 		\hline
 		Text-Nav & Events executed when navigating around text. & LineUp, LineDown and LineEnd.  \\
 		\hline
-		High-Nav & Navigation of high level, like around classes and views. & GoToDefinition, NextTab and GoToSuperclass \\
+		High-Nav & Navigation of high level  (around classes and views). & GoToDefinition, NextTab and GoToSuperclass \\
 		\hline
 		Debug & Events executed during debugging sessions. & StepInto and StepOver. \\
 		\hline
@@ -133,26 +147,29 @@ Having two classifications will help us provide better answers to our research q
 
 To assign a detailed classification we use the description. In both datasets the description has the format \emph{path.to.class.ListenerClass}. It contains the path to the class that works as listener of the event and executes the required task. The packages and class name give out information about the nature of the event.
 
-With that in mind, we created a set of rules that adds a classification to every event according to the name of the class and/or the name of the path. For example, in UDC we label as Text-Nav all the events that have \emph{ui.edit.scroll} in the description, and in ABB we label as High-Nav all the events whose class name is \emph{NextTab}. Sometimes it was required to create special rules for certain events but most of the time we were able to set rules for several of them. This was an iterative process that required careful inspection of the results.
+%With that in mind, we created a set of rules that adds a classification to every event according to the name of the class and/or the name of the path. For example, in UDC we label as Text-Nav all the events that have \emph{ui.edit.scroll} in the description, and in ABB we label as High-Nav all the events whose class name is \emph{NextTab}. Sometimes it was required to create special rules for certain events but most of the time we were able to set rules for several of them. This was an iterative process that required careful inspection of the results.
 
-Once we added the detailed type to the events, we proceeded to assign the general type. This is easily performed by setting as Selection all the events except those who has Edit-Text, Text-Nav or Refactoring in the detailed type; this set of events describe the kind of activities performed when editing code, while the rest involve navigation around classes, the opening of views and selection of graphical elements. After we assigned a general and detailed type to the events we followed to the next step of the process.
 
-\subsection{Transformation}
-From the Transformation phase and on, the activities are the same for both datasets. The objectives of the transformation phase are identifying the working sessions and calculating a set metrics and time series for each. Then every session is decomposed into chunks or segments of smaller time than sessions.
+\subsection{Transformation }
 
-First, we identify interruptions using the duration or time interval of every event. This is an important tasks and it is convenient to define the two kinds of interruptions we use in this work:
+\begin{changedforreviewerlong}
+The objectives of the transformation phase are identifying the working sessions and calculating a set metrics and time series for each; we use time series because they allow us to model the temporal nature of working sessions and we use several of them to represent the different sources of information. Then every session is decomposed into chunks or segments of smaller time than sessions; this allows us to see detailed patterns when analyzing developers' activities in RQ5 and RQ6.
+
+
+First, we identified interruptions using the duration or time interval of every event. It is required by the research questions regarding the interruptions of work analysis. This is an important task and it is convenient to define the two kinds of interruptions we use in this work:
+\end{changedforreviewerlong}
 
 \begin{itemize}
 	\item \textit{Interruption.} We define empirically an interruption as a pause of activity of duration $\geq 3$ minutes. This is based on previous work where we observed that short interruptions lasted usually this long \cite{GM04}. Shorter values would risk classifying periods of inactivity (such as a programmer reading source code) as interruptions.
 	
-	\item \textit{Prolonged interruption.} Based on additional observations from this work, we defined a prolonged interruption as one lasting for more than 12 minutes. These thresholds are also supported by the Activity Theory models of Kaptelinin and Nardi \cite{KaptelininN07}. This study presented work fragmentation at two different levels: actions and activities. Interruptions originated after a period of around three minutes of sustained attention to the previous action were considered when people were switching at the level of interactions with artifacts of people. Interruptions originated after a period of twelve minutes of sustained attention to a previous activity were considered when people were switching at the level of interactions with projects or topics.  
+	\item \textit{Prolonged interruption.} Based on additional observations from this work, we defined a prolonged interruption as one lasting for more than 12 minutes. These thresholds are also supported by the Activity Theory models of Kaptelinin and Nardi \cite{KaptelininN07}. This study presented work fragmentation at two different levels: actions and activities. Interruptions originated after a period of around three minutes of sustained attention to the previous action were considered when people were switching at the level of interactions with artifacts of people. Interruptions originated after a period of twelve minutes of sustained attention to a previous activity were considered when people were switching at the level of interactions with projects or topics. They are only used in RQ2.
 \end{itemize}
 
-To identify working sessions we look for interruptions as well, but only those that last for more than 4 hours. Any segment of activity surrounded by interruptions with that duration is labeled as a session. However, in order for the segment to be valid it must be of at least 30 minutes of duration.
+To identify working sessions we look for interruptions as well, but only those that last for more than 4 hours. Any segment of activity surrounded by interruptions with that duration is labeled as a session. However, in order for the segment to be valid it must be of at least 30 minutes of duration. This is a task that concerns all the research questions.
 
 Then, for every session we created several time series representing the execution of events by detailed classification. Taking the minute as time unit, we counted the number of events executed on every minute and created eleven time series, where the amplitude is the number of events. The interruptions were treated differently; they are also contained in a time series of its own but the amplitude is the duration of the interruption and every observation represents the minute of occurrence. 
 
-After that, the next step is to calculate a number of metrics for every session that measure the activity of the programmer. They can be seen from two perspectives, first the metrics for the characterization of interruptions:
+After that, the next step is to calculate a number of metrics for every session that measure the activity of the programmer. These metrics will later be used to get answers to RQ1, RQ2 and RQ3. They can be seen from two perspectives, first the metrics for the characterization of interruptions:
 \begin{itemize}
 	\item \textit{Number of interruptions}:  counts all the interruptions that occur in a development session.
 	\item \textit{Duration of interruption}:  it is the time duration in minutes of the each interruption. 
@@ -164,11 +181,19 @@ And the metrics that describe the productivity and activity:
 	\item \textit{Number of edits per minute:} the total number of edits events, divided by the productive work time to control for length of the session. This is an indicator of user activity during the session.
 	\item \textit{Number of selections per minute:} it is the total number of selection events, divided by the productive work time. Also an indicator of activity.
 	\item \textit{Edit ratio:} the number of edits divided by the sum of edits and selections, as used by Kersten and Murphy \cite{KM06}; an efficient developer spends less time exploring code and more time editing it.
-	\item \textit{Proportion of events:} it is the count of events by detailed type divided by the total of events executed in the session. There are a total of 11 values for this metric.
+	%\item \textit{Proportion of events:} it is the count of events by detailed type divided by the total of events executed in the session. There are a total of 11 values for this metric, but it is only used in RQ5 and RQ6.
 \end{itemize} 
 
-The last task of the transformation phase is to split the sessions into smaller activity frames to do analyses of the programmer's activity in detail. For that we split the time series of every session into time segments of 3 to 5 minutes of activity that we will call chunks. It was necessary to recreate the time series and metrics for the chunks. After this, every user has a set of sessions (with their respective time series) and every session has a series of chunks.
+\subsection{Transformations Regarding Developers' Activities}
+The transformation tasks described previously are performed (mostly) to both datasets and are needed to answer all of the research questions. Here we describe one final step of the process that only applies to RQ5 and RQ6, about developers' activities.
+\begin{changedforreviewerlong}
 
+The last task of the transformation phase is to split the sessions into smaller activity frames to do analyses of the programmer's activity in detail for RQ5 and RQ6. In order to do that, we split the time series of every session into time segments of 3 to 5 minutes of activity that we will call chunks. We selected this time frame so that activities that are rare or require a small amount of events do not get ignored by common activities. Moreover, it was observed that some tasks can be performed within 3 minutes before moving to another one \cite{GM04}.
+
+It was necessary to recreate the time series for the chunks, and then calculate the proportion of events by detailed type; there are a total of 11 detailed types, so every chunk had 11 extra metrics representing the proportion of each detailed type. After this, every user has a set of sessions (with their respective time series) and every session has a set of chunks.
+\end{changedforreviewerlong}
+
+\subsection{Characterization of Working Sessions}
 We can observe some statistics about the resulting sessions in the Table \ref{tbl:stats_sessions}. UDC contains much more sessions, but in average they are shorter (4.11 hrs) than the sessions in ABB (7.33 hrs). However, in both cases the actual time spent working in the IDE is much less, being in average of 64.29 minutes for UDC and 166.08 minutes in ABB. The average number of interruptions per session is larger in ABB (25.40) than in UDC (9.52), which is in relation to the size of the sessions, but in ABB the interruptions tend to be shorter (10.74 minutes).
 
 \begin{table}[ht!]
@@ -199,3 +224,5 @@ We can observe some statistics about the resulting sessions in the Table \ref{tb
 		\hline
 	\end{tabular}
 \end{table}
+
+After the Selection, Preprocessing and Transformation we end up with a set of sessions, each with its corresponding time series and metrics. The metrics will be used mostly in the research questions about interruptions of work and the time series are useful for the two topics. Also, the sessions were decomposed into chunks or smaller frames of time, which will allow us to investigate in detail the activities of programmers. Having the data ready, we can proceed to analyze and answer our research questions.
