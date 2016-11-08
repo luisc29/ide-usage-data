@@ -1,5 +1,5 @@
 \select@language {spanish}
-\select@language {english}
+\select@language {spanish}
 \select@language {spanish}
 \select@language {english}
 \select@language {spanish}
@@ -7,41 +7,41 @@
 \contentsline {chapter}{\numberline {1}Introduction}{1}
 \contentsline {section}{\numberline {1.1}Background}{1}
 \contentsline {section}{\numberline {1.2}Objectives}{3}
-\contentsline {section}{\numberline {1.3}Scope}{4}
+\contentsline {section}{\numberline {1.3}Scope}{5}
 \contentsline {section}{\numberline {1.4}Organization of the document}{5}
-\contentsline {chapter}{\numberline {2}Related work}{6}
-\contentsline {section}{\numberline {2.1}Developers' activities}{6}
-\contentsline {section}{\numberline {2.2}Work Fragmentation}{9}
-\contentsline {section}{\numberline {2.3}Mining Software Repositories}{11}
-\contentsline {subsection}{\numberline {2.3.1}Predicting errors}{12}
-\contentsline {section}{\numberline {2.4}Usage data }{13}
-\contentsline {subsection}{\numberline {2.4.1}Research with usage data}{15}
-\contentsline {chapter}{\numberline {3}Data and Methodology}{18}
-\contentsline {section}{\numberline {3.1}Description of the data}{18}
-\contentsline {subsection}{\numberline {3.1.1}Eclipse Usage Data Collector}{19}
-\contentsline {subsection}{\numberline {3.1.2}Codealike and ABB}{20}
-\contentsline {section}{\numberline {3.2}Methodology}{22}
-\contentsline {subsection}{\numberline {3.2.1}Preprocessing}{22}
-\contentsline {subsubsection}{\numberline {I}UDC}{22}
-\contentsline {subsubsection}{\numberline {II}ABB}{23}
-\contentsline {subsection}{\numberline {3.2.2}Classification of events}{23}
-\contentsline {subsection}{\numberline {3.2.3}Transformation }{24}
-\contentsline {subsection}{\numberline {3.2.4}Transformations Regarding Developers' Activities}{28}
-\contentsline {subsection}{\numberline {3.2.5}Characterization of Working Sessions}{29}
-\contentsline {chapter}{\numberline {4}Interruptions of work and productivity}{30}
-\contentsline {section}{\numberline {4.1}Relationship between the number of interruptions and productivity}{32}
-\contentsline {section}{\numberline {4.2}Relationship between duration of interruptions and productivity}{34}
-\contentsline {section}{\numberline {4.3}Local relationships between interruptions and productivity}{38}
-\contentsline {subsection}{\numberline {4.3.1}Patterns of Interruptions}{41}
-\contentsline {section}{\numberline {4.4}Recovery Time after an interruption}{44}
-\contentsline {chapter}{\numberline {5}Activities and Working Patterns}{49}
-\contentsline {section}{\numberline {5.1}Identifying activities}{50}
-\contentsline {subsection}{\numberline {5.1.1}Preliminary studies}{51}
-\contentsline {subsection}{\numberline {5.1.2}Approach to the final model}{53}
-\contentsline {subsection}{\numberline {5.1.3}Labeling the centers}{54}
-\contentsline {section}{\numberline {5.2}Comparing activities between datasets}{55}
-\contentsline {section}{\numberline {5.3}Identifying patterns of sessions}{57}
-\contentsline {section}{\numberline {5.4}Comparison of working session patterns}{58}
-\contentsline {section}{\numberline {5.5}Validation of the results}{62}
-\contentsline {chapter}{\numberline {6}Conclusions}{65}
-\contentsline {chapter}{References}{69}
+\contentsline {chapter}{\numberline {2}Related work}{7}
+\contentsline {section}{\numberline {2.1}Developers' activities}{7}
+\contentsline {section}{\numberline {2.2}Work Fragmentation}{10}
+\contentsline {section}{\numberline {2.3}Mining Software Repositories}{12}
+\contentsline {subsection}{\numberline {2.3.1}Predicting errors}{13}
+\contentsline {section}{\numberline {2.4}Usage data }{14}
+\contentsline {subsection}{\numberline {2.4.1}Research with usage data}{16}
+\contentsline {chapter}{\numberline {3}Data and Methodology}{19}
+\contentsline {section}{\numberline {3.1}Description of the data}{20}
+\contentsline {subsection}{\numberline {3.1.1}Eclipse Usage Data Collector}{20}
+\contentsline {subsection}{\numberline {3.1.2}Codealike and ABB}{21}
+\contentsline {section}{\numberline {3.2}Methodology}{23}
+\contentsline {subsection}{\numberline {3.2.1}Preprocessing}{23}
+\contentsline {subsubsection}{\numberline {I}UDC}{24}
+\contentsline {subsubsection}{\numberline {II}ABB}{24}
+\contentsline {subsection}{\numberline {3.2.2}Classification of events}{24}
+\contentsline {subsection}{\numberline {3.2.3}Transformation }{27}
+\contentsline {subsection}{\numberline {3.2.4}Transformations Regarding Developers' Activities}{29}
+\contentsline {subsection}{\numberline {3.2.5}Characterization of Working Sessions}{30}
+\contentsline {chapter}{\numberline {4}Interruptions of work and productivity}{32}
+\contentsline {section}{\numberline {4.1}Relationship between the number of interruptions and productivity}{34}
+\contentsline {section}{\numberline {4.2}Relationship between duration of interruptions and productivity}{36}
+\contentsline {section}{\numberline {4.3}Local relationships between interruptions and productivity}{40}
+\contentsline {subsection}{\numberline {4.3.1}Patterns of Interruptions}{43}
+\contentsline {section}{\numberline {4.4}Recovery Time after an interruption}{46}
+\contentsline {chapter}{\numberline {5}Activities and Working Patterns}{51}
+\contentsline {section}{\numberline {5.1}Identifying activities}{52}
+\contentsline {subsection}{\numberline {5.1.1}Preliminary studies}{53}
+\contentsline {subsection}{\numberline {5.1.2}Approach to the final model}{55}
+\contentsline {subsection}{\numberline {5.1.3}Labeling the centers}{56}
+\contentsline {section}{\numberline {5.2}Comparing activities between datasets}{57}
+\contentsline {section}{\numberline {5.3}Identifying patterns of sessions}{60}
+\contentsline {section}{\numberline {5.4}Comparison of working session patterns}{61}
+\contentsline {section}{\numberline {5.5}Results validation}{64}
+\contentsline {chapter}{\numberline {6}Conclusions}{67}
+\contentsline {chapter}{References}{72}

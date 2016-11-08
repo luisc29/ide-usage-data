@@ -6,7 +6,7 @@ The search for better working conditions in software engineering has been a rese
 %In order to understand developers' activities and practices, researchers resort to observational studies, experiments and surveys to extract the data. LaToza et al. \cite{LVD06} performed an in-depth analysis with data from a set of interviews and surveys	to approximately 300 developers from Microsoft; their findings shed light about the day-to-day developers' activities and some of the challenges that they face both in personal matter and when collaborating with other developers. Ko et al. \cite{KMC06} performed an experiment with 31 developers who were asked to perform a set of activities while begin interrupted; from this study they obtained information about how developers understand the code and how they navigate to collect information relevant to the task. Gonzalez and Mark \cite{GM04} observed 25 information workers to see how they manage with a fragmented working time, where they switch often between tasks and have multiple interruptions throughout the day. Parnin and Rugaber \cite{PR11} surveyed 414 programmers to get insight about the suspension strategies used before an interruption and activities performed to recovery after it.
 
 \begin{changedforreviewerlong}
-In order to understand developers' activities and practices, researchers resort to observational studies, experiments and surveys to extract the data, often involving procedures that can last several weeks. Observational studies might be the most direct and trustworthy way to acquire information, but requires in-site activities that can be demanding in time and resources. Much of the theoretical background of this work comes from observational studies executed in software development working places \cite{KMC06, GM04}, or from experiments and surveys with developers \cite{LVD06, PR11}. From these works we acquire insight about developers' activities, how they collaborate and how they manage with work fragmentation and interruptions of work.
+In order to understand developers' activities and practices, researchers resort to observational studies, experiments and surveys to extract the data, often involving procedures that can last several weeks. Observational studies might be the most direct and trustworthy way to acquire information, but requires in-site activities that can be demanding in time and resources. Much of the theoretical background of this work comes from observational studies executed in software development working places \cite{KMC06, GM04}, or from experiments and surveys with developers \cite{LVD06, PR11}. From these works we acquire insights about developers' activities, how they collaborate and how they manage with work fragmentation and work interruptions.
 \end{changedforreviewerlong}
 
 Interruptions of work are one of the events studied in software engineering research due to their disruptive nature, as seen in several studies \cite{BKC01, BL96, CDT07, AT04}, and the continuous search for the best ways to assist programmers when facing them. Researchers have studied interruptions through observational studies \cite{IH07, LVD06} and experiments \cite{CDT07} just like the ones described before, but another way to do it is analyzing programmer's usage data \cite{SRV15}.
@@ -15,7 +15,7 @@ The usage data contains the history of interactions between the developer and de
 
 \begin{changedforreviewerlong}
 
-There are some proposals of tools that take advantage of usage data to offer assistance to the developer, such as to identify when a developer is stuck \cite{CD10} or to assist in the navigation around elements \cite{KM06}. ALso there examples of tools for programmers that offer insight of their activities and productivity with usage data \cite{CLQ15}.
+There are some proposals of tools that take advantage of usage data to offer assistance to the developer, such as to identify when a developer is stuck \cite{CD10} or to assist in the navigation around elements \cite{KM06}. Also there are examples of tools for programmers that offer insights about their activities and productivity with usage data \cite{CLQ15}.
 
 \end{changedforreviewerlong}
 
@@ -37,7 +37,7 @@ So, the objective of this work is to extract knowledge from usage data between d
 	\item \textbf{RQ1: What is the relationship between the observed interruptions and the observed developer productivity?} Every interruption requires time to regain the lost context, so in this research question we intend to see whether there is an accumulative effect when the number of interruption increases. In this context, we define productivity as the amount of activity within the IDE. 
 	\item \textbf{RQ2: Is the observed relationship more pronounced in the presence of prolonged interruptions?} A longer interruption might be more detrimental to the productivity than several small interruptions, as it requires more time to recover from it; this research question explores that possibility.
 	\item \textbf{RQ3: What is the observed relationship in the vicinity of interruptions?} Based on the literature and observational studies, we believe that in the immediate time around an interruption the effect can be more evident.
-	\item \textbf{RQ4: What events are more common during recovery time?} The pattern of activities during the recovery time might change in comparison with other phases; in this research question we investigate if there is such a difference by an exploratory study of a subset of our data. 
+	\item \textbf{RQ4: What events are more common during recovery time?} The pattern of activities during the recovery time might change in comparison with other phases; in this research question we investigate if there is such a difference with an exploratory study of a subset of our data. 
 \end{itemize}
 
 \emph{On activities and working patterns of programmers:}
@@ -45,14 +45,16 @@ So, the objective of this work is to extract knowledge from usage data between d
 	\item \textbf{RQ5: What kind of activities can be identified with usage data?} There are several activities performed by developers involving all sorts of tasks. In this research question we investigate which activities can be observed in usage data with clustering techniques.
 	\item \textbf{RQ6: What working patterns during a session are commonly performed by developers?} Throughout a	 working session a developer might perform different activities. In this research question we intend to discover patterns of activities.
 \end{itemize}
+
+This work is a contribution to the research about work fragmentation and developers' activities. Differently to previous work, this is based solely on usage data and we were able to quantify and reach similar conclusions to studies performed in-site. Moreover, we gained confidence on the properties of usage data as an aid to understanding complex phenomena involving software developers.
 \end{changedforreviewerlong}
 
 \section{Scope}
 This is an empirical and exploratory analysis that seeks to determine the effect of the interruptions of work and find the activities and working patterns of software developers with usage data. We do not have extra information about the developers in the data, so we base our hypothesis and observations in the literature. 
 
-We have two data sets available: the Eclipse Usage Data Collector dataset and data from Codealike while being used by developers from ABB. Due to the magnitude of the first dataset we only use a sample of 1,000 random developers. As for the ABB data, we have the information of 87 developers and we use it all to execute the analyses. Both datasets only contain the registry of events executed while using the IDE.
+We have two data sets available: the Eclipse Usage Data Collector dataset and data from Codealike while being used by developers from ABB (ASEA Brown Boveri), a Swedish-Swiss multinational corporation. Due to the magnitude of the first dataset we only use a sample of 1,000 random developers, which is more than enough for our purposes, and using the whole dataset would add extra challenges and require more resources than the available. As for the ABB data, we have the information of 87 developers and we use it all to execute the analyses. Both datasets only contain the registry of events executed while using the IDE.
 
-Given that we do not have extra information or contact from the developers in both datasets, we are unable to verify the conclusions we arrive to in this work and have the feedback from the participants. But the background in the literature is solid and proven, so we are confident that reaching similar conclusions to other authors is an assurance of the validity of this work
+Given that we do not have extra information or contact from the developers in both datasets, we are unable to verify the conclusions we arrive to in this work and have the feedback from the participants. But the background in the literature is solid and proven, so we are confident that reaching similar conclusions to other authors is an assurance of the validity of this work.
 
 \section{Organization of the document}
 

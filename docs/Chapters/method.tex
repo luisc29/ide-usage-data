@@ -88,7 +88,7 @@ During the Preprocessing stage we performed mainly two tasks: data cleaning and 
 First, we added a field with the duration of every event (time elapsing between one event and the next one). This task is required to identify the interruptions and working sessions later, and it is related to the first four research questions. Then, we sorted the data by UserId and Datetime. This was required because, by default, the user's data is mixed and we need it not only chronologically correct but also sorted by users to tag the working sessions of every user without interferences. We also filled the description for the events that indicate the activation or deactivation of the Eclipse's workbench, which were the only ones with that issue.
 
 \subsubsection{ABB}
-The Preprocessing for ABB is also simple. As with UDC, we added a duration in seconds to every event. Then, we extracted the Description from a second dataset, according to the Event and Category, and created a new attribute. We changed the Description to lowercases and removed curly braces and other special characters. Finally, we removed events executed by the system and ordered the data by Username and Datetime. It is necessary to have a clear description to add the classification, which is described in the next subsection.
+The Preprocessing for ABB is also simple. As with UDC, we added a duration in seconds to every event. Then, we extracted the Description from a second dataset, according to the Event and Category, and created a new attribute. We changed the Description to lowercase and removed curly braces and other special characters. Finally, we removed events executed by the system and ordered the data by Username and Datetime. It is necessary to have a clear description to add the classification, which is described in the next subsection.
 
 
 
@@ -153,7 +153,7 @@ To assign a detailed classification we use the description. In both datasets the
 \subsection{Transformation }
 
 \begin{changedforreviewerlong}
-The objectives of the transformation phase are identifying the working sessions and calculating a set metrics and time series for each; we use time series because they allow us to model the temporal nature of working sessions and we use several of them to represent the different sources of information. Then every session is decomposed into chunks or segments of smaller time than sessions; this allows us to see detailed patterns when analyzing developers' activities in RQ5 and RQ6.
+The objectives of the transformation phase are identifying the working sessions and calculating a set of metrics and time series for each; we use time series because they allow us to model the temporal nature of working sessions and we use several of them to represent the different sources of information. Then every session is decomposed into chunks or segments of smaller time than sessions; this allows us to see detailed patterns when analyzing developers' activities in RQ5 and RQ6.
 
 
 First, we identified interruptions using the duration or time interval of every event. It is required by the research questions regarding the interruptions of work analysis. This is an important task and it is convenient to define the two kinds of interruptions we use in this work:
@@ -188,7 +188,7 @@ And the metrics that describe the productivity and activity:
 The transformation tasks described previously are performed (mostly) to both datasets and are needed to answer all of the research questions. Here we describe one final step of the process that only applies to RQ5 and RQ6, about developers' activities.
 \begin{changedforreviewerlong}
 
-The last task of the transformation phase is to split the sessions into smaller activity frames to do analyses of the programmer's activity in detail for RQ5 and RQ6. In order to do that, we split the time series of every session into time segments of 3 to 5 minutes of activity that we will call chunks. We selected this time frame so that activities that are rare or require a small amount of events do not get ignored by common activities. Moreover, it was observed that some tasks can be performed within 3 minutes before moving to another one \cite{GM04}.
+The last task of the transformation phase is to split the sessions into smaller activity frames to do analyses of the programmer's activity in detail for RQ5 and RQ6. In order to do that, we split the time series of every session into time segments of 3 to 5 minutes of activity that we will call chunks. We selected this time frame so that activities that are rare or require a small amount of events do not get obscured by common activities. Moreover, it was observed that some tasks can be performed within 3 minutes before moving to another one \cite{GM04}.
 
 It was necessary to recreate the time series for the chunks, and then calculate the proportion of events by detailed type; there are a total of 11 detailed types, so every chunk had 11 extra metrics representing the proportion of each detailed type. After this, every user has a set of sessions (with their respective time series) and every session has a set of chunks.
 \end{changedforreviewerlong}
@@ -225,4 +225,4 @@ We can observe some statistics about the resulting sessions in the Table \ref{tb
 	\end{tabular}
 \end{table}
 
-After the Selection, Preprocessing and Transformation we end up with a set of sessions, each with its corresponding time series and metrics. The metrics will be used mostly in the research questions about interruptions of work and the time series are useful for the two topics. Also, the sessions were decomposed into chunks or smaller frames of time, which will allow us to investigate in detail the activities of programmers. Having the data ready, we can proceed to analyze and answer our research questions.
+After the Selection, Preprocessing and Transformation we end up with a set of sessions, each with its corresponding time series and metrics. The metrics will be used mostly in the research questions about work interruptions and the time series are useful for the two topics. Also, the sessions were decomposed into chunks or smaller frames of time, which will allow us to investigate in detail the activities of programmers. Having the data ready, we can proceed to analyze and answer our research questions.

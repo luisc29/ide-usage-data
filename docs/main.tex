@@ -27,7 +27,7 @@
 
 \begin{document}
 	\newboolean{showchangedforreviewer}
-	\setboolean{showchangedforreviewer}{true} % toggle to show or hide sentences and paragraphs requested by the reviewers.
+	\setboolean{showchangedforreviewer}{false} % toggle to show or hide sentences and paragraphs requested by the reviewers.
 	\ifthenelse{\boolean{showchangedforreviewer}} {
 		
 		\newcommand{\changedforreviewer}[1]{\textcolor{blue}{#1}}
@@ -63,7 +63,7 @@
 	% ABSTRACT
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
-	\begin{abstract}{english}
+	\begin{abstract}{spanish}
 		En este trabajo presentamos un análisis de los efectos de interrupciones de trabajo en la productividad de programadores y una caracterización de actividades y patrones de trabajo con datos de uso provienientes de dos fuentes: Eclipse Usage Data Collector y Codealike. Midiendo la productividad con métricas de intensidad de trabajo, observamos bajos niveles de productividad cuando se tienen un alto número de interrupciones, interrupciones prolongadas y un efecto negativo pronunciado en los minutos inmediatos antes y después de la interrupción. Además, usando técnicas de clusterización, identificamos las actividades realizadas por programadores y un conjunto de patrones de actividad efectuados a lo largo de sesiones de trabajo.
 	\end{abstract}
 
